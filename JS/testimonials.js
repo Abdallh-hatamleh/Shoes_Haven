@@ -1,5 +1,5 @@
 
-const swiperr = new Swiper('.sliderr-wrapper', {
+const testimonialSwiper = new Swiper('.testimonial-slider-wrapper', {
   loop: true,
   grabCursor: true,
   spaceBetween: 30,
@@ -10,7 +10,7 @@ const swiperr = new Swiper('.sliderr-wrapper', {
     disableOnInteraction: false,
   },
 
-  // Pagination bullets
+  // testimonial-swiper-pagination bullets
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
@@ -38,12 +38,12 @@ const swiperr = new Swiper('.sliderr-wrapper', {
 });
 
 // Pause autoplay on hover
-const sliderWrapperr = document.querySelector('.sliderr-wrapper');
+const testimonialWrapper = document.querySelector('.testimonial-slider-wrapper');
 
-sliderWrapperr.addEventListener('mouseenter', () => {
-  swiperr.autoplay.stop();
+testimonialWrapper.addEventListener('mouseenter', () => {
+  testimonialSwiper.autoplay.stop();
 });
 
-sliderWrapperr.addEventListener('mouseleave', () => {
-  swiperr.autoplay.start();
+testimonialWrapper.addEventListener('mouseleave', () => {
+  testimonialSwiper.autoplay.start();
 });
