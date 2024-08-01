@@ -20,7 +20,8 @@
   <?php include_once("includes/nav.php") ?>
   <?php include("includes/hero.php") ?>
   <?php include("includes/about.php") ?>
-  <div class="category">
+  <main>
+    <div class="category">
         <h2>formal</h2>
         <?php include("Includes\slidertop.php")?>
         <div class="card-item swiper-slide">
@@ -171,6 +172,8 @@
         </div>
     <?php include("Includes/testimonialbottom.php") ?>
     </div>
+  </main>
+  <d
 
     <!-- <div class="foot-margin" style="margin: 2rem 0;"></div> -->
     <?php include_once("includes/foot.php") ?>
