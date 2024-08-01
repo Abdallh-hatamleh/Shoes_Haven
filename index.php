@@ -9,12 +9,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/slider.css">
   <link rel="stylesheet" href="css/testimonials.css">
+  <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/foter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
-<body>
+<body style="position:relative">
+  <?php include_once("includes/nav.php") ?>
   <div class="category">
         <h2>formal</h2>
-        <?php include("Includes\slidertop.php")  ?>
+        <?php include("Includes\slidertop.php")?>
         <div class="card-item swiper-slide">
             <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
@@ -163,6 +167,9 @@
         </div>
     <?php include("Includes/testimonialbottom.php") ?>
     </div>
+
+    <!-- <div class="foot-margin" style="margin: 2rem 0;"></div> -->
+    <?php include_once("includes/foot.php") ?>
 <!-- Linking SwiperJS script -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
