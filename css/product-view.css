@@ -10,9 +10,21 @@
   margin: 0 auto;
   padding: 0 30px;
   display: flex;
-  justify-content: start;
-  align-items: start;
   gap: 40px;
+}
+
+.main-pvcontainer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.second-pvcontainer {
+  width: 70vw;
+
+  h2 {
+    margin: 3rem 4rem;
+  }
 }
 
 /* .img-card{
@@ -105,7 +117,7 @@
 }
 
 button {
-  background: #17696a;
+  background: rgb(47, 54, 69);
   border-radius: 4px;
   padding: 10px 37px;
   border: none;
@@ -114,7 +126,7 @@ button {
 }
 
 button:hover {
-  background: #ff4242;
+  background: rgb(230, 185, 166);
   transition: ease-in 0.4s;
 }
 
@@ -166,4 +178,14 @@ hr {
   hr {
     width: 100%;
   }
+
+  .second-pvcontainer {
+    width: 95vw;
+
+    h2 {
+      margin: 2rem 3rem;
+    }
+  }
+
+
 }
