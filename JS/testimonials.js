@@ -1,5 +1,5 @@
 
-const swiper = new Swiper('.slider-wrapper', {
+const swiperr = new Swiper('.sliderr-wrapper', {
   loop: true,
   grabCursor: true,
   spaceBetween: 30,
@@ -38,12 +38,12 @@ const swiper = new Swiper('.slider-wrapper', {
 });
 
 // Pause autoplay on hover
-const sliderWrapper = document.querySelector('.slider-wrapper');
+const sliderWrapperr = document.querySelector('.sliderr-wrapper');
 
-sliderWrapper.addEventListener('mouseenter', () => {
-  swiper.autoplay.stop();
+sliderWrapperr.addEventListener('mouseenter', () => {
+  swiperr.autoplay.stop();
 });
 
-sliderWrapper.addEventListener('mouseleave', () => {
-  swiper.autoplay.start();
+sliderWrapperr.addEventListener('mouseleave', () => {
+  swiperr.autoplay.start();
 });

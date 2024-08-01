@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Slider HTML and CSS | CodingNepal</title>
-  <!-- Linking SwiperJS CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
   <div class="swiper-main-container">
     <div class="container swiper">
       <div class="slider-wrapper">
         <div class="card-list swiper-wrapper">
           <div class="card-item swiper-slide">
-            <img src="images/img-1.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
               <div class="price-color">Price</div>
@@ -26,7 +11,7 @@
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="images/img-2.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -34,7 +19,7 @@
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="images/img-3.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -42,7 +27,7 @@
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="images/img-4.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -50,7 +35,7 @@
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="images/img-5.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -58,7 +43,7 @@
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="images/img-6.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -72,20 +57,4 @@
       </div>
     </div>
   </div>
-
-  <!-- Linking SwiperJS script -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Linking custom script -->
-  <script src="script.js"></script>
-
-
-
-  <!-- Linking SwiperJS script -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Linking custom script -->
-  <script src="script.js"></script>
-</body>
-
-</html>
+  
