@@ -1,0 +1,124 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.Login-Overlay{
+    height: 100vh;
+    width: 100vw;
+    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+    padding: 5rem 20%;
+}
+
+.Form-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-color: #EEEDEB;
+    overflow: hidden;
+    border-radius: 2rem;
+    width: 100%;
+    /* padding: ; */
+}
+form {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    padding: 1.5em 14%;
+    /* row-gap: 0.5rem; */
+    justify-content: space-between;
+}
+form h2{
+    margin: 1em 0;
+    align-self: center;
+}
+.form-ins{
+    background-color: white;
+    border: 2px #EBD1C1 solid;
+    height: 2.2em;
+    border-radius: 2em;
+    padding: 0 0.5em;
+}
+.form-visual {
+    width: 45%;
+    overflow: hidden;
+    height: 100%;
+}
+.confirm-form {
+    width: 40%;
+    align-self: center;
+    height: 3em;
+    border-radius: 2em;
+    color: white;
+    background-color: black;
+}
+img {
+    width: 100%;
+    height: 100%;
+}
+label {
+    margin-left: 1em;
+    /* color: orangered; */
+    font-family: "Josefin Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+.or-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.or-seperator {
+    width: 30%;
+    height: 2px;
+    background-color: black;
+}
+.alt-text {
+    align-self: center;
+    text-align: center;
+    line-height: 1.4em;
+}
+a {
+    color: orangered;
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+}
+.inactive {
+    display: none !important;
+}
+.inputlabel {
+    display: flex;
+    flex-direction: column;
+    /* row-gap: 0.5em; */
+  }
+  .inputRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .inputRow .inputlabel{
+    width: 50%;
+  }
+  .switch-section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3em;
+  }
+@keyframes show {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
