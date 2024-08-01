@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    font-family: 'Josefin Slab', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu .puttons {
+    text-decoration: none;
+    color: #ffffff;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.menu .puttons:hover {
+    color: #F39102;
+}
+
+.search-cart {
+    display: flex;
+    align-items: center;
+}
+
+.search-cart .search {
+    display: flex;
+    align-items: center;
+}
+
+.search-cart input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ffffff;
+    border-radius: 50px;
+}
+
+.Vector {
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.ShoppingCart {
+    height: 30px;
+    cursor: pointer;
+}
+
+.login_signup {
+    background-color: #F39102;
+    border-radius: 50px;
+    border: 2px solid #000000;
+    display: flex;
+    align-items: center;
+}
+
+.login_signup a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.login_signup .login {
+    background-color: #000000;
+    border-radius: 50px;
+}
+
+.burger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.burger-menu i {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #000000;
+        position: absolute;
+        top: 49px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .search-cart {
+        display: none;
+    }
+
+    .search-cart.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        background-color: #000000;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .login_signup {
+        display: none;
+    }
+
+    .logo {
+        height: 30px; 
+    }
+
+    .fone {
+        display: flex;
+    }
+
+    .search-menu {
+        display: flex;
+        align-items: center;
+    }
+}
