@@ -5,14 +5,9 @@
     font-family: Arial, sans-serif;
 }
 
-body, html {
-    height: 100%;
-    overflow-x: hidden; /* منع التمرير الأفقي */
-}
-
 .hero {
     height: 100vh;
-    background: url('230428-nike-vl-2x1.jpg') no-repeat center center;
+    background: url('../assets/images/230428-nike-vl-2x1.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -56,12 +51,15 @@ body, html {
 .btn {
     padding: 10px 20px;
     background-color: #000000;
-    color: white;
+    color: #e18700;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 2rem;
     border-radius: 5px;
     transition: background-color 0.3s;
     font-family: jomhuria;
+    display: block;
+    width: 33%;
+    text-align: center;
 }
 
 .btn:hover {
@@ -105,17 +103,20 @@ body, html {
 }
 
 .contact-btn {
-    padding: 10px 20px;
+    padding: 0.4rem 1rem;
     background-color: #F7B201;
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 2rem;
     border-radius: 5px;
     transition: background-color 0.3s;
     position: absolute;
     right: 20px;
     bottom: 20px;
     font-family: jomhuria;
+    display: block;
+    /* width: 6rem; */
+    text-align: center;
 }
 
 .contact-btn:hover {
