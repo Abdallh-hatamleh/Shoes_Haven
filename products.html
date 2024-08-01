@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jomhuria&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-   
     <div class="main-content">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
         <aside class="sidebar">
             <h2>Categories</h2>
             <ul>
@@ -34,49 +34,49 @@
             </div>
             <main class="shoe-collection">
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+1" alt="Shoe 1">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Stylish Heels</h2>
                     <p class="description">Elegant and comfortable heels perfect for any occasion.</p>
                     <p class="price">$49.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+2" alt="Shoe 2">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Casual Flats</h2>
                     <p class="description">Casual flats for everyday wear, providing comfort and style.</p>
                     <p class="price">$29.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+3" alt="Shoe 3">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Sporty Sneakers</h2>
                     <p class="description">Sporty sneakers for active lifestyles, combining function and fashion.</p>
                     <p class="price">$59.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+4" alt="Shoe 4">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Elegant Boots</h2>
                     <p class="description">Elegant boots perfect for the colder seasons.</p>
                     <p class="price">$79.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+5" alt="Shoe 5">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Summer Sandals</h2>
                     <p class="description">Light and breezy sandals perfect for the summer.</p>
                     <p class="price">$39.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+6" alt="Shoe 6">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Formal Pumps</h2>
                     <p class="description">Classic pumps for formal occasions.</p>
                     <p class="price">$59.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+7" alt="Shoe 7">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Winter Boots</h2>
                     <p class="description">Sturdy and stylish boots to keep your feet warm.</p>
                     <p class="price">$89.99</p>
                 </div>
                 <div class="shoe-card">
-                    <img src="https://via.placeholder.com/300x300?text=Shoe+8" alt="Shoe 8">
+                    <img class="item" src="pexels-allevf-5365509.jpg" alt="Shoe 1">
                     <h2>Beach Flip Flops</h2>
                     <p class="description">Comfortable flip flops perfect for the beach.</p>
                     <p class="price">$19.99</p>
@@ -84,5 +84,11 @@
             </main>
         </div>
     </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
