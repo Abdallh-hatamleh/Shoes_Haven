@@ -77,9 +77,9 @@
     <?php include("Includes/testimonialbottom.php") ?>
     </div>
   </main>
-  <d
+  
 
-    <div class="foot-margin" style="margin: 2rem 0;"></div>
+    <!-- <div class="foot-margin" style="margin: 2rem 0;"></div> -->
     <?php include_once("includes/foot.php") ?>
 <!-- Linking SwiperJS script -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

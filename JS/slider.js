@@ -36,6 +36,8 @@ const swiper = new Swiper('.slider-wrapper', {
  const cards = document.querySelectorAll(".card-item");
 cards.forEach(element => {
   element.addEventListener("click", ()=> {
-    window.location.href = `product-view.php?id=${element.id}`;
+    // console.log(element.id)
+    if(element.id == "") console.error("Error Product page could not be loaded: Bad ID");
+    else window.location.href = `product-view.php?pid=${element.id}`;
   })
 });
