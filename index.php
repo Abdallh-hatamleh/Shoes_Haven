@@ -14,6 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jomhuria&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/foter.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="css/cart-products-section.css">
 </head>
 
 <body style="position:relative">
@@ -175,7 +176,7 @@
   </main>
   <d
 
-    <!-- <div class="foot-margin" style="margin: 2rem 0;"></div> -->
+    <div class="foot-margin" style="margin: 2rem 0;"></div>
     <?php include_once("includes/foot.php") ?>
 <!-- Linking SwiperJS script -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -183,4 +184,6 @@
 <!-- Linking custom script -->
 <script src="JS/slider.js"></script>
 <script src="JS/testimonials.js"></script>
+<script src="JS/nav.js"></script>
+<script src="JS/nav-cart.js"></script>
 </body>

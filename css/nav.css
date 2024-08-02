@@ -20,6 +20,10 @@ nav {
     padding: 0 20px;
 }
 
+.cart {
+    position: relative;
+}
+
 .logo {
     height: 50px;
 }
@@ -137,7 +141,7 @@ nav {
     }
 
     .logo {
-        height: 30px; 
+        height: 30px;
     }
 
     .fone {

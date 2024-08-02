@@ -5,16 +5,34 @@
     font-family: Arial, sans-serif;
 }
 
+.hero-head-line {
+    font-size: 8rem;
+    text-align: right;
+    font-weight: 900;
+    line-height: 150px;
+    color: rgb(47, 54, 69);
+}
+
+
+.hero-about {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 0 20px black;
+    margin-bottom: 30px;
+}
+
 .hero {
     height: 100vh;
     background: url('../assets/images/230428-nike-vl-2x1.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
     align-items: center;
-    justify-content: left; /* النص يظهر على الجهة اليسرى */
+    justify-content: center;
+    /* النص يظهر على الجهة اليسرى */
     color: white;
     position: relative;
-    padding-left: 50px; 
+    padding-left: 50px;
 }
 
 /* إزالة التعتيم عن الصورة الخلفية */
@@ -25,18 +43,24 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0); /* تعيين التعتيم إلى صفر */
+    background-color: rgba(0, 0, 0, 0);
+    /* تعيين التعتيم إلى صفر */
     z-index: 1;
 }
 
 .hero-content {
+    display: flex;
+    align-items: center;
+
+    gap: 30px;
     z-index: 2;
-    text-align: left; 
+    text-align: left;
     opacity: 1;
     transform: translateY(0);
     transition: opacity 1s ease-out, transform 1s ease-out;
-    width: auto;
+    width: 70vw;
 }
+
 
 .hero h1 {
     font-size: 3rem;
@@ -48,17 +72,18 @@
     margin-bottom: 30px;
 }
 
-.btn {
-    padding: 10px 20px;
-    background-color: #000000;
-    color: #e18700;
+.hero-check-btn {
+    padding: 10px 35px;
+    background-color: rgb(47, 54, 69);
+    color: orange;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 4.6rem;
     border-radius: 5px;
+    border: none;
     transition: background-color 0.3s;
     font-family: jomhuria;
     display: block;
-    width: 33%;
+    height: min-content;
     text-align: center;
 }
 
@@ -67,9 +92,9 @@
 }
 
 .style1 {
-    color: #e18700;
-    font-family: jomhuria;
-    font-size: 80px;
+    color: #ff8700;
+    text-shadow: -5px -5px 0 white;
+
 }
 
 .text {
@@ -119,9 +144,8 @@
     text-align: center;
 }
 
-.category {
-    
-}
+.category {}
+
 .contact-btn:hover {
     background-color: #555555;
 }
@@ -142,9 +166,11 @@
         margin-top: 0;
         width: 90%;
     }
+
     .hero h1 {
         font-size: 2.5rem;
     }
+
     .hero p {
         font-size: 1.25rem;
     }
@@ -153,11 +179,11 @@
 @media (max-width: 768px) {
     .hero {
         justify-content: center;
-        padding-left: 20px; 
+        padding-left: 20px;
     }
 
     .hero-content {
-        text-align: left; 
+        text-align: left;
         margin-top: 0;
         width: 100%;
     }
