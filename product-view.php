@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/foter.css">
   <link rel="stylesheet" href="css/product-view.css">
   <link rel="stylesheet" href="css/testimonials.css">
+  <link rel="stylesheet" href="css/cart-products-section.css">
 </head>
 
 <?php 
@@ -207,6 +208,7 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
 
 <!-- Linking custom script -->
 <script src="JS/slider.js"></script>
-<!-- <script src="JS/testimonials.js"></script> -->
-    <script src="js/product-view.js"></script>
-    </body>
+<script src="JS/testimonials.js"></script>
+<script src="JS/nav.js"></script>
+<script src="JS/nav-cart.js"></script>
+</body>

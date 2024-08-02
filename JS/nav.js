@@ -11,4 +11,4 @@ document.addEventListener('DOMContentLoaded', () => {
     searchMenu.addEventListener('click', () => {
         searchCart.classList.toggle('active');
     });
-});
+})
