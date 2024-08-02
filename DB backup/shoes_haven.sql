@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2024 at 09:13 AM
+-- Generation Time: Aug 02, 2024 at 12:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -32,6 +32,13 @@ CREATE TABLE `admin` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `user_id`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +52,16 @@ CREATE TABLE `customers` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`cust_id`, `cust_mobile`, `cust_adress`, `user_id`) VALUES
+(1, '0797085792', 'street_salah_aldin', 2),
+(2, '0798457931', 'al_quds_street', 3),
+(3, '0798457481', 'basman_street', 4),
+(4, '0798985421', 'al_sharef shaker ben zayed street', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -54,9 +71,18 @@ CREATE TABLE `customers` (
 CREATE TABLE `orders` (
   `or_id` int(11) NOT NULL,
   `or_date` date NOT NULL,
+  `or_total_amount` varchar(150) NOT NULL,
   `or_status` varchar(150) NOT NULL,
   `cust_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`or_id`, `or_date`, `or_total_amount`, `or_status`, `cust_id`) VALUES
+(1, '0000-00-00', '50.00', 'pending', 3),
+(2, '0000-00-00', '100.00', 'completed', 4);
 
 -- --------------------------------------------------------
 
@@ -79,19 +105,18 @@ CREATE TABLE `order_details` (
 
 CREATE TABLE `poduct_media` (
   `Pme_id` int(11) NOT NULL,
-  `Pme_type` varchar(50) NOT NULL DEFAULT 'img',
-  `product_id` int(11) DEFAULT NULL,
-  `file_name` varchar(255) NOT NULL
+  `Pme_name` varchar(255) NOT NULL,
+  `product_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `poduct_media`
 --
 
-INSERT INTO `poduct_media` (`Pme_id`, `Pme_type`, `product_id`, `file_name`) VALUES
-(1, 'img', 1, '1685511177c1bafc7dbb7c9e259ea3ea2c85fe0a86_thumbnail_900x.jpg'),
-(2, 'img', 1, '16855111698e0b383617e1ef68ae24dd1e1aab0760_thumbnail_900x.jpg'),
-(3, 'img', 1, 'Screenshot 2024-07-31 123707.png');
+INSERT INTO `poduct_media` (`Pme_id`, `Pme_name`, `product_id`) VALUES
+(2, '1685511177c1bafc7dbb7c9e259ea3ea2c85fe0a86_thumbnail_900x.jpg', 1),
+(3, '16855111698e0b383617e1ef68ae24dd1e1aab0760_thumbnail_900x.jpg', 1),
+(4, 'Screenshot 2024-07-31 123707.png', 1);
 
 -- --------------------------------------------------------
 
@@ -105,7 +130,7 @@ CREATE TABLE `products` (
   `product_description` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `sel_id` int(11) DEFAULT NULL,
-  `status` varchar(255) DEFAULT 'available'
+  `status` bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -113,7 +138,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `price`, `sel_id`, `status`) VALUES
-(1, 'Women Buckle Decor Square Toe Chunky Heeled Slingback Pumps', 'Color:\r\nBlack\r\nPattern Type:\r\nPlain, Plants\r\nHeel Height:\r\nLow Heel (4cm/1.6inch)\r\nSize Fit:\r\nTrue To Size\r\nUpper Material:\r\nPatent Leather\r\nLining Material:\r\nPU Leather ', 20.00, NULL, 'available');
+(1, 'Women Buckle Decor Square Toe Chunky Heeled Slingback Pumps', 'Color:\r\nBlack\r\nPattern Type:\r\nPlain, Plants\r\nHeel Height:\r\nLow Heel (4cm/1.6inch)\r\nSize Fit:\r\nTrue To Size\r\nUpper Material:\r\nPatent Leather\r\nLining Material:\r\nPU Leather ', 20.00, NULL, b'1');
 
 -- --------------------------------------------------------
 
@@ -139,6 +164,13 @@ CREATE TABLE `sellers` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `sellers`
+--
+
+INSERT INTO `sellers` (`sel_id`, `sel_mobile`, `sel_adress`, `user_id`) VALUES
+(1, '0798985421', 'al_sharef shaker ben zayed street', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -150,19 +182,6 @@ CREATE TABLE `shoe_sizes` (
   `shoe_size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `shoe_sizes`
---
-
-INSERT INTO `shoe_sizes` (`product_id`, `shoe_size`) VALUES
-(1, 38),
-(1, 39),
-(1, 40),
-(1, 41),
-(1, 42),
-(1, 43),
-(1, 44);
-
 -- --------------------------------------------------------
 
 --
@@ -171,8 +190,8 @@ INSERT INTO `shoe_sizes` (`product_id`, `shoe_size`) VALUES
 
 CREATE TABLE `tags` (
   `tag_id` int(11) NOT NULL,
-  `tag_name` varchar(255) DEFAULT NULL,
-  `sale_amount` decimal(10,2) DEFAULT NULL
+  `tad_name` varchar(255) DEFAULT NULL,
+  `sale_amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -201,6 +220,17 @@ CREATE TABLE `users` (
   `user_email` varchar(255) NOT NULL,
   `password` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `user_email`, `password`) VALUES
+(1, 'ayah', 'hillawi', 'ayahhillawi9@gmail.com', 'ayha11_'),
+(2, 'ahmad', 'khallaf', 'ahamadkallahf@gmail.com', 'ahamd12er'),
+(3, 'sami', 'sawalqa', 'samiswalqa2@gmail.com', 'sami1w3'),
+(4, 'heba', 'samaheen', 'hebasamaheen4@gmail.com', 'heba55'),
+(5, 'abdallah', 'hatamleh', 'abdallahhatamleh@gmail.com', 'abd23451');
 
 --
 -- Indexes for dumped tables
@@ -296,19 +326,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -320,19 +350,19 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `poduct_media`
 --
 ALTER TABLE `poduct_media`
-  MODIFY `Pme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Pme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `sel_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -350,7 +380,7 @@ ALTER TABLE `testimonails`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
