@@ -8,7 +8,6 @@ nav_cart_img.addEventListener('click', (e) => {
     }
 })
 
-
 document.addEventListener('click', () => {
     console.log('ok')
 })
