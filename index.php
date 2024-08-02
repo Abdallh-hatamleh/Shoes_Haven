@@ -22,110 +22,15 @@
   <?php include("includes/hero.php") ?>
   <?php include("includes/about.php") ?>
   <main>
-    <div class="category">
-        <h2>formal</h2>
-        <?php include("Includes\slidertop.php")?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <?php include("Includes/sliderbot.php") ?>
-    </div>
-    <div class="category">
-        <h2>Sneakers</h2>
-        <?php include("Includes\slidertop.php") ?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <?php include("Includes/sliderbot.php") ?>
-          
-    </div>
+    <h2 class="section-header"><i class="fa-solid fa-fire-flame-curved fa-flip-horizontal"></i>Hottest Items<i class="fa-solid fa-fire-flame-curved"></i></h2>
+    
+      <?php 
+      $tagid = 1;
+      include("includes/slider.php"); 
+      $tagid = 4;
+      include("includes/slider.php");
+       ?>
+      
     <div class="testimonials">
     <?php include("Includes/testimonialtop.php") ?>
         <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
