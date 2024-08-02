@@ -20,7 +20,7 @@ $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try {
 
-$query = $conn->prepare("select products.product_name as title,products.price as price,.products.product_description as descr, poduct_media.file_name as img from products JOIN poduct_media USING (product_id) where product_id=:idr");
+$query = $conn->prepare("select products.product_name as title,products.price as price,.products.product_description as descr, poduct_media.Pme_name as img from products JOIN poduct_media USING (product_id) where product_id=:idr");
 $query->execute(["idr"=>"1"]);
 }
 catch (PDOException $e)
