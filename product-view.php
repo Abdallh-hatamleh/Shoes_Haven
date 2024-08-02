@@ -17,12 +17,17 @@
 </head>
 
 <?php 
+$pid = 1;
+if (isset($_GET['pid']))
+{
+ $pid = $_GET['pid'];
+}
 $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try {
 
 $query = $conn->prepare("select products.product_name as title,products.price as price,.products.product_description as descr, poduct_media.Pme_name as img from products JOIN poduct_media USING (product_id) where product_id=:idr");
-$query->execute(["idr"=>"1"]);
+$query->execute(["idr"=>$pid]);
 }
 catch (PDOException $e)
 {
@@ -35,12 +40,12 @@ global $images;
 $images[] = $row['img'];
 }
 $query = $conn->prepare('select products.product_name as title,products.price as price,.products.product_description as descr from products JOIN poduct_media USING (product_id) where product_id=:idr');
-$query->execute(["idr"=>"1"]);
+$query->execute(["idr"=>$pid]);
 $title = $query->fetchColumn();
 $price = $query->fetchColumn(1);
 $description = $query->fetchColumn(2);
 $query = $conn->prepare("select shoe_sizes.shoe_size as size from products JOIN shoe_sizes USING (product_id) where product_id=:idr");
-$query->execute(["idr"=>"1"]);
+$query->execute(["idr"=>$pid]);
 $sizes = [];
 foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
   global $sizes;
