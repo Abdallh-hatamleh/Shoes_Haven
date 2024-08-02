@@ -31,7 +31,6 @@
               <div class="price-color">Price</div>
             </div>
           </div>
-
           <div class="card-item swiper-slide">
             <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
@@ -39,7 +38,6 @@
               <div class="price-color">Price</div>
             </div>
           </div>
-
           <div class="card-item swiper-slide">
             <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
