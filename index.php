@@ -21,7 +21,7 @@
   <?php include_once("includes/nav.php") ?>
   <?php include("includes/hero.php") ?>
   <?php include("includes/about.php") ?>
-  <main>
+  <main id="collection">
     <h2 class="section-header"><i class="fa-solid fa-fire-flame-curved fa-flip-horizontal"></i>Hottest Items<i class="fa-solid fa-fire-flame-curved"></i></h2>
     
       <?php 
