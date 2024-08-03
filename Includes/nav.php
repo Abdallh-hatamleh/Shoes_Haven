@@ -4,8 +4,8 @@
                 class="logo">
 
             <div class="menu" id="menu">
-                <a href="" class="puttons">Home</a>
-                <a href="" class="puttons">products</a>
+                <a href="index.php" class="puttons">Home</a>
+                <a href="products.php" class="puttons">products</a>
                 <a href="" class="puttons">About Us</a>
                 <a href="" class="puttons">Contact Us</a>
             </div>
@@ -66,8 +66,8 @@
             </div>
 
             <div class="login_signup">
-                <a href="" class="login">login</a>
-                <a href="" class="signup">signup</a>
+                <a href="signup.php?active=log" class="login">login</a>
+                <a href="signup.php?active=sign" class="signup">signup</a>
             </div>
                 <div class="burger-menu" id="burger-menu">
                     <i class="fa fa-bars"></i>
