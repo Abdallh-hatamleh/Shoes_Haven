@@ -5,7 +5,7 @@
 
             <div class="hero-about-check-btn">
             <div class="hero-about">Your ultimate destination for trendy and comfortable shoes</div>
-            <a href="#collection" class="hero-check-btn" id="shop-btn">Check collection</a>
+            <a href="#collection" class="hero-check-btn" id="shop-btn">Check collections</a>
             </div>
 
         </div>

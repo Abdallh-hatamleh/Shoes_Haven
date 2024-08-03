@@ -80,6 +80,9 @@
                 <a href="signup.php?active=log" class="login">login</a>
                 <a href="signup.php?active=sign" class="signup">signup</a>
             </div>
+                <div>
+                    <a href="user-information.php">UserInfo</a>
+                </div>
                 <div class="burger-menu" id="burger-menu">
                     <i class="fa fa-bars"></i>
                 </div>
