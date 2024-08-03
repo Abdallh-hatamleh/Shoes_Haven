@@ -1,6 +1,7 @@
 /* Footer Styles */
 
 footer {
+    bottom: 0;
     background-color: #000000;
     color: #fff;
     text-align: center;
@@ -38,8 +39,9 @@ footer {
     height: 30px;
     width: 30px;
 }
+
 .social_color:hover {
-color: #F39102 !important;
+    color: #F39102 !important;
 }
 
 

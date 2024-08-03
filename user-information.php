@@ -15,173 +15,167 @@
   <link rel="stylesheet" href="css/foter.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="css/cart-products-section.css">
+  <link rel="stylesheet" href="css/user-information-style.css">
+  
 </head>
 
 <body style="position:relative">
   <?php include_once("includes/nav.php") ?>
-  <?php include("includes/hero.php") ?>
-  <?php include("includes/about.php") ?>
-  <main>
-    <div class="category">
-        <h2>formal</h2>
-        <?php include("Includes\slidertop.php")?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+<div class="user-information-section">
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <?php include("Includes/sliderbot.php") ?>
+<div class="aside-bar-user-info">
+
+  <div class="aside-informations">User Info</div>
+  <div class="aside-pass">Password</div>
+  <div class="aside-orders">Orders</div>
+
+</div>
+
+<!-- /////////////////////////// -->
+
+<div class="user-info-show ">
+
+<form class="user-info-form" id="info_form" action="" method="">
+<h1>User Info</h1>
+  
+<label>First Name:</label>    
+<input class="new-changes-input" type="text" value="Sami" name="first_name">  
+
+  <label>Second Name:</label>    
+  <input class="new-changes-input" type="text" value="Sawalqa" name="second_name">  
+
+    <label>Email:</label>    
+    <input class="new-changes-input" type="email" value="sawalqa.sami@gmail.com" name="email">  
+  
+    <label>Phone Number:</label>    
+    <input class="new-changes-input" type="text" value="0791189767" name="mobile_number">  
+
+<input class="info-submit-btn" type="submit" value="Save Changes" name="save_info">
+</form>
+
+</div>
+
+<!-- /////////////////////////// -->
+
+<div class="user-info-show hidden ">
+
+<form class="user-info-form " id="pass_form" action="" method="">
+<h1>Password</h1>
+  
+<label>Old password:</label>    
+<input class="new-changes-input" type="text" placeholder="   ......." name="old_pass">  
+
+  <label>Confirm old password:</label>    
+  <input class="new-changes-input" type="text" placeholder="   ......." name="conf_old_pass">  
+
+    <label>New password:</label>    
+    <input class="new-changes-input" type="email" placeholder="   ......." name="new_pass">  
+  
+<input class="info-submit-btn" type="submit" value="Save Changes" name="save_new_pass">
+</form>
+</div>
+
+<!-- ////////////////////////////////// -->
+
+<div class="user-info-show hidden">
+
+<div class="user-orders-list">
+  <h1>Orders</h1>
+<div class="user-order-card" id="0">
+<a class="order-number">#1</a>
+<a class="order-total">TOTAL</a>
+<a class="order-date">date</a>
+<a class="order-shrink-pointer hidden ">&#9650;</a>
+<a class="order-expand-pointer ">&#9660;</a>
+</div>
+<div class="order-expanded-list " id="0">
+<div class="cart-scroll-div">  
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
     </div>
-    <div class="category">
-        <h2>Sneakers</h2>
-        <?php include("Includes\slidertop.php") ?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <?php include("Includes/sliderbot.php") ?>
-          
+</div>
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
     </div>
-    <div class="testimonials">
-    <?php include("Includes/testimonialtop.php") ?>
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">James Wilson</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-2.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Sarah Johnson</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-3.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Michael Brown</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-4.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Emily Davis</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-5.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Christopher Garcia</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-6.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Richard Wilson</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-    <?php include("Includes/testimonialbottom.php") ?>
+</div>
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
     </div>
-  </main>
-  <d
+</div>
+</div>
+</div>
+  
+<!-- //////////////// -->
 
-    <div class="foot-margin" style="margin: 2rem 0;"></div>
+<div class="user-order-card" id="1">
+<a class="order-number">#1</a>
+<a class="order-total">TOTAL</a>
+<a class="order-date">date</a>
+<a class="order-shrink-pointer hidden ">&#9650;</a>
+<a class="order-expand-pointer ">&#9660;</a>
+</div>
+<div class="order-expanded-list " id="1">
+<div class="cart-scroll-div">  
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+    </div>
+</div>
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+    </div>
+</div>
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+    </div>
+</div>
+</div>
+</div>
+</div> 
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
     <?php include_once("includes/foot.php") ?>
 <!-- Linking SwiperJS script -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- Linking custom script -->
+<script src="JS/user-information.js"></script>
 <script src="JS/slider.js"></script>
-<script src="JS/testimonials.js"></script>
+<!-- <script src="JS/testimonials.js"></script> -->
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
 </body>
