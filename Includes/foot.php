@@ -9,4 +9,4 @@
         </div>
     </footer>
 
-    <script src="JS/nav.js"></script>
+    <!-- <script src="JS/nav.js"></script> -->
