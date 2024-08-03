@@ -144,12 +144,30 @@
     text-align: center;
 }
 
-.category {}
+.category {
+    padding: 0 15vw;
+}
 
 .contact-btn:hover {
     background-color: #555555;
 }
 
+main {
+    margin-top: 2rem;
+}
+.section-header {
+    width: fit-content;
+    margin: auto;
+    background: linear-gradient(180deg, rgb(231, 65, 3) 0%, rgb(255, 255, 255) 100%);
+    padding: 0.4rem 2rem;
+    border-radius: 2rem 2rem 0 0;
+}
+.category h2 {
+    /* width: 70vw; */
+    margin-left: 5vw;
+    margin-bottom: 2rem;
+    
+  }
 /* تعديلات Responsive */
 @media (max-width: 1200px) {
     .hero h1 {
