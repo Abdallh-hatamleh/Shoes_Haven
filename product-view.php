@@ -216,4 +216,5 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
 <script src="JS/testimonials.js"></script>
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
+<script src="JS/product-view.js"></script>
 </body>

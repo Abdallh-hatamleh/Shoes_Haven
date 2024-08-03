@@ -5,7 +5,7 @@
 <div class="Login-Overlay">
 
     <div class="Form-container ">
-        <form action="post" class="signup-form inactive" id="signup-form">
+        <form method="post" action="" class="signup-form inactive" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
             <div class="inputlabel">
@@ -43,7 +43,7 @@
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form action="post" class="login-form" id="login-form">
+<form method="post" action="" class="login-form" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
@@ -53,7 +53,7 @@
         <label for="Pass">Password</label>
         <input class="form-ins" type="password" name="Pass">
     </div>
-    <input type="submit" class="confirm-form" value="Log in" name="sign-up">
+    <input type="submit" class="confirm-form" value="Log in" name="log-in">
     <div class="switch-section">
         <div class="or-section">
             <span class="or-seperator"></span>
@@ -71,3 +71,99 @@
 </div>
 <script src="JS/login.js">
     </script>
+
+
+<!-- login&signup -->
+
+<?php
+
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "Shoes_Haven"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST["sign-up"])) {
+    $first_name = $_POST['Fname'];
+    $last_name = $_POST['Lname'];
+    $email = $_POST['Email'];
+    $password = password_hash($_POST['Pass'], PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO users (first_name, last_name, user_email, password) VALUES ('$first_name', '$last_name', '$email', '$password')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
+
+<?php
+
+$servername = "localhost";
+$username = "root"; 
+$password = "";
+$dbname = "Shoes_Haven"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST["log-in"])) {
+    $email = $_POST['Email'];
+    $password = $_POST['Pass'];
+
+    $sql = "SELECT user_id, password FROM users WHERE user_email='$email'";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $id = $row["user_id"];
+        if (password_verify($password, $row['password'])) {
+            $sql = "SELECT admin_id FROM `admin` WHERE user_id= $id";
+            $result = $conn->query($sql);
+        
+            if ($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                echo "<script>alert('admin".$row["admin_id"] . "')</script>";
+            }else{
+                $sql = "SELECT cust_id FROM `Customers` WHERE user_id= $id";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                echo "<script>alert('customers".$row["cust_id"] . "')</script>";
+        
+            }else{
+                $sql = "SELECT sel_id FROM `Sellers ` WHERE user_id= $id";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                echo "<script>alert(' sellers".$row["sel_id"] . "')</script>";
+        
+            }
+            }
+        }
+
+        } else {
+            echo "<script>alert('Wrong Email or Password')</script>";
+        }
+    } else {
+        echo "No user found with this email";
+    }
+
+    $conn->close();
+}
+?>
+

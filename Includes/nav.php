@@ -66,8 +66,8 @@
             </div>
 
             <div class="login_signup">
-                <a href="" class="login">login</a>
-                <a href="" class="signup">signup</a>
+                <a href="signup.php" class="login">login</a>
+                <a href="signup.php" class="signup">signup</a>
             </div>
                 <div class="burger-menu" id="burger-menu">
                     <i class="fa fa-bars"></i>
