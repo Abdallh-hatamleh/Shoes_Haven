@@ -7,7 +7,3 @@ nav_cart_img.addEventListener('click', (e) => {
         cart_product_list.classList.add('hidden')
     }
 })
-
-document.addEventListener('click', () => {
-    console.log('ok')
-})

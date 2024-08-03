@@ -155,6 +155,7 @@
 main {
     margin-top: 2rem;
 }
+
 .section-header {
     width: fit-content;
     margin: auto;
@@ -162,12 +163,14 @@ main {
     padding: 0.4rem 2rem;
     border-radius: 2rem 2rem 0 0;
 }
+
 .category h2 {
     /* width: 70vw; */
     margin-left: 5vw;
     margin-bottom: 2rem;
-    
-  }
+
+}
+
 /* تعديلات Responsive */
 @media (max-width: 1200px) {
     .hero h1 {
@@ -252,6 +255,36 @@ main {
 }
 
 @media (max-width: 375px) {
+    .hero {
+        padding: 0;
+        align-items: center;
+    }
+
+    .hero-head-line {
+        font-size: 4rem;
+        line-height: 60px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+
+    .hero-about {
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 0 20px black;
+        margin-bottom: 30px;
+        width: 300px;
+        text-align: center;
+    }
+
+    .hero-check-btn {
+        padding: 5px 10px;
+    }
+
     .hero h1 {
         font-size: 1.5rem;
     }

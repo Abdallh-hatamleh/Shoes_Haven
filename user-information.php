@@ -87,8 +87,9 @@
 <a class="order-number">#1</a>
 <a class="order-total">TOTAL</a>
 <a class="order-date">date</a>
-<a class="order-shrink-pointer hidden ">&#9650;</a>
-<a class="order-expand-pointer ">&#9660;</a>
+<a>&#9660;</a>
+<!-- <a class="order-shrink-pointer hidden ">&#9650;</a>
+<a class="order-expand-pointer ">&#9660;</a> -->
 </div>
 <div class="order-expanded-list " id="0">
 <div class="cart-scroll-div">  
@@ -125,11 +126,14 @@
 <a class="order-number">#1</a>
 <a class="order-total">TOTAL</a>
 <a class="order-date">date</a>
-<a class="order-shrink-pointer hidden ">&#9650;</a>
-<a class="order-expand-pointer ">&#9660;</a>
+<a>&#9650;</a>
+<!-- <a class="order-shrink-pointer hidden ">&#9650;</a>
+<a class="order-expand-pointer ">&#9660;</a> -->
 </div>
+
 <div class="order-expanded-list " id="1">
 <div class="cart-scroll-div">  
+
 <div class="cart-product">
     <img src="img/images.jpg" alt="">
     <div class="cart-product-info">
@@ -154,6 +158,46 @@
         <div class="cart-product-price">PRICE: <a> 22$ </a></div>
     </div>
 </div>
+
+</div>
+</div>
+<div class="user-order-card" id="2">
+<a class="order-number">#1</a>
+<a class="order-total">TOTAL</a>
+<a class="order-date">date</a>
+<a>&#9650;</a>
+<!-- <a class="order-shrink-pointer hidden ">&#9650;</a>
+<a class="order-expand-pointer ">&#9660;</a> -->
+</div>
+
+<div class="order-expanded-list" id="2">
+<div class="cart-scroll-div">  
+
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+    </div>
+</div>
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+    </div>
+</div>
+<div class="cart-product">
+    <img src="img/images.jpg" alt="">
+    <div class="cart-product-info">
+        <div class="cart-product-name">product nameproduct nameproduct </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
+        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+    </div>
+</div>
+
 </div>
 </div>
 </div> 

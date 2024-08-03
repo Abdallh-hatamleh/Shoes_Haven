@@ -8,10 +8,9 @@ const info_form = document.querySelectorAll('.user-info-show')[0]
 const pass_form = document.querySelectorAll('.user-info-show')[1]
 const user_orders_list = document.querySelectorAll('.user-info-show')[2]
 
-///  orders list expand/shrink
+///  orders list expand/shrink  user-order-card
+const user_order_card = document.querySelectorAll('.user-order-card')
 const order_expanded_list = document.querySelectorAll('.order-expanded-list')
-const order_shrink_pointer = document.querySelectorAll('.order-shrink-pointer')
-const order_expand_pointer = document.querySelectorAll('.order-expand-pointer')
 
 
 
@@ -50,21 +49,21 @@ aside_orders.addEventListener('click', () => {
 function list_hidden_function() {
     for (let i = 0; i < order_expanded_list.length; i++) {
         order_expanded_list[i].classList.add('hidden')
-        order_shrink_pointer[i].classList.add('hidden')
-        order_expand_pointer[i].classList.remove('hidden')
+        user_order_card[i].querySelectorAll('a')[3].innerHTML = ('&#9660;')
     }
 }
 
 list_hidden_function();
 
 document.querySelector('.user-orders-list').addEventListener('click', (e) => {
-    if (e.target.getAttribute('class') == 'order-expand-pointer') {
-        x = e.target.parentNode.getAttribute('id')
+    let order_card_id = e.target.getAttribute('id')
+    let order_card_class = e.target.getAttribute('class')
+    if (order_card_class == 'user-order-card' && order_expanded_list[order_card_id].classList.contains('hidden')) {
         list_hidden_function();
-        e.target.parentNode.querySelectorAll('a')[3].classList.remove('hidden')
-        e.target.classList.add('hidden')
-        order_expanded_list[x].classList.remove('hidden')
-    } else if (e.target.getAttribute('class') == 'order-shrink-pointer') {
+        e.target.querySelectorAll('a')[3].innerHTML = ('&#9650;')
+        order_expanded_list[order_card_id].classList.remove('hidden')
+    } else if (order_card_class == 'user-order-card' && !order_expanded_list[order_card_id].classList.contains('hidden')) {
         list_hidden_function();
     }
 })
+
