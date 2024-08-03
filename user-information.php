@@ -1,3 +1,33 @@
+<?php
+
+$user_id = 2;
+
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+$sql = $conn->prepare("select users.*, customers.cust_mobile, customers.cust_adress from users JOIN customers ON users.user_id = customers.user_id && users.user_id =:idr");
+$sql->execute(["idr"=>$user_id]);
+
+$result = $sql->fetchAll()[0];
+$first_name = $result['first_name'];
+$last_name = $result['last_name'];
+$user_pass = $result['password'];
+$user_email = $result['user_email'];
+$cust_mobile = $result['cust_mobile'];
+$cust_address = $result['cust_adress'];
+
+
+?> 
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,173 +45,161 @@
   <link rel="stylesheet" href="css/foter.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="css/cart-products-section.css">
+  <link rel="stylesheet" href="css/user-information-style.css">
+  
 </head>
 
 <body style="position:relative">
   <?php include_once("includes/nav.php") ?>
-  <?php include("includes/hero.php") ?>
-  <?php include("includes/about.php") ?>
-  <main>
-    <div class="category">
-        <h2>formal</h2>
-        <?php include("Includes\slidertop.php")?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+<div class="user-information-section">
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <?php include("Includes/sliderbot.php") ?>
-    </div>
-    <div class="category">
-        <h2>Sneakers</h2>
-        <?php include("Includes\slidertop.php") ?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+<div class="aside-bar-user-info">
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+  <div class="aside-informations">User Info</div>
+  <div class="aside-pass">Password</div>
+  <div class="aside-orders">Orders</div>
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+</div>
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+<!-- /////////////////////////// -->
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+<div class="user-info-show ">
 
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
+<form class="user-info-form" id="info_form" action="" method="">
+<h1>User Info</h1>
+  
+<label>First Name:</label>    
+<input class="new-changes-input" type="text" value="<?php echo $first_name ?>" name="first_name">  
 
-          <?php include("Includes/sliderbot.php") ?>
-          
-    </div>
-    <div class="testimonials">
-    <?php include("Includes/testimonialtop.php") ?>
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">James Wilson</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
+  <label>Second Name:</label>    
+  <input class="new-changes-input" type="text" value="<?php echo $last_name ?>" name="second_name">  
 
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-2.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Sarah Johnson</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
+    <label>Email:</label>    
+    <input class="new-changes-input" type="email" value="<?php echo $user_email ?>" name="email">  
+  
+    <label>Phone Number:</label>    
+    <input class="new-changes-input" type="text" value="<?php echo $cust_mobile ?>" name="mobile_number">  
+  
+    <label>Address:</label>    
+    <input class="new-changes-input" type="text" value="<?php echo $cust_address ?>" name="cust_address">  
 
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-3.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Michael Brown</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
+<input class="info-submit-btn" type="submit" value="Save Changes" name="save_info">
+</form>
 
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-4.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Emily Davis</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
+</div>
 
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-5.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Christopher Garcia</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
+<!-- /////////////////////////// -->
 
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-6.jpg" alt="User Image" class="testimonial-user-image">
-          <h2 class="testimonial-user-name">Richard Wilson</h2>
-          <article class="testimonial-message-article">Message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni
-            laborum est facilis mollitia tenetur, aspernatur voluptatibus, laudantium qui </article>
-        </div>
-    <?php include("Includes/testimonialbottom.php") ?>
-    </div>
-  </main>
-  <d
+<div class="user-info-show hidden ">
 
-    <div class="foot-margin" style="margin: 2rem 0;"></div>
+<form class="user-info-form " id="pass_form" action="" method="">
+<h1>Password</h1>
+  
+<label>Old password:</label>    
+<input class="new-changes-input" type="text" placeholder="   ......." name="old_pass">  
+
+  <label>Confirm old password:</label>    
+  <input class="new-changes-input" type="text" placeholder="   ......." name="conf_old_pass">  
+
+    <label>New password:</label>    
+    <input class="new-changes-input" type="email" placeholder="   ......." name="new_pass">  
+  
+<input class="info-submit-btn" type="submit" value="Save Changes" name="save_new_pass">
+</form>
+</div>
+
+<!-- ////////////////////////////////// -->
+
+<div class="user-info-show hidden">
+
+<div class="user-orders-list">
+  <h1>Orders</h1>
+
+  <?php
+
+$order_card = $conn->prepare("select customers.*, users.*, orders.* from customers left join users using (user_id) JOIN orders using (cust_id) where users.user_id = 2");
+$order_card->execute();
+$order_count = $order_card->fetchALL();
+
+
+$order_details_list = $conn->prepare("select orders.*, order_details.*, products.*,poduct_media.*, (products.price*order_details.qt_quantity) as totalPerProduct FROM orders JOIN order_details USING (or_id) JOIN products USING (product_id) JOIN poduct_media USING (product_id) GROUP BY orferdetails_id");
+$order_details_list->execute();
+$order_product_count = $order_details_list->fetchALL();
+
+$card_id_counter = 0;
+foreach ($order_count as $order){
+
+    $total_card_price = 0;
+    foreach($order_product_count as $prices){
+        if($prices['or_id'] == $order['or_id'])
+$total_card_price += $prices['totalPerProduct'];
+    }
+
+
+echo "<div class='user-order-card' id='$card_id_counter'>";
+echo "<a class='order-number'>#".$order['or_id']."</a>";
+echo "<a class='order-total'>$$total_card_price</a>";
+echo "<a class='order-date'>".$order['or_date']."</a>";
+echo "<a>&#9660;</a>";
+echo "</div>";
+
+
+
+echo "<div class='order-expanded-list' id='$card_id_counter'>";
+echo "<div class='cart-scroll-div'>";
+
+foreach($order_product_count as $order_list){
+if($order_list['or_id'] == $order['or_id']){
+
+
+echo "<div class='cart-product'>";
+echo " <img src='assets/Products/".$order_list['Pme_name']."' alt=''>";
+echo "<div class='cart-product-info'>";
+echo "<div class='cart-product-name'>".$order_list['product_name']."</div>";
+echo "<div>".$order_list['product_description']."</div>";
+echo "<div class='order-price-quantity'><div class='cart-product-price'>PRICE: <a> $".$order_list['price']." </a></div><div>qty:".$order_list['qt_quantity']."</div></div>";
+echo "</div>";
+echo "</div>";
+
+
+}
+}
+echo "</div>";
+echo "</div>";
+
+$card_id_counter++;
+};
+
+
+
+
+
+
+
+?>
+
+</div> 
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
     <?php include_once("includes/foot.php") ?>
 <!-- Linking SwiperJS script -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- Linking custom script -->
+<script src="JS/user-information.js"></script>
 <script src="JS/slider.js"></script>
-<script src="JS/testimonials.js"></script>
+<!-- <script src="JS/testimonials.js"></script> -->
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
 </body>
