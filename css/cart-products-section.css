@@ -60,6 +60,8 @@
     color: white;
     margin: 5px;
     border: outset rgb(47, 54, 69);
+    cursor: pointer;
+
 }
 
 .checkout-total-section {

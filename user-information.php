@@ -28,15 +28,6 @@ $cust_address = $result['cust_adress'];
 
 
 
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,123 +116,70 @@ $cust_address = $result['cust_adress'];
 
 <div class="user-orders-list">
   <h1>Orders</h1>
-<div class="user-order-card" id="0">
-<a class="order-number">#1</a>
-<a class="order-total">TOTAL</a>
-<a class="order-date">date</a>
-<a>&#9660;</a>
-<!-- <a class="order-shrink-pointer hidden ">&#9650;</a>
-<a class="order-expand-pointer ">&#9660;</a> -->
-</div>
-<div class="order-expanded-list " id="0">
-<div class="cart-scroll-div">  
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-      <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-</div>
-</div>
-  
-<!-- //////////////// -->
 
-<div class="user-order-card" id="1">
-<a class="order-number">#1</a>
-<a class="order-total">TOTAL</a>
-<a class="order-date">date</a>
-<a>&#9650;</a>
-<!-- <a class="order-shrink-pointer hidden ">&#9650;</a>
-<a class="order-expand-pointer ">&#9660;</a> -->
-</div>
+  <?php
 
-<div class="order-expanded-list " id="1">
-<div class="cart-scroll-div">  
+$order_card = $conn->prepare("select customers.*, users.*, orders.* from customers left join users using (user_id) JOIN orders using (cust_id) where users.user_id = 2");
+$order_card->execute();
+$order_count = $order_card->fetchALL();
 
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
 
-</div>
-</div>
-<div class="user-order-card" id="2">
-<a class="order-number">#1</a>
-<a class="order-total">TOTAL</a>
-<a class="order-date">date</a>
-<a>&#9650;</a>
-<!-- <a class="order-shrink-pointer hidden ">&#9650;</a>
-<a class="order-expand-pointer ">&#9660;</a> -->
-</div>
+$order_details_list = $conn->prepare("select orders.*, order_details.*, products.*,poduct_media.*, (products.price*order_details.qt_quantity) as totalPerProduct FROM orders JOIN order_details USING (or_id) JOIN products USING (product_id) JOIN poduct_media USING (product_id) GROUP BY orferdetails_id");
+$order_details_list->execute();
+$order_product_count = $order_details_list->fetchALL();
 
-<div class="order-expanded-list" id="2">
-<div class="cart-scroll-div">  
+$card_id_counter = 0;
+foreach ($order_count as $order){
 
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
-    </div>
-</div>
+    $total_card_price = 0;
+    foreach($order_product_count as $prices){
+        if($prices['or_id'] == $order['or_id'])
+$total_card_price += $prices['totalPerProduct'];
+    }
 
-</div>
-</div>
+
+echo "<div class='user-order-card' id='$card_id_counter'>";
+echo "<a class='order-number'>#".$order['or_id']."</a>";
+echo "<a class='order-total'>$$total_card_price</a>";
+echo "<a class='order-date'>".$order['or_date']."</a>";
+echo "<a>&#9660;</a>";
+echo "</div>";
+
+
+
+echo "<div class='order-expanded-list' id='$card_id_counter'>";
+echo "<div class='cart-scroll-div'>";
+
+foreach($order_product_count as $order_list){
+if($order_list['or_id'] == $order['or_id']){
+
+
+echo "<div class='cart-product'>";
+echo " <img src='assets/Products/".$order_list['Pme_name']."' alt=''>";
+echo "<div class='cart-product-info'>";
+echo "<div class='cart-product-name'>".$order_list['product_name']."</div>";
+echo "<div>".$order_list['product_description']."</div>";
+echo "<div class='order-price-quantity'><div class='cart-product-price'>PRICE: <a> $".$order_list['price']." </a></div><div>qty:".$order_list['qt_quantity']."</div></div>";
+echo "</div>";
+echo "</div>";
+
+
+}
+}
+echo "</div>";
+echo "</div>";
+
+$card_id_counter++;
+};
+
+
+
+
+
+
+
+?>
+
 </div> 
 </div>
 </div>
