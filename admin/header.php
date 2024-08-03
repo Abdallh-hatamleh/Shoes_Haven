@@ -319,11 +319,6 @@
 						</a>
 					</li>
 					<li>
-						<a href="Seller.php" class="dropdown-toggle no-arrow">
-							<span class="micon bi "></span><span class="mtext">Seller</span>
-						</a>
-					</li>
-					<li>
 						<a href="Products.php" class="dropdown-toggle no-arrow">
 							<span class="micon bi "></span><span class="mtext">Products</span>
 						</a>
