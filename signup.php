@@ -18,9 +18,15 @@ if(isset($_POST["signup"])) {
 
     }
 }
+$active = "log";
+if(isset($_GET['active']))
+{
+    $active = $_GET['active'];
+}
+
 ?>
     <div class="Form-container ">
-        <form method="post" action="" class="signup-form inactive" id="signup-form">
+        <form method="post" action="" class="signup-form <?php if($active != "sign") echo "inactive" ?>" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
             <div class="inputlabel">
@@ -58,7 +64,7 @@ if(isset($_POST["signup"])) {
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form method="post" action="" class="login-form" id="login-form">
+<form method="post" action="" class="login-form <?php if($active != "log") echo "inactive" ?>" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
@@ -103,7 +109,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_POST["sign-up"])) {
+if (isset($_POST["signup"])) {
+    
+    // echo "<script>alert('hi')</script>";
     $first_name = $_POST['Fname'];
     $last_name = $_POST['Lname'];
     $email = $_POST['Email'];
@@ -116,7 +124,12 @@ if (isset($_POST["sign-up"])) {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
+    // echo "<script>alert('hi')</script>";
+    $sql = "select user_id from users order by user_id desc";
+    $query = $conn->query($sql);
+    $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
+    $idk = $results[0]["user_id"];
+    echo "<script>alert('$idk')</script>";
     $conn->close();
 }
 ?>
@@ -150,8 +163,8 @@ if (isset($_POST["log-in"])) {
             $result = $conn->query($sql);
         
             if ($result->num_rows > 0){
-                $row = $result->fetch_assoc();
-                echo "<script>alert('admin".$row["admin_id"] . "')</script>";
+                $row = $result->fetch_assoc();    
+            header('Location: admin/Admin.php');
             }else{
                 $sql = "SELECT cust_id FROM `Customers` WHERE user_id= $id";
             $result = $conn->query($sql);
