@@ -1,20 +1,31 @@
 <header>
         <nav>
             <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
-                class="logo">
+                class="logo" id="logologo">
 
             <div class="menu" id="menu">
                 <a href="index.php" class="puttons">Home</a>
                 <a href="products.php" class="puttons">products</a>
-                <a href="" class="puttons">About Us</a>
-                <a href="" class="puttons">Contact Us</a>
+                <a href="index.php#about" class="puttons">About Us</a>
+                <a href="index.php#contact" class="puttons">Contact Us</a>
             </div>
+            <form action="products.php" style="display:inline" id="search-form">
 
-            <div class="search-cart" id="search-cart">
-                <div class="search">
-                    <input type="text" class="text">
-                    <img src="./images/Vector.png" alt="" class="Vector">
-                </div>
+                <div class="search-cart" id="search-cart">
+                    <div class="search">
+                        <input type="text" class="text" name="search">
+                        <img src="./images/Vector.png" alt="" class="Vector" id="search-button">
+                    </div>
+                </form>
+                <script>
+                    let ourForm = document.getElementById("search-form");
+                    document.getElementById("search-button").addEventListener("click",()=> {
+                        ourForm.submit();
+                    })
+                    document.getElementById("logologo").addEventListener("click",() => {
+                        window.location.href = "index.php";
+                    } )
+                </script>
                 <div class="cart">
                     <img src="./images/Shopping Cart.png" alt="" class="ShoppingCart">
                     
