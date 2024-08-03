@@ -1,3 +1,42 @@
+<?php
+
+$user_id = 2;
+
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+$sql = $conn->prepare("select users.*, customers.cust_mobile, customers.cust_adress from users JOIN customers ON users.user_id = customers.user_id && users.user_id =:idr");
+$sql->execute(["idr"=>$user_id]);
+
+$result = $sql->fetchAll()[0];
+$first_name = $result['first_name'];
+$last_name = $result['last_name'];
+$user_pass = $result['password'];
+$user_email = $result['user_email'];
+$cust_mobile = $result['cust_mobile'];
+$cust_address = $result['cust_adress'];
+
+
+?> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,16 +80,19 @@
 <h1>User Info</h1>
   
 <label>First Name:</label>    
-<input class="new-changes-input" type="text" value="Sami" name="first_name">  
+<input class="new-changes-input" type="text" value="<?php echo $first_name ?>" name="first_name">  
 
   <label>Second Name:</label>    
-  <input class="new-changes-input" type="text" value="Sawalqa" name="second_name">  
+  <input class="new-changes-input" type="text" value="<?php echo $last_name ?>" name="second_name">  
 
     <label>Email:</label>    
-    <input class="new-changes-input" type="email" value="sawalqa.sami@gmail.com" name="email">  
+    <input class="new-changes-input" type="email" value="<?php echo $user_email ?>" name="email">  
   
     <label>Phone Number:</label>    
-    <input class="new-changes-input" type="text" value="0791189767" name="mobile_number">  
+    <input class="new-changes-input" type="text" value="<?php echo $cust_mobile ?>" name="mobile_number">  
+  
+    <label>Address:</label>    
+    <input class="new-changes-input" type="text" value="<?php echo $cust_address ?>" name="cust_address">  
 
 <input class="info-submit-btn" type="submit" value="Save Changes" name="save_info">
 </form>
@@ -98,7 +140,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+      <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 <div class="cart-product">
@@ -106,7 +148,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 <div class="cart-product">
@@ -114,7 +156,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 </div>
@@ -139,7 +181,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 <div class="cart-product">
@@ -147,7 +189,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 <div class="cart-product">
@@ -155,7 +197,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 
@@ -178,7 +220,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 <div class="cart-product">
@@ -186,7 +228,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 <div class="cart-product">
@@ -194,7 +236,7 @@
     <div class="cart-product-info">
         <div class="cart-product-name">product nameproduct nameproduct </div>
         <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
+        <div class="order-price-quantity"><div class="cart-product-price">PRICE: <a> 22$ </a></div><div>qty:1111</div></div>
     </div>
 </div>
 

@@ -120,6 +120,11 @@ body {
     }
 }
 
+.order-price-quantity {
+    display: flex;
+    justify-content: space-between;
+}
+
 .remove-cart-product {
     background-color: rgb(47, 54, 69);
     height: min-content;
