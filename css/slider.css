@@ -7,7 +7,16 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
+.category {
+  padding: 0 15vw;
+}
 
+.category h2 {
+  /* width: 70vw; */
+  margin-left: 5vw;
+  margin-bottom: 2rem;
+  
+}
 .swiper-main-container {
   display: flex;
   align-items: center;

@@ -3,9 +3,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/Signup.css">
 <div class="Login-Overlay">
+<?php 
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if(isset($_POST["signup"])) {
+    $em = $_POST['Email'];
+    $query = $conn->prepare("select user_email from users where user_email=:emr");
+    $query->execute(["emr"=> $em]);
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    if(count($result) > 0) {
+        echo "<script>alert('Email in use')</script>";
+    }
+    else {
 
+    }
+}
+$active = "log";
+if(isset($_GET['active']))
+{
+    $active = $_GET['active'];
+}
+
+?>
     <div class="Form-container ">
-        <form method="post" action="" class="signup-form inactive" id="signup-form">
+        <form method="post" action="" class="signup-form <?php if($active != "sign") echo "inactive" ?>" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
             <div class="inputlabel">
@@ -19,7 +40,7 @@
             </div>
             <div class="inputlabel">
             <label for="Email">Email</label>
-            <input class="form-ins" type="text" name="Email">
+            <input class="form-ins" type="email" name="Email">
             </div>
             <div class="inputlabel">
             <label for="Pass">Password</label>
@@ -33,7 +54,7 @@
                 <label for="Address">Address</label>
                 <input type="text" class="form-ins" name="Address">
             </div>
-            <input type="submit" class="confirm-form" value="Sign Up" name="sign-up">
+            <input type="submit" class="confirm-form" value="Sign Up" name="signup">
             <div class="switch-section">
                 <div class="or-section">
                     <span class="or-seperator"></span>
@@ -43,7 +64,7 @@
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form method="post" action="" class="login-form" id="login-form">
+<form method="post" action="" class="login-form <?php if($active != "log") echo "inactive" ?>" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
@@ -88,7 +109,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_POST["sign-up"])) {
+if (isset($_POST["signup"])) {
+    
+    // echo "<script>alert('hi')</script>";
     $first_name = $_POST['Fname'];
     $last_name = $_POST['Lname'];
     $email = $_POST['Email'];
@@ -101,7 +124,12 @@ if (isset($_POST["sign-up"])) {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
+    // echo "<script>alert('hi')</script>";
+    $sql = "select user_id from users order by user_id desc";
+    $query = $conn->query($sql);
+    $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
+    $idk = $results[0]["user_id"];
+    echo "<script>alert('$idk')</script>";
     $conn->close();
 }
 ?>
@@ -135,8 +163,8 @@ if (isset($_POST["log-in"])) {
             $result = $conn->query($sql);
         
             if ($result->num_rows > 0){
-                $row = $result->fetch_assoc();
-                echo "<script>alert('admin".$row["admin_id"] . "')</script>";
+                $row = $result->fetch_assoc();    
+            header('Location: admin/Admin.php');
             }else{
                 $sql = "SELECT cust_id FROM `Customers` WHERE user_id= $id";
             $result = $conn->query($sql);

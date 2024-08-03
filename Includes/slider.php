@@ -5,7 +5,8 @@
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
       $query = $conn->prepare("SELECT tags.tad_name from tags where tags.tag_id = :idr");
       $query->execute(["idr"=> "$tagid"]);
-      echo "<h2>" . $query->fetchColumn() ."</h2>";
+      $catName = $query->fetchColumn() ;
+      echo "<h2><a href='products.php?search=" . $catName ."'>".$catName."</h2></a>";
       include("Includes\slidertop.php"); 
       
       $query = $conn->prepare("SELECT poduct_media.Pme_name, products.product_name, products.price, products.product_id from products join product_tags USING (product_id) JOIN poduct_media USING (product_id) where product_tags.tag_id=:idr GROUP BY products.product_name");
