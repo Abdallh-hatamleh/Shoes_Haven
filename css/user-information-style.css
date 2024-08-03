@@ -1,0 +1,255 @@
+body {
+    background-color: rgb(47, 54, 69);
+}
+
+
+.user-information-section {
+    display: flex;
+}
+
+.aside-bar-user-info {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    min-height: 87vh;
+    border-right: solid #F39102;
+    padding-top: 5rem;
+
+    div {
+        font-size: 2.2rem;
+        font-weight: 600;
+        box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+.aside-informations {
+    color: #F39102;
+}
+
+.aside-pass {
+    color: white;
+}
+
+.aside-orders {
+    color: white;
+}
+
+.user-info-show {
+    margin: 5rem 10rem;
+}
+
+.user-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #F39102;
+    font-size: 1.3rem;
+
+    input {
+        height: 2rem;
+    }
+}
+
+.new-changes-input {
+    width: 18rem;
+}
+
+.info-submit-btn {
+    width: 10rem;
+    background-color: #F39102;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.user-orders-list {
+    font-weight: 700;
+
+    h1 {
+        color: #F39102;
+        font-size: 2.5rem;
+        margin: 5px 0;
+    }
+}
+
+.user-order-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: black;
+    width: 50rem;
+    padding: 20px;
+    border-radius: 5px;
+    border: solid 5px rgb(47, 4, 79);
+    background-color: white;
+
+    a {
+        pointer-events: none;
+    }
+}
+
+.order-number {
+    font-size: 3rem;
+}
+
+.order-total {
+    font-size: 3rem;
+}
+
+.order-expanded-list {
+    background-color: white;
+    margin: 0 5px;
+    padding: 10px;
+}
+
+
+
+
+/* ///////////// */
+
+
+
+.cart-product-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    a {
+        font-weight: 700;
+        font-size: 1.8rem;
+    }
+}
+
+.order-price-quantity {
+    display: flex;
+    justify-content: space-between;
+}
+
+.remove-cart-product {
+    background-color: rgb(47, 54, 69);
+    height: min-content;
+    border-radius: 5px;
+    font-size: 0.3rem;
+    color: white;
+    margin: 5px;
+    border: outset rgb(47, 54, 69);
+}
+
+.checkout-total-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-checkout-button {
+    margin: 20px 5px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 13px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    background-color: rgb(255, 150, 0);
+}
+
+
+@media (max-width:375px) {
+
+    .user-information-section {
+        flex-direction: column;
+    }
+
+    .aside-bar-user-info {
+        /* display: none; */
+        border: none;
+        width: 100%;
+        min-height: auto;
+        background-color: rgb(47, 54, 69);
+        padding-top: 0;
+
+        div {
+            font-size: 1.5rem;
+        }
+    }
+
+    .user-info-show {
+        margin: 0.5rem;
+    }
+
+    .user-orders-list {
+        font-weight: 700;
+    }
+
+    .user-order-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        color: black;
+        width: auto;
+        padding: 20px;
+        border-radius: 5px;
+        border: solid 5px rgb(47, 4, 79);
+        background-color: white;
+
+    }
+
+    .cart-product {
+        font-size: 0.8rem;
+
+        img {
+            width: 120px;
+            height: 120px;
+        }
+    }
+
+    .order-number {
+        font-size: 1.2rem;
+    }
+
+    .order-total {
+        font-size: 1.2rem;
+    }
+
+    .order-expanded-list {
+        background-color: white;
+        margin: 0 5px;
+        padding: 0;
+    }
+
+
+
+
+    /* ///////////// */
+
+
+
+    .cart-product-name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.7rem;
+
+        a {
+            font-weight: 700;
+        }
+    }
+
+    .cart-scroll-div {
+        height: 400px;
+    }
+
+    .cart-product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        a {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+    }
+
+    footer {
+        position: fixed;
+        bottom: 10;
+    }
+}

@@ -45,7 +45,7 @@ $title = $query->fetchColumn();
 $price = $query->fetchColumn(1);
 $description = $query->fetchColumn(2);
 $query = $conn->prepare("select shoe_sizes.shoe_size as size from products JOIN shoe_sizes USING (product_id) where product_id=:idr");
-$query->execute(["idr"=>$pid]);
+$query->execute(["idr"=>1]);
 $sizes = [];
 foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
   global $sizes;
