@@ -3,9 +3,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/Signup.css">
 <div class="Login-Overlay">
+<?php 
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+if(isset($_POST["signup"])) {
+    $em = $_POST['Email'];
+    $query = $conn->prepare("select user_email from users where user_email=:emr");
+    $query->execute(["emr"=> $em]);
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    if(count($result) > 0) {
+        echo "<script>alert('Email in use')</script>";
+    }
+    else {
 
+    }
+}
+?>
     <div class="Form-container ">
-        <form action="post" class="signup-form inactive" id="signup-form">
+        <form action="" method="post" class="signup-form inactive" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
             <div class="inputlabel">
@@ -19,7 +34,7 @@
             </div>
             <div class="inputlabel">
             <label for="Email">Email</label>
-            <input class="form-ins" type="text" name="Email">
+            <input class="form-ins" type="email" name="Email">
             </div>
             <div class="inputlabel">
             <label for="Pass">Password</label>
@@ -33,7 +48,7 @@
                 <label for="Address">Address</label>
                 <input type="text" class="form-ins" name="Address">
             </div>
-            <input type="submit" class="confirm-form" value="Sign Up" name="sign-up">
+            <input type="submit" class="confirm-form" value="Sign Up" name="signup">
             <div class="switch-section">
                 <div class="or-section">
                     <span class="or-seperator"></span>
@@ -53,7 +68,7 @@
         <label for="Pass">Password</label>
         <input class="form-ins" type="password" name="Pass">
     </div>
-    <input type="submit" class="confirm-form" value="Log in" name="sign-up">
+    <input type="submit" class="confirm-form" value="Log in" name="login">
     <div class="switch-section">
         <div class="or-section">
             <span class="or-seperator"></span>
@@ -69,5 +84,4 @@
 </div>
 </div>
 </div>
-<script src="JS/login.js">
-    </script>
+<script src="JS/login.js"></script>
