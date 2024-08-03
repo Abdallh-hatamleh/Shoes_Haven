@@ -24,8 +24,18 @@ const swiper = new Swiper('.slider-wrapper', {
     768: {
       slidesPerView: 2
     },
-    1024: {
+    1100: {
       slidesPerView: 3
+    },
+    1500: {
+      slidesPerView: 4
     }
   }
+});
+
+ const cards = document.querySelectorAll(".card-item");
+cards.forEach(element => {
+  element.addEventListener("click", ()=> {
+    window.location.href = `product-view.php?id=${element.id}`;
+  })
 });
