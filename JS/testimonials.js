@@ -17,11 +17,11 @@ const testimonialSwiper = new Swiper('.testimonial-slider-wrapper', {
     dynamicBullets: true
   },
 
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+  // // Navigation arrows
+  // navigation: {
+  //   nextEl: '.swiper-button-next',
+  //   prevEl: '.swiper-button-prev',
+  // },
 
   // Responsive breakpoints
   breakpoints: {
