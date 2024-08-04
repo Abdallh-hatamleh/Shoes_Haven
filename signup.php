@@ -31,28 +31,28 @@ if(isset($_GET['active']))
             <div class="inputRow">
             <div class="inputlabel">
             <label for="Fname">First Name</label>
-            <input class="form-ins" type="text" name="Fname">
+            <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
             </div>
             <div class="inputlabel">
             <label for="Lname">Last Name</label>
-            <input class="form-ins" type="text" name="Lname">
+            <input class="form-ins" type="text" name="Lname" id="lastName-input-sign-up" required>
             </div>
             </div>
             <div class="inputlabel">
             <label for="Email">Email</label>
-            <input class="form-ins" type="email" name="Email">
+            <input class="form-ins" type="email" name="Email" id="email-input-sign-up" required>
             </div>
             <div class="inputlabel">
             <label for="Pass">Password</label>
-            <input class="form-ins" type="password" name="Pass">
+            <input class="form-ins" type="password" name="Pass" id="" required>
             </div>
             <div class="inputlabel">
                 <label for="phone">Phone Number</label>
-                <input type="text" class="form-ins" name="Number">
+                <input type="number" class="form-ins" name="Number" required>
             </div>
             <div class="inputlabel">
                 <label for="Address">Address</label>
-                <input type="text" class="form-ins" name="Address">
+                <input type="text" class="form-ins" name="Address" required>
             </div>
             <input type="submit" class="confirm-form" value="Sign Up" name="signup">
             <div class="switch-section">
@@ -68,11 +68,11 @@ if(isset($_GET['active']))
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
-        <input class="form-ins" type="text" name="Email">
+        <input class="form-ins" type="text" name="Email" required>
     </div>
     <div class="inputlabel">
         <label for="Pass">Password</label>
-        <input class="form-ins" type="password" name="Pass">
+        <input class="form-ins" type="password" name="Pass" required>
     </div>
     <input type="submit" class="confirm-form" value="Log in" name="log-in">
     <div class="switch-section">
@@ -90,6 +90,7 @@ if(isset($_GET['active']))
 </div>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="JS/login.js">
     </script>
 

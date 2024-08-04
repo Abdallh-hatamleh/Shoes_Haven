@@ -26,6 +26,7 @@ if (isset($_GET['search']))
 {
   $search = $_GET['search'];
 }
+if ($search == "") $search = "All Products";
  ?>
 <body>
     <?php include_once("includes/nav.php") ?>
