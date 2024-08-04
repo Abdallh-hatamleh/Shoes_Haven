@@ -30,24 +30,24 @@ if ($search == "") $search = "All Products";
  ?>
 <body>
     <?php include_once("includes/nav.php") ?>
+    <aside class="sidebar">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <h2>Tags</h2>
+        <ul>
+          <?php 
+          $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $query = $conn->query("select tag_name from tags");
+          while ($row = $query->fetch(PDO::FETCH_ASSOC))  
+          {
+            echo '<li>'. $row['tag_name'] .'<div><img src="assets\images\check-mark-1292787_1280.png" alt=""><img src="assets\images\x_icon_150997.png" alt=""></div></li>';
+          }
+          ?>
+            
+        </ul>
+    </aside>
     <h2 class="cur-search"><?php echo($search); ?></h2>
     <div class="main-content">
-        <aside class="sidebar">
-            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-            <h2>Tags</h2>
-            <ul>
-              <?php 
-              $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              $query = $conn->query("select tad_name from tags");
-              while ($row = $query->fetch(PDO::FETCH_ASSOC))  
-              {
-                echo '<li>'. $row['tad_name'] .'<div><img src="assets\images\check-mark-1292787_1280.png" alt=""><img src="assets\images\x_icon_150997.png" alt=""></div></li>';
-              }
-              ?>
-                
-            </ul>
-        </aside>
         <div class="content">
             <main class="card-list">
               <?php
@@ -105,7 +105,7 @@ SELECT p.product_id, p.product_name, p.price, poduct_media.Pme_name
 FROM products p JOIN poduct_media USING (product_id)
 JOIN product_tags pt ON p.product_id = pt.product_id
 JOIN tags t ON pt.tag_id = t.tag_id
-WHERE t.tad_name IN ($find_placeholders)
+WHERE t.tag_name IN ($find_placeholders)
 GROUP BY p.product_id
 HAVING COUNT(DISTINCT pt.tag_id) = ?
 ";
@@ -117,7 +117,7 @@ if (!empty($avoid_tags)) {
       FROM product_tags pt_exclude
       JOIN tags t_exclude ON pt_exclude.tag_id = t_exclude.tag_id
       WHERE pt_exclude.product_id = p.product_id
-      AND t_exclude.tad_name IN ($avoid_placeholders)
+      AND t_exclude.tag_name IN ($avoid_placeholders)
   );";
 }
 
