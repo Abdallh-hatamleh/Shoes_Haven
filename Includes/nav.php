@@ -22,46 +22,76 @@
                         
                         <h2>YOUR CART</h2>
                         
-                        <div class="cart-scroll-div">           
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
-    </div>
-    <div class="remove-cart-product">&#10005;</div>
-</div>
+<?php
 
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
-    </div>
-    <div class="remove-cart-product">&#10005;</div>
-</div>
+$user_id = 2;
 
-<div class="cart-product">
-    <img src="img/images.jpg" alt="">
-    <div class="cart-product-info">
-        <div class="cart-product-name">product nameproduct nameproduct </div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae adipisci </div>
-        <div class="cart-product-price">PRICE: <a> 22$ </a></div>
-    </div>
-    <div class="remove-cart-product">&#10005;</div>
-</div>
-</div>
 
-<section class="checkout-total-section">
 
-    <button class="cart-checkout-button">total: $66</button>
-    <button class="cart-checkout-button">CHECKOUT</button>
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+/////////// add to cat
+
+
+
+
+$show_cart = "select a.product_id, a.product_size,a.cart_id, b.product_name, b.product_description, b.price, c.Pme_name from cart a join products b using (product_id) JOIN poduct_media c using (product_id)  where a.user_id = $user_id group by a.cart_id"; 
+$cart_products = $conn ->query($show_cart);
+
+   
+   echo '<div class="cart-scroll-div">';      
+
+$cart_total_price = 0;
+foreach ($cart_products as $products){
+
+$cart_total_price += $products['price'];
+
+    
+echo "<div class='cart-product'>
+    <img src='assets/Products/".$products['Pme_name']."' alt=''>
+    <div class='cart-product-info'>
+    <div class='cart-product-name'>".$products['product_name']." </div>
+    <div>Size: ".$products['product_size']."</div>
+       <div class='cart-product-price'>PRICE: <a> $".$products['price']."</a></div>
+</div>
+<form action='' method='POST'>
+<input type='hidden' name='prod_id' value='".$products['cart_id']."'>
+<div class='remove-cart-product'>&#10005;</div>
+</form>
+</div>";
+}
+
+echo " </div>
+
+<section class='checkout-total-section'>
+
+    <button class='cart-checkout-button'>total: $$cart_total_price</button>
+
+<form action='' method='POST'>
+    <input type='hidden' name='checkout_btn' value='checkout'>
+    <button class='cart-checkout-button'>CHECKOUT</button>
+</form>
 
 </section>
+";
 
-</div>
+echo '</div>';
+
+
+if (isset($_POST['prod_id'])){
+    
+$remove_sql = "delete FROM `cart` WHERE cart_id =".$_POST['prod_id']; 
+$conn ->query($remove_sql);
+header("Refresh:0");
+}
+
+
+
+
+?>
+                        
+
                 </div>
             </div>
 
@@ -74,3 +104,55 @@
                 </div>
         </nav>
     </header>
+
+<?php
+
+
+try{
+
+    if (isset($_POST['checkout_btn'])){
+        
+    
+
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $checkout_cart_sql = "select cart.*,customers.* from cart JOIN customers using (user_id) where cart.user_id =$user_id"; 
+        $checkout_cart = $conn -> query($checkout_cart_sql);
+        // $checkout_details = $conn->query($checkout_cart);
+        // print_r($conn ->query($checkout_cart));
+        
+        // $query = $conn->prepare("SELECT tags.tad_name from tags where tags.tag_id = :idr");
+        // $query->execute(["idr"=> "$tagid"]);
+
+        $checkout_details = $checkout_cart->fetchAll();
+        $cust_id = $checkout_details[1]['cust_id'];
+ 
+        $new_or_id = "INSERT INTO `orders`(`cust_id`) VALUES ($cust_id)" ; 
+        $conn ->exec($new_or_id);
+
+        print_r($checkout_details);
+        
+        $or_id_sql = "select or_id from orders order by or_id DESC limit 1" ; 
+        $or_id = $conn ->query($or_id_sql);
+        $or_id = $or_id->fetchColumn();
+        foreach($checkout_details as $co_detail){
+        
+        $product_id = $co_detail['product_id'];
+        $product_size = $co_detail['product_size'];
+    
+            $insert_order_detail = "INSERT INTO `order_details`( `product_id`, `or_id`, `shoe_size`) VALUES ($product_id, $or_id, $product_size)";
+            $conn ->query($insert_order_detail);
+        
+        }
+        
+        $delete_cart_sql = "DELETE FROM `cart` WHERE user_id = $user_id";
+        $conn->query($delete_cart_sql);
+    header( 'Location: D:\XAMPP\htdocs\group-project-2\add-to-cart.php' );
+
+        }
+    } catch(Exception $e) {
+        echo 'Message: ' .$e->getMessage();
+      }
+        
+    ?>    

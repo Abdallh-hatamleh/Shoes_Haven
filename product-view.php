@@ -17,6 +17,9 @@
 </head>
 
 <?php 
+
+$user_id = 2;
+
 $pid = 1;
 if (isset($_GET['pid']))
 {
@@ -52,6 +55,25 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
   // echo "<script> alert('hi') </script>";
   $sizes[] = $row['size'];
   }
+
+
+
+
+
+  if(isset($_POST['add_product'])){
+    $size = $_POST['Size'];
+   $pid = $_GET['pid']; 
+   
+   $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
+  $conn->query($add_sql);
+
+    header( 'Location: D:\XAMPP\htdocs\group-project-2\add-to-cart.php' );
+  
+  }
+  
+  
+  
+
 ?>
 
 <body>
@@ -67,7 +89,7 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
             <img src="assets/Products/<?php echo $images[0]?>" alt="" id="featured-image">
         </div>
         <!-- Right side -->
-        <div class="product-info">
+        <form class="product-info" action='' method="POST" name="add_form">
             <h3><?php echo $title ?></h3>
             <h5>Price: $<?php echo $price ?></h5>
             <p><?php echo $description ?></p>
@@ -82,18 +104,17 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
                     <p>Size:</p>
                     <select name="Size" id="size" class="size-option">
                       <?php
-                      foreach ($sizes as $key => $value) {
-                        echo "<option value='$value'>$value</option>";
+                      for ($i = 36;$i < 45 ; $i++) {
+                        echo "<option value='$i'>$i</option>";
                       }
                        ?>
                     </select>
                 </div>
                 
                 <div class="quantity">
-                    <input type="number" value="1" min="1" name="qty">
-                    <button>Add to Cart</button>
+                    <input type='submit' class='add_cart_submit' value='Add to Cart' name="add_product">
                 </div>
-            </div>
+            </form>
         </section>
 
             <h2>More like this:</h2>

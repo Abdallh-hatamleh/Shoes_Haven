@@ -7,3 +7,29 @@ nav_cart_img.addEventListener('click', (e) => {
         cart_product_list.classList.add('hidden')
     }
 })
+
+
+
+
+const remove_product = document.querySelectorAll('.remove-cart-product');
+
+for (let i = 0; i < remove_product.length; i++) {
+
+    remove_product[i].addEventListener('click', () => {
+        remove_product[i].parentNode.submit();
+    })
+
+
+}
+
+
+const checkout_cart = document.querySelectorAll('.cart-checkout-button');
+
+
+checkout_cart.addEventListener('click', () => {
+    // checkout_cart.parentNode.submit();
+    console.log('al;sdkjfkashdg')
+})
+
+
+
