@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2024 at 09:54 PM
+-- Generation Time: Aug 04, 2024 at 04:31 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,6 +42,19 @@ INSERT INTO `admin` (`admin_id`, `user_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `product_id` int(11) NOT NULL,
+  `product_size` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 
@@ -70,9 +83,8 @@ INSERT INTO `customers` (`cust_id`, `cust_mobile`, `cust_adress`, `user_id`) VAL
 
 CREATE TABLE `orders` (
   `or_id` int(11) NOT NULL,
-  `or_date` date NOT NULL,
-  `or_total_amount` varchar(150) NOT NULL,
-  `or_status` varchar(150) NOT NULL,
+  `or_date` date NOT NULL DEFAULT current_timestamp(),
+  `or_status` varchar(150) NOT NULL DEFAULT 'pending',
   `cust_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -80,9 +92,42 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`or_id`, `or_date`, `or_total_amount`, `or_status`, `cust_id`) VALUES
-(1, '0000-00-00', '50.00', 'pending', 3),
-(2, '0000-00-00', '100.00', 'completed', 4);
+INSERT INTO `orders` (`or_id`, `or_date`, `or_status`, `cust_id`) VALUES
+(1, '2024-08-08', 'pending', 1),
+(2, '2024-09-06', 'completed', 1),
+(3, '2024-08-04', 'pending', 2),
+(4, '2024-08-04', 'pending', 1),
+(5, '2024-08-04', 'pending', 1),
+(6, '2024-08-04', 'pending', 1),
+(7, '2024-08-04', 'pending', 1),
+(8, '2024-08-04', 'pending', 1),
+(9, '2024-08-04', 'pending', 1),
+(10, '2024-08-04', 'pending', 1),
+(11, '2024-08-04', 'pending', 1),
+(12, '2024-08-04', 'pending', 1),
+(13, '2024-08-04', 'pending', 1),
+(14, '2024-08-04', 'pending', 1),
+(15, '2024-08-04', 'pending', 1),
+(16, '2024-08-04', 'pending', 1),
+(17, '2024-08-04', 'pending', 1),
+(18, '2024-08-04', 'pending', 1),
+(19, '2024-08-04', 'pending', 1),
+(20, '2024-08-04', 'pending', 1),
+(21, '2024-08-04', 'pending', 1),
+(28, '2024-08-04', 'pending', 1),
+(29, '2024-08-04', 'pending', 1),
+(30, '2024-08-04', 'pending', 1),
+(31, '2024-08-04', 'pending', 1),
+(32, '2024-08-04', 'pending', 1),
+(33, '2024-08-04', 'pending', 1),
+(34, '2024-08-04', 'pending', 1),
+(35, '2024-08-04', 'pending', 1),
+(36, '2024-08-04', 'pending', 1),
+(37, '2024-08-04', 'pending', 1),
+(38, '2024-08-04', 'pending', 1),
+(39, '2024-08-04', 'pending', 1),
+(40, '2024-08-04', 'pending', 1),
+(41, '2024-08-04', 'pending', 1);
 
 -- --------------------------------------------------------
 
@@ -92,10 +137,55 @@ INSERT INTO `orders` (`or_id`, `or_date`, `or_total_amount`, `or_status`, `cust_
 
 CREATE TABLE `order_details` (
   `orferdetails_id` int(11) NOT NULL,
-  `qt_quantity` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `or_id` int(11) DEFAULT NULL
+  `or_id` int(11) DEFAULT NULL,
+  `shoe_size` int(11) DEFAULT 36
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`orferdetails_id`, `product_id`, `or_id`, `shoe_size`) VALUES
+(1, 7, 1, 36),
+(2, 6, 1, 36),
+(3, 8, 1, 36),
+(4, 1, 1, 36),
+(5, 10, 1, 36),
+(6, 1, 2, 36),
+(7, 7, 2, 36),
+(8, 1, 2, 36),
+(9, 9, 2, 36),
+(10, 7, 32, 36),
+(11, 7, 32, 43),
+(12, 7, 32, 40),
+(13, 7, 33, 36),
+(14, 7, 33, 43),
+(15, 7, 33, 40),
+(16, 7, 34, 36),
+(17, 7, 34, 43),
+(18, 7, 34, 40),
+(19, 7, 35, 36),
+(20, 7, 35, 43),
+(21, 7, 35, 40),
+(22, 7, 36, 36),
+(23, 7, 36, 43),
+(24, 7, 36, 40),
+(25, 7, 37, 36),
+(26, 7, 37, 43),
+(27, 7, 37, 40),
+(28, 7, 38, 36),
+(29, 7, 38, 43),
+(30, 7, 38, 40),
+(31, 7, 39, 36),
+(32, 7, 39, 43),
+(33, 7, 39, 40),
+(34, 7, 40, 36),
+(35, 7, 40, 36),
+(36, 7, 40, 36),
+(37, 7, 40, 36),
+(38, 7, 41, 36),
+(39, 7, 41, 36);
 
 -- --------------------------------------------------------
 
@@ -239,7 +329,7 @@ INSERT INTO `shoe_sizes` (`product_id`, `shoe_size`) VALUES
 
 CREATE TABLE `tags` (
   `tag_id` int(11) NOT NULL,
-  `tad_name` varchar(255) DEFAULT NULL,
+  `tag_name` varchar(255) DEFAULT NULL,
   `sale_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
   `featured` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -248,7 +338,7 @@ CREATE TABLE `tags` (
 -- Dumping data for table `tags`
 --
 
-INSERT INTO `tags` (`tag_id`, `tad_name`, `sale_amount`, `featured`) VALUES
+INSERT INTO `tags` (`tag_id`, `tag_name`, `sale_amount`, `featured`) VALUES
 (1, 'Formal', 0.00, b'1'),
 (2, 'Old-Money', 0.00, b'0'),
 (3, 'Casual', 0.00, b'0'),
@@ -308,6 +398,14 @@ ALTER TABLE `admin`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -361,7 +459,8 @@ ALTER TABLE `sellers`
 -- Indexes for table `shoe_sizes`
 --
 ALTER TABLE `shoe_sizes`
-  ADD PRIMARY KEY (`product_id`,`shoe_size`);
+  ADD PRIMARY KEY (`product_id`,`shoe_size`),
+  ADD UNIQUE KEY `shoe_size` (`shoe_size`);
 
 --
 -- Indexes for table `tags`
@@ -393,6 +492,12 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
@@ -402,13 +507,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `or_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `orferdetails_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orferdetails_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `poduct_media`
@@ -455,6 +560,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `customers`
