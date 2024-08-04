@@ -32,19 +32,23 @@ if(isset($_GET['active']))
             <div class="inputlabel">
             <label for="Fname">First Name</label>
             <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
+            <p id="fname-error"></p>
             </div>
             <div class="inputlabel">
-            <label for="Lname">Last Name</label>
-            <input class="form-ins" type="text" name="Lname" id="lastName-input-sign-up" required>
+                <label for="Lname">Last Name</label>
+                <input class="form-ins" type="text" name="Lname" id="lastName-input-sign-up" required>
+                <p id="lname-error"></p>
             </div>
             </div>
             <div class="inputlabel">
             <label for="Email">Email</label>
-            <input class="form-ins" type="email" name="Email" id="email-input-sign-up" required>
-            </div>
-            <div class="inputlabel">
-            <label for="Pass">Password</label>
-            <input class="form-ins" type="password" name="Pass" id="" required>
+            <input class="form-ins" type="text" name="Email" id="email-input-sign-up" required>
+            <p id="email-error"></p>
+        </div>
+        <div class="inputlabel">
+                <label for="Pass">Password</label>
+                <input class="form-ins" type="password" name="Pass" id="password-input-sign-up" required>
+                <p id="password-error"></p>
             </div>
             <div class="inputlabel">
                 <label for="phone">Phone Number</label>

@@ -6,7 +6,7 @@ function swapFocus() {
     document.getElementById("login-form").classList.toggle("inactive");
     document.getElementById("signup-form").classList.toggle("inactive");
 }
-document.addEventListener('DOMContentLoaded', () => {
+
     const form = document.getElementById('signup-form');
     form.addEventListener('submit', (e) => {
         e.preventDefault(); // Prevent the default form submission
@@ -28,27 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
         let isValid = true;
 
         // Reset error messages
-        let errorMessage = "Unkown Error";
+        fnameError.textContent = '';
+        lnameError.textContent = '';
+        emailError.textContent = '';
+        passwordError.textContent = '';
 
         // Validate Name
         if (!nameRegex.test(fnameInput)) {
-            alert("Please enter a valid first name.");
+            fnameError.textContent = "Please enter a valid first name.";
             isValid = false;
         }
 
         // Validate Email
         if (!nameRegex.test(lnameInput)) {
-            alert("Please enter a valid last name.");
+            lnameError.textContent = "Please enter a valid last name.";
             isValid = false;
         }
 
         // Validate Password
         if (!emailRegex.test(emailInput)) {
-            alert("Please enter a valid email addres.");
+            emailError.textContent = "Please enter a valid email addres.";
             isValid = false;
         }
         if (!passwordRegex.test(passwordInput)) {
-            alert("Password must be at least 8 characters long, including an uppercase letter, a lowercase letter, a number, and a special character.");
+            passwordError.textContent = "Password must be at least 8 characters long, including an uppercase letter, a lowercase letter, a number, and a special character.";
             isValid = false;
         }
 
@@ -60,4 +63,3 @@ document.addEventListener('DOMContentLoaded', () => {
             // alert(errorMessage);
         }
     });
-});
