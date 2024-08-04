@@ -205,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["add_slide"])) {
 
             if ($valid == 1) {
                 if (move_uploaded_file($photo_tmp, $target)) {
-                    $sqlInsertPhoto = "INSERT INTO product_media $photo_name, VALUES (?)";
+                    $sqlInsertPhoto = "INSERT INTO product_media $photo_name,product_id VALUES (?)";
                     $stmtPhoto = $conn->prepare($sqlInsertPhoto);
                     $stmtPhoto->bind_param("s", $photo_name_new);
                     $stmtPhoto->execute();
@@ -226,8 +226,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["add_slide"])) {
     exit();
 }
 
-
-include("../includes/header.php");
 ?>
 
 <div class="card m-t-25">
