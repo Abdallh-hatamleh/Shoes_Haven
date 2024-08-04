@@ -71,7 +71,7 @@
 
         <div class="faq-item">
             <h2>How can I contact customer support?</h2>
-            <p>You can contact customer support by filling out the contact form on our website or by sending an email to support@example.com. Our team will respond to your inquiry as soon as possible.</p>
+            <p>You can contact customer support by sending an email to support@example.com. Our team will respond to your inquiry as soon as possible.</p>
         </div>
 
         <div class="faq-item">
@@ -82,7 +82,8 @@
         <div class="contact-support">
             <h2>Need more help?</h2>
             <p>If you need further assistance, please reach out to our support team.</p>
-            <a href="contact-us.html">Contact Support</a>
+            <p>Help Center Mobile</p>
+            <!-- <a href="contact-us.html">Contact Support</a> -->
         </div>
     </div>
 

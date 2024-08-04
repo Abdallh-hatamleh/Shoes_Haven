@@ -11,8 +11,8 @@
                 <a href="index.php" class="puttons">Home</a>
                 <a href="products.php" class="puttons">products</a>
                 <a href="index.php#about" class="puttons">About Us</a>
-                <a href="index.php#contact" class="puttons">Contact Us</a>
-                <a href="Includes/helpcenter.html" class="puttons">help center</a>
+                <!-- <a href="index.php#contact" class="puttons">Contact Us</a> -->
+                <a href="Includes/helpcenter.php" class="puttons">help center</a>
 
             </div>
             <form action="products.php" style="display:inline" id="search-form">
