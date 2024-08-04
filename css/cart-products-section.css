@@ -52,6 +52,10 @@
     }
 }
 
+.cart_price_quantity {
+    display: flex;
+}
+
 .remove-cart-product {
     background-color: rgb(47, 54, 69);
     height: min-content;

@@ -19,6 +19,7 @@ aside_informations.addEventListener('click', () => {
     pass_form.classList.add('hidden')
     user_orders_list.classList.add('hidden')
     ///
+    list_hidden_function();
     aside_informations.style.color = '#F39102'
     aside_pass.style.color = 'white'
     aside_orders.style.color = 'white'
@@ -29,6 +30,7 @@ aside_pass.addEventListener('click', () => {
     pass_form.classList.remove('hidden')
     user_orders_list.classList.add('hidden')
     ///
+    list_hidden_function();
     aside_informations.style.color = 'white'
     aside_pass.style.color = '#F39102'
     aside_orders.style.color = 'white'
@@ -39,6 +41,7 @@ aside_orders.addEventListener('click', () => {
     pass_form.classList.add('hidden')
     user_orders_list.classList.remove('hidden')
     ///
+    list_hidden_function();
     aside_informations.style.color = 'white'
     aside_pass.style.color = 'white'
     aside_orders.style.color = '#F39102'

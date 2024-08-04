@@ -118,9 +118,12 @@
   height: 33px;
   margin-bottom: 15px;
   padding: 6px;
+
+
 }
 
-button {
+
+.add_cart_submit {
   background: rgb(47, 54, 69);
   border-radius: 4px;
   padding: 10px 37px;
@@ -129,7 +132,7 @@ button {
   font-weight: 600;
 }
 
-button:hover {
+.add_cart_submit:hover {
   background: rgb(230, 185, 166);
   transition: ease-in 0.4s;
 }
