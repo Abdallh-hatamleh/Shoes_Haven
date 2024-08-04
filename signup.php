@@ -115,22 +115,26 @@ if (isset($_POST["signup"])) {
     $first_name = $_POST['Fname'];
     $last_name = $_POST['Lname'];
     $email = $_POST['Email'];
+    $phone = $_POST['Number'];
+    $address = $_POST['Address'];
     $password = password_hash($_POST['Pass'], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO users (first_name, last_name, user_email, password) VALUES ('$first_name', '$last_name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        $sql = "select user_id from users order by user_id desc";
+        $query = $conn->query($sql);
+        $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
+        $idk = $results[0]["user_id"];
+        $sql = "insert into customers (user_id,cust_mobile, cust_adress) values ($idk,$phone,'$address')";
+        $conn->query($sql);
+        echo "<script>alert('$sql')</script>";        
+
+        $conn->close();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     // echo "<script>alert('hi')</script>";
-    $sql = "select user_id from users order by user_id desc";
-    $query = $conn->query($sql);
-    $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
-    $idk = $results[0]["user_id"];
-    echo "<script>alert('$idk')</script>";
-    $conn->close();
 }
 ?>
 
@@ -159,27 +163,24 @@ if (isset($_POST["log-in"])) {
         $row = $result->fetch_assoc();
         $id = $row["user_id"];
         if (password_verify($password, $row['password'])) {
+            echo("<script>alert('hi')</script>");
             $sql = "SELECT admin_id FROM `admin` WHERE user_id= $id";
             $result = $conn->query($sql);
-        
             if ($result->num_rows > 0){
-                $row = $result->fetch_assoc();    
-            header('Location: admin/Admin.php');
+                $row = $result->fetch_assoc();
+                setcookie('user','admin', time() + 86400, '/');
+                setcookie('userid',"$id", time() + 86400, '/');
+                header('Location: admin/Admin.php');
             }else{
                 $sql = "SELECT cust_id FROM `Customers` WHERE user_id= $id";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0){
+                $result = $conn->query($sql);
+                if ($result->num_rows == 1){
                 $row = $result->fetch_assoc();
-                echo "<script>alert('customers".$row["cust_id"] . "')</script>";
-        
+                setcookie('user','customer', time() + 86400, '/');
+                setcookie('userid',"$id", time() + 86400, '/');
+                header('Location: index.php');
             }else{
-                $sql = "SELECT sel_id FROM `Sellers ` WHERE user_id= $id";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0){
-                $row = $result->fetch_assoc();
-                echo "<script>alert(' sellers".$row["sel_id"] . "')</script>";
-        
+                die("Unexpected Error"); 
             }
             }
         }
@@ -192,6 +193,6 @@ if (isset($_POST["log-in"])) {
     }
 
     $conn->close();
-}
+
 ?>
 
