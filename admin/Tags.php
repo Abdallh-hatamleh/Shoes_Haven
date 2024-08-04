@@ -13,6 +13,7 @@ include_once("edit_tag.php");
 <?php
 include_once("delete_tag.php");
 ?>
+
 <div class="title pb-20">
     <h2 class="h3 mb-0">Tags Overview</h2>
 </div>
@@ -135,6 +136,9 @@ include_once("delete_tag.php");
                                 <a href='#' class='delete_btn' data-id='".$row["tag_id"]."' data-color='#e95959'>
                                     <i class='icon-copy dw dw-delete-3'></i>
                                 </a>
+								<a href='tags.php?tagid=".$row["tag_id"]."' class='view-btn' data-id='".$row["tag_id"]."' data-color='black'>
+                                   <i class='fa-solid fa-eye'></i>
+                                </a>
                             </div>
                         </td>
                     </tr>";
@@ -142,10 +146,18 @@ include_once("delete_tag.php");
             } else {
                 echo "<tr><td colspan='6'>No tags found.</td></tr>";
             }
+
             $conn->close();
             ?>
         </tbody>
     </table>
+
+	<!-- products in tag -->
+
+
+
+
+	
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
@@ -191,6 +203,10 @@ $(".delete_btn").click(function(e) {
 
 });
 </script>
+
+<?php
+include_once("productsintag.php");
+?>
 
 <?php
 include_once("footer.php");
