@@ -104,7 +104,7 @@ include_once ("header.php");
 				<td class="table-plus">
 					<div class="name-avatar d-flex align-items-center">
 						<div class="avatar mr-2 flex-shrink-0">
-							<img src="vendors/images/photo4.jpg" class="border-radius-100 shadow" width="40" height="40"
+							<img src="../assets/Products/".$pmename . " class="border-radius-100 shadow" width="40" height="40"
 								alt="" />
 						</div>
 						<div class="txt">

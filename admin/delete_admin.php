@@ -12,19 +12,32 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $admin_id = $_POST['admin_id'];
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $admin_id = $_GET['adid'];
 
-    $stmt = $conn->prepare("DELETE FROM users WHERE user_id = ?");
-    $stmt->bind_param("i", $admin_id);
+    // First, delete from the admin table
+    $stmt_admin = $conn->prepare("DELETE FROM admin WHERE admin_id = ?");
+    $stmt_admin->bind_param("i", $admin_id);
 
-    if ($stmt->execute()) {
-        echo "success";
+    if ($stmt_admin->execute()) {
+        // Get the user_id related to the deleted admin
+        $user_id = $_POST['user_id'];
+
+        // Then, delete from the users table
+        $stmt_user = $conn->prepare("DELETE FROM users WHERE user_id = ?");
+        $stmt_user->bind_param("i", $user_id);
+
+        if ($stmt_user->execute()) {
+            header('Location: Admin.php');
+            exit();
+        } else {
+            echo "<script>alert('Error deleting admin.');</script>";
+        }
+        $stmt_user->close();
     } else {
         echo "error";
     }
-
-    $stmt->close();
+    $stmt_admin->close();
     $conn->close();
 }
 ?>

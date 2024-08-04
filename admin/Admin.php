@@ -32,14 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $message = "Error: Email already exists.";
         } else {
-            // Insert into users table
             $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, password) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $first_name, $last_name, $user_email, $user_password);
 
             if ($stmt->execute()) {
-                $user_id = $stmt->insert_id; // Get the last inserted ID
+                $user_id = $stmt->insert_id;
 
-                // Insert into admin table
                 $stmt_admin = $conn->prepare("INSERT INTO admin (user_id) VALUES (?)");
                 $stmt_admin->bind_param("i", $user_id);
                 if ($stmt_admin->execute()) {
@@ -53,27 +51,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         $stmt->close();
-
-        // Redirect to the same page to avoid form resubmission
-        header("Location: " . $_SERVER['PHP_SELF'] . "?message=" . urlencode($message));
-        exit();
     }
 
     // Handle editing admin
     if (isset($_POST['action']) && $_POST['action'] == 'edit_admin') {
         $admin_id = $_POST['admin_id'];
+        $stmt = $conn->prepare('SELECT users.user_id from users join admin USING (user_id) where admin_id = ?');
+        $stmt->bind_param('i', $admin_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user_id = $result->fetch_column();
         $first_name = $_POST['firstName'];
         $last_name = $_POST['lastName'];
         $user_email = $_POST['username'];
-        $user_password = password_hash($_POST['user_password'], PASSWORD_DEFAULT); // Hash password
 
-        $stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, user_email=?, password=? WHERE user_id=?");
-        $stmt->bind_param("ssssi", $first_name, $last_name, $user_email, $user_password, $admin_id);
+        $stmt = $conn->prepare("UPDATE `users` SET `first_name`=?,`last_name`=?,`user_email`=? WHERE user_id=?");
+        $stmt->bind_param("sssi", $first_name, $last_name, $user_email, $user_id);
 
         if ($stmt->execute()) {
-            echo "success";
+            echo "Admin ان شاء الله updated successfully";
         } else {
-            echo "error";
+            echo "Error updating admin: " . $stmt->error;
         }
         $stmt->close();
     }
@@ -103,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <?php if (isset($_GET['message'])): ?>
-                            <div class="alert alert-info"><?php echo htmlspecialchars($_GET['message']); ?></div>
+                        <?php if (isset($message)): ?>
+                            <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
                         <?php endif; ?>
                         <form method="POST" action="">
                             <input type="hidden" name="action" value="add_admin">
@@ -160,10 +158,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <label for="editUsername">User Email</label>
                                     <input type="email" class="form-control" id="editUsername" name="username" required>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="editUserPassword">User Password</label>
-                                    <input type="password" class="form-control" id="editUserPassword" name="user_password" required>
-                                </div>
                             </div>
                             <button class="btn btn-primary" type="submit">Submit form</button>
                         </form>
@@ -202,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <a href='#' class='edit_btn' data-id='".$row["admin_id"]."' data-color='#265ed7'>
                                     <i class='icon-copy dw dw-edit2'></i>
                                 </a>
-                                <a href='#' class='delete_btn' data-id='".$row["admin_id"]."' data-color='#e95959'>
+                                <a href='delete_admin.php?adid=".$row["admin_id"]."' class='delete_btn' data-id='".$row["admin_id"]."' data-color='#e95959'>
                                     <i class='icon-copy dw dw-delete-3'></i>
                                 </a>
                             </div>
@@ -233,26 +227,6 @@ $(document).ready(function() {
         $("#editLastName").val(lastName);
         $("#editUsername").val(userEmail);
         $("#editAdminFormModal").modal("show");
-    });
-
-    $(".delete_btn").click(function(e) {
-        e.preventDefault();
-        var adminId = $(this).data("id");
-        if (confirm("Are you sure you want to delete this admin?")) {
-            $.ajax({
-                url: 'delete_admin.php',
-                type: 'POST',
-                data: { admin_id: adminId, user_id: $(this).closest("tr").find("td:nth-child(2)").text() },
-                success: function(response) {
-                    if (response === "success") {
-                        alert("Admin deleted successfully.");
-                        location.reload();
-                    } else {
-                        alert("Error deleting admin.");
-                    }
-                }
-            });
-        }
     });
 });
 </script>
