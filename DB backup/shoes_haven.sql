@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2024 at 12:58 PM
+-- Generation Time: Aug 02, 2024 at 09:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -116,7 +116,22 @@ CREATE TABLE `poduct_media` (
 INSERT INTO `poduct_media` (`Pme_id`, `Pme_name`, `product_id`) VALUES
 (2, '1685511177c1bafc7dbb7c9e259ea3ea2c85fe0a86_thumbnail_900x.jpg', 1),
 (3, '16855111698e0b383617e1ef68ae24dd1e1aab0760_thumbnail_900x.jpg', 1),
-(4, 'Screenshot 2024-07-31 123707.png', 1);
+(4, 'Screenshot 2024-07-31 123707.png', 1),
+(5, '1705317042fd84060a79ecf2dd4167b418829e9217_thumbnail_900x.jpg', 6),
+(6, '170531704269003b0ca64fda70180a7c548068dbba_thumbnail_900x.jpg', 6),
+(7, '17053170426c8f225cd74d57e0138b195377e1022c_thumbnail_900x.jpg', 6),
+(8, '1713148386ae2fc74d46a7db76f9baabb28c279878.webp', 7),
+(9, '1713148386cff62bb8030629d138dba2202b2fef16.webp', 7),
+(10, '17131483866237487cea67abf33104ecd65c57b985.jpg', 7),
+(11, '1714535950a8142f6a6e7559d6cdf4afca02e77783.jpg', 8),
+(12, '1714535950f972de450641717e5c9d42ae93d1b319.jpg', 8),
+(13, '1714535949d16fa62164fc547a234caa125b3c83b8.jpg', 8),
+(14, '171439322064971eb6a0306bf738d57a25cfdfed3e.jpg', 9),
+(15, '1714393234a1cbfb14860e8657145053461348c970.jpg', 9),
+(16, '1714393228f3b30645af58437f3c40738ee474f8b0.webp', 9),
+(17, '1700042881d7a0a3e1bd9845b95939e1d4684b6fe2.webp', 10),
+(18, '1700042866a7a500dcf106581ce87d1f882b617ed2.webp', 10),
+(19, '170004287035541299a252c447a3b68bb625fd4361.webp', 10);
 
 -- --------------------------------------------------------
 
@@ -138,7 +153,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `price`, `sel_id`, `status`) VALUES
-(1, 'Women Buckle Decor Square Toe Chunky Heeled Slingback Pumps', 'Color:\r\nBlack\r\nPattern Type:\r\nPlain, Plants\r\nHeel Height:\r\nLow Heel (4cm/1.6inch)\r\nSize Fit:\r\nTrue To Size\r\nUpper Material:\r\nPatent Leather\r\nLining Material:\r\nPU Leather ', 20.00, NULL, b'1');
+(1, 'Women Buckle Decor Square Toe Chunky Heeled Slingback Pumps', 'Color:\r\nBlack\r\nPattern Type:\r\nPlain, Plants\r\nHeel Height:\r\nLow Heel (4cm/1.6inch)\r\nSize Fit:\r\nTrue To Size\r\nUpper Material:\r\nPatent Leather\r\nLining Material:\r\nPU Leather ', 20.00, NULL, b'1'),
+(6, 'Fashionable Black Mesh Glossy Formal Shoes ', 'Color:\r\nBlack\r\nPattern Type:\r\nPlain\r\nSize Fit:\r\nOne Size Smaller\r\nUpper Material:\r\nPU Leather\r\nInsole Material:\r\nPU Leather\r\nOutsole Material:\r\nRubber ', 16.58, NULL, b'1'),
+(7, 'Casual Shoes Korean Style Trendy Slip-On Slouchy Shoes', 'Color:\r\nBeige\r\nToe:\r\nRound Toe\r\nPattern Type:\r\nPlain\r\nUpper Material:\r\nFabric\r\nInsole Material:\r\nCanvas\r\nOutsole Material:\r\nPU Leather', 11.40, NULL, b'1'),
+(8, 'Women\'s Peep Toe Chunky/Low Heel Dress Party Versatile Sandals', 'Details:\r\nColor:\r\nChampagne\r\nPattern Type:\r\nPlain\r\nStrap Type:\r\nAnkle Strap\r\nHeel Height:\r\nFlat (3cm/1.2inch)\r\nComposition:\r\n100% Polyurethane\r\nMaterial:\r\nPU Leather ', 15.10, NULL, b'1'),
+(9, 'Silver Shimmering Fashionable Stiletto High Heel Sandals', 'Color:\r\nGold\r\nToe:\r\nOpen Toe\r\nPattern Type:\r\nColorblock, Plain\r\nStrap Type:\r\nAnkle Strap\r\nHeel Height:\r\nHigh Heel (9.5cm/3.7inch)\r\nSize Fit:\r\nTrue To Size\r\nUpper Material:\r\nSuedette\r\nLining Material:\r\nPU Leather', 17.17, NULL, b'1'),
+(10, 'Women\'s High Heel Sandals With Waterproof Platform', 'Style:\r\nElegant\r\nColor:\r\nBlack\r\nToe:\r\nOpen Toe\r\nPattern Type:\r\nColorblock, Plain\r\nStrap Type:\r\nAnkle Strap\r\nHeels:\r\nChunky\r\nHeel Height:\r\nHigh Heel (9.5cm/3.7inch)', 16.18, NULL, b'1');
 
 -- --------------------------------------------------------
 
@@ -150,6 +170,20 @@ CREATE TABLE `product_tags` (
   `product_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product_tags`
+--
+
+INSERT INTO `product_tags` (`product_id`, `tag_id`) VALUES
+(1, 1),
+(1, 4),
+(6, 1),
+(7, 1),
+(8, 1),
+(8, 4),
+(9, 4),
+(10, 4);
 
 -- --------------------------------------------------------
 
@@ -182,6 +216,21 @@ CREATE TABLE `shoe_sizes` (
   `shoe_size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `shoe_sizes`
+--
+
+INSERT INTO `shoe_sizes` (`product_id`, `shoe_size`) VALUES
+(1, 36),
+(1, 37),
+(1, 38),
+(1, 39),
+(1, 40),
+(1, 41),
+(1, 42),
+(1, 43),
+(1, 44);
+
 -- --------------------------------------------------------
 
 --
@@ -191,8 +240,23 @@ CREATE TABLE `shoe_sizes` (
 CREATE TABLE `tags` (
   `tag_id` int(11) NOT NULL,
   `tad_name` varchar(255) DEFAULT NULL,
-  `sale_amount` decimal(10,2) NOT NULL
+  `sale_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `featured` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`tag_id`, `tad_name`, `sale_amount`, `featured`) VALUES
+(1, 'Formal', 0.00, b'1'),
+(2, 'Old-Money', 0.00, b'0'),
+(3, 'Casual', 0.00, b'0'),
+(4, 'heels', 0.00, b'1'),
+(8, 'men', 0.00, b'0'),
+(9, 'women', 0.00, b'0'),
+(10, 'baby', 0.00, b'0'),
+(11, 'sport', 0.00, b'1');
 
 -- --------------------------------------------------------
 
@@ -350,13 +414,13 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `poduct_media`
 --
 ALTER TABLE `poduct_media`
-  MODIFY `Pme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Pme_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sellers`
@@ -368,7 +432,7 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `testimonails`

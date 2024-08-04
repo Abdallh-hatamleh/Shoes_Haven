@@ -33,9 +33,9 @@ const swiper = new Swiper('.slider-wrapper', {
   }
 });
 
- const cards = document.querySelectorAll(".card-item");
+const cards = document.querySelectorAll(".card-item");
 cards.forEach(element => {
-  element.addEventListener("click", ()=> {
-    window.location.href = `product-view.php?id=${element.id}`;
+  element.addEventListener("click", () => {
+    window.location.href = `product-view.php?pid=${element.id}`;
   })
 });
