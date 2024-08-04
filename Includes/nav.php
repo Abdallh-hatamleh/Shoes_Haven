@@ -1,3 +1,7 @@
+<?php
+
+ ?>
+
 <header>
         <nav>
             <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
