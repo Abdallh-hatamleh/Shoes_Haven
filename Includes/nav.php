@@ -12,6 +12,8 @@
                 <a href="products.php" class="puttons">products</a>
                 <a href="index.php#about" class="puttons">About Us</a>
                 <a href="index.php#contact" class="puttons">Contact Us</a>
+                <a href="Includes/helpcenter.html" class="puttons">help center</a>
+
             </div>
             <form action="products.php" style="display:inline" id="search-form">
 
@@ -117,8 +119,10 @@ header("Refresh:0");
                 <div>
                     <a href="user-information.php">UserInfo</a>
                 </div>
+              
                 <div class="burger-menu" id="burger-menu">
                     <i class="fa fa-bars"></i>
+
                 </div>
         </nav>
     </header>
