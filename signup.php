@@ -1,7 +1,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Signup.css">
+<link rel="stylesheet" href="css/Signupz.css">
 <div class="Login-Overlay">
 <?php 
 $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
@@ -32,23 +32,23 @@ if(isset($_GET['active']))
             <div class="inputlabel">
             <label for="Fname">First Name</label>
             <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
-            <p id="fname-error"></p>
+            <p id="fname-error" class="error"></p>
             </div>
             <div class="inputlabel">
                 <label for="Lname">Last Name</label>
                 <input class="form-ins" type="text" name="Lname" id="lastName-input-sign-up" required>
-                <p id="lname-error"></p>
+                <p id="lname-error" class="error"></p>
             </div>
             </div>
             <div class="inputlabel">
             <label for="Email">Email</label>
             <input class="form-ins" type="text" name="Email" id="email-input-sign-up" required>
-            <p id="email-error"></p>
+            <p id="email-error" class="error"></p>
         </div>
         <div class="inputlabel">
                 <label for="Pass">Password</label>
                 <input class="form-ins" type="password" name="Pass" id="password-input-sign-up" required>
-                <p id="password-error"></p>
+                <p id="password-error" class="error"></p>
             </div>
             <div class="inputlabel">
                 <label for="phone">Phone Number</label>
