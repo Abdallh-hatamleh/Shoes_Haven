@@ -52,11 +52,11 @@ Once the website is set up, you can explore its features:
    After purchase, track your order status through the 'Order Tracking' section.
    
 ## Team:
-Ayah hillawi : Product Owner
-Abdallh Hatamleh : Scrum Master
-Ahmad Khallaf : Developer
-Sami Sawalqa : Developer
-Heba Samaheen : Developer
+Ayah hillawi : Product Owner.
+Abdallh Hatamleh : Scrum Master.
+Ahmad Khallaf : Developer.
+Sami Sawalqa : Developer.
+Heba Samaheen : Developer.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
