@@ -3,7 +3,7 @@
     <?php 
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-      $query = $conn->prepare("SELECT tags.tad_name from tags where tags.tag_id = :idr");
+      $query = $conn->prepare("SELECT tags.tag_name from tags where tags.tag_id = :idr");
       $query->execute(["idr"=> "$tagid"]);
       $catName = $query->fetchColumn() ;
       echo "<h2><a href='products.php?search=" . $catName ."'>".$catName."</h2></a>";
