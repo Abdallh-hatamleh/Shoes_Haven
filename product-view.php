@@ -122,7 +122,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
         <div class="category">
             <?php include("Includes\slidertop.php")  ?>
             <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
               <div class="price-color">Price</div>
@@ -130,7 +130,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -138,7 +138,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -146,7 +146,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -154,7 +154,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -162,7 +162,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -174,7 +174,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
         <h2>Sneakers</h2>
         <?php include("Includes\slidertop.php") ?>
         <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
               <div class="price-color">Price</div>
@@ -182,7 +182,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -190,7 +190,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -198,7 +198,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -206,7 +206,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -214,7 +214,7 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
           </div>
 
           <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
+            <img src="" alt="User Image" class="user-image">
             <div class="name-price-container">
               <div class="message-button">Name</div>
               <div class="price-color">Price</div>
@@ -232,8 +232,9 @@ $link = "add-to-cart.php?pid=".$_GET['pid'];
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- Linking custom script -->
+<script src="JS/product-view.js"></script>
 <script src="JS/slider.js"></script>
-<script src="JS/testimonials.js"></script>
+<!-- <script src="JS/testimonials.js"></script> -->
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
 </body>

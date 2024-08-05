@@ -8,5 +8,3 @@
             </div>
         </div>
     </footer>
-
-    <script src="JS/nav.js"></script>

@@ -48,7 +48,7 @@ foreach ($cart_products as $products){
 $cart_total_price += $products['price'];
 
     
-echo "<div class='cart-product'>
+echo "<div class='cart-product' id='cart-product-id'>
     <img src='assets/Products/".$products['Pme_name']."' alt=''>
     <div class='cart-product-info'>
     <div class='cart-product-name'>".$products['product_name']." </div>
@@ -109,7 +109,7 @@ $conn ->query($remove_sql);
 <?php
 
 
-try{
+// try{
 
     if (isset($_POST['checkout_btn'])){
         
@@ -151,8 +151,8 @@ try{
 
 
         }
-    } catch(Exception $e) {
-        echo 'Message: ' .$e->getMessage();
-      }
+    // } catch(Exception $e) {
+    //     echo 'Message: ' .$e->getMessage();
+    //   }
         
     ?>    

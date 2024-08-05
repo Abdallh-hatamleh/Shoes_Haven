@@ -89,4 +89,4 @@
 <script src="JS/testimonials.js"></script>
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
-</body>
+    </body>
