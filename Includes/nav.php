@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<?php
-
- ?>
-
-=======
-<?php 
-    // if(isset($_COOKIE['user']))
-    // {
-    // $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-    // $res = $conn->query("");
-    // }
-?>
->>>>>>> Ayah
 <header>
         <nav>
             <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
@@ -96,7 +81,8 @@
                 <a href="signup.php?active=sign" class="signup">signup</a>
             </div>
                 <div>
-                    <a href="user-information.php">UserInfo</a>
+                    <a href="user-information.php">Username</a>
+                    <a href="user-information.php">LogOut</a>
                 </div>
                 <div class="burger-menu" id="burger-menu">
                     <i class="fa fa-bars"></i>
