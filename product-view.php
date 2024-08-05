@@ -48,7 +48,7 @@ $title = $query->fetchColumn();
 $price = $query->fetchColumn(1);
 $description = $query->fetchColumn(2);
 $query = $conn->prepare("select shoe_sizes.shoe_size as size from products JOIN shoe_sizes USING (product_id) where product_id=:idr");
-$query->execute(["idr"=>1]);
+$query->execute(["idr"=>$pid]);
 $sizes = [];
 foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
   global $sizes;
@@ -66,9 +66,8 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
    
    $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
   $conn->query($add_sql);
-
-    header( 'Location: D:\XAMPP\htdocs\group-project-2\add-to-cart.php' );
-  
+$link = "add-to-cart.php?pid=".$_GET['pid'];
+  header("Location: $link");
   }
   
   
@@ -237,5 +236,4 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
 <script src="JS/testimonials.js"></script>
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
-<script src="JS/product-view.js"></script>
 </body>

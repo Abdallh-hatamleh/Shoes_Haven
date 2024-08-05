@@ -1,17 +1,16 @@
 <?php
 
 // is this a post request?
-if( !empty( $_POST ) )
+if( true )
 {
    /*
      process the form submission
      and on success (a boolean value which you would put in $success), do a redirect
    */
-   if( $success )
+   if( true )
    {
-       header( 'HTTP/1.1 303 See Other' );
-       header( 'Location: http://www.example.com/add_user.php?message=success' );
-       exit();
+      $link = "product-view.php?pid=".$_GET['pid'];
+       header( "Location: $link "  );
    }
    /* 
       if not successful, simply fall through here
