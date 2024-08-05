@@ -1,13 +1,16 @@
 <header>
+    
         <nav>
             <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
                 class="logo">
 
             <div class="menu" id="menu">
-                <a href="" class="puttons">Home</a>
-                <a href="" class="puttons">products</a>
-                <a href="" class="puttons">About Us</a>
-                <a href="" class="puttons">Contact Us</a>
+                <a href="index.php" class="puttons">Home</a>
+                <a href="products.php" class="puttons">products</a>
+                <a href="index.php#about" class="puttons">About Us</a>
+                <!-- <a href="index.php#contact" class="puttons">Contact Us</a> -->
+                <a href="helpcenter.php" class="puttons">help center</a>
+
             </div>
 
             <div class="search-cart" id="search-cart">
@@ -97,11 +100,29 @@ $conn ->query($remove_sql);
             </div>
 
             <div class="login_signup">
-                <a href="" class="login">login</a>
-                <a href="" class="signup">signup</a>
+            <?php 
+        // $logged_in = false;
+        if(isset($_COOKIE['user']))
+        {
+            $userid = $_COOKIE['userid'];
+            $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
+            $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$user_id");
+            $user_name = $sql->fetchColumn();
+            echo '<a href="user-information.php" class="login">'. $user_name .'</a>
+                    <a href="logout.php" class="signup">LogOut</a>';
+        }
+        else {
+            echo '<a href="signup.php?active=log" class="login">login</a>
+                <a href="signup.php?active=sign" class="signup">signup</a>';
+        }
+    ?>
+                
             </div>
+
                 <div class="burger-menu" id="burger-menu">
                     <i class="fa fa-bars"></i>
+
                 </div>
         </nav>
     </header>

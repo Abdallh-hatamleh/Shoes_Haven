@@ -1,5 +1,12 @@
 .main-content {
     display: flex;
+        /* margin-top: 2rem;
+        margin-bottom: 20rem; */
+}
+body {
+    position: relative;
+    min-height: 100vh;
+    
 }
 .sidebar {
     width: 250px;
@@ -7,7 +14,7 @@
     padding: 20px;
     transition: transform 0.3s ease;
     transform: translateX(-250px); /* مخفي افتراضيًا */
-    position: fixed;
+    position: fixed;    
     height: 100%;
     z-index: 1;
 }
@@ -21,18 +28,15 @@
 
 .sidebar-toggle {
     font-size: 24px;
-    position: absolute;
-    top: 20px;
-    right: -20px;
-    z-index: 2;
+    position: relative;
+    left: 15rem;
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
-    /* transition: transform 0.3 ease;
-    transform: translateX(-220px); */
+    margin-bottom: 5rem;
 }
 li img {
     width: 20px;
@@ -40,6 +44,7 @@ li img {
 }
 li div {
     display: flex;
+    margin-bottom: 5re;
 }
 li {
     width: 100%;
@@ -106,12 +111,21 @@ row-gap: 1rem;
     width: 200px;
 }
 .cur-search {
-    background-color: orangered;
-    width: 100%;
+    background-color: rgb(223, 92, 44);
+    position: relative;
+    left: 13rem;
+    border-radius: 5rem;
+    width: 70rem;
     padding: 0.2rem 1rem;
     color: black;
     margin-bottom: 2rem;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow */
+}
+
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;

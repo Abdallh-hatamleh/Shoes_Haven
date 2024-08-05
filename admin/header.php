@@ -11,6 +11,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png" />
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -86,12 +87,76 @@
     background-color: white; 
     color: #142127; 
 }
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+.popup-content {
+  background-color: #fff;
+  margin: 10% auto; /* 10% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+}
+
+form input,
+form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+
+form button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
 	</style>
 </head>
 
 <body>
 
-	<!-- <div class="pre-loader">
+	<div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo">
 				<img src="images\Black_and_Beige_Modern_Illustration_Logo__4_black-removebg-preview.png"
@@ -103,7 +168,7 @@
 			<div class="percent" id="percent1">0%</div>
 			<div class="loading-text">Loading...</div>
 		</div>
-	</div> -->
+	</div>
 
 	<div class="header">
 		<div class="menu-icon bi bi-list"></div>
@@ -193,9 +258,9 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="" />
+							<img src="WhatsApp Image 2024-08-05 at 09.06.42_f3bbfc65.jpg" style="height:100%; width:100%" alt="" />
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name">Ahmad Khallaf</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
@@ -319,11 +384,6 @@
 						</a>
 					</li>
 					<li>
-						<a href="Seller.php" class="dropdown-toggle no-arrow">
-							<span class="micon bi "></span><span class="mtext">Seller</span>
-						</a>
-					</li>
-					<li>
 						<a href="Products.php" class="dropdown-toggle no-arrow">
 							<span class="micon bi "></span><span class="mtext">Products</span>
 						</a>
@@ -331,11 +391,6 @@
 					<li>
 						<a href="Tags.php" class="dropdown-toggle no-arrow">
 							<span class="micon bi "></span><span class="mtext">Tags</span>
-						</a>
-					</li>
-					<li>
-						<a href="New_Products.php" class="dropdown-toggle no-arrow">
-							<span class="micon bi "></span><span class="mtext">New Products</span>
 						</a>
 					</li>
 

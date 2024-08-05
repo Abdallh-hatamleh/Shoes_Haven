@@ -1,33 +1,82 @@
 /* Footer Styles */
 
 footer {
-    bottom: 0;
     background-color: #000000;
     color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    /* position: absolute; */
-    bottom: 0;
     width: 100%;
-    /* margin-top: 4rem; */
+    font-family: Arial, sans-serif;
+    margin-top: 10rem;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #f39102;
+}
+
+footer .border-bottom {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+footer .fab {
+    font-size: 20px;
+}
+
+footer .fas {
+    font-size: 18px;
+}
+
+footer .me-3 {
+    margin-right: 1rem !important;
+}
+
+footer .me-4 {
+    margin-right: 1.5rem !important;
+}
+
+.me-5 {
+    color: white;
+    margin-top: 7rem;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    justify-content: space-between;
     align-items: center;
 }
 
-.footer-content p {
-    margin: 0;
+footer .text-reset {
+    color: #fff !important;
+    line-height: 2rem;
 }
 
+.linkedin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkedin2 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.git {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+
 .social-icons {
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 .social-icons a {
@@ -40,13 +89,70 @@ footer {
     width: 30px;
 }
 
-.social_color:hover {
-    color: #F39102 !important;
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 0 1rem;
 }
 
+.footer-column {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5rem;
+}
 
-@media (max-width: 768px) {
-    .footer-content {
-        padding: 0 20px;
-    }
+.footer-column h6 {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+.footer-column p,
+.footer-column a {
+    font-size: 14px;
+}
+
+.footer-column a {
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    color: #f39102;
+}
+
+.text-muted {
+    color: white !important;
+}
+
+.bg-body-tertiary {
+    background-color: black !important;
+}
+
+.py-4 {
+    padding: 1.5rem !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-lg-start {
+    text-align: left !important;
+}
+
+.text-md-start {
+    text-align: left !important;
+}
+
+.text-md-start .row {
+    justify-content: space-between;
+}
+
+.fw-bold {
+    font-weight: bold !important;
 }
