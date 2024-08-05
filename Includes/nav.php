@@ -1,7 +1,18 @@
+<<<<<<< HEAD
 <?php
 
  ?>
 
+=======
+<?php 
+    // if(isset($_COOKIE['user']))
+    // {
+    // $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
+    // $res = $conn->query("");
+    // }
+?>
+>>>>>>> Ayah
 <header>
         <nav>
             <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
