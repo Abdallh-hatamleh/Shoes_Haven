@@ -28,7 +28,7 @@
             </div>";
         } ?>
         <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/placeholder.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
                 <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
                 <div class="price-color">Price</div>
