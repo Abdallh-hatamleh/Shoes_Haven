@@ -107,25 +107,54 @@
     font-family: Jockey one;
 }
 
-.about {
+.about-us {
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    padding: 50px 20px;
     text-align: center;
-    font-family: jomhuria;
-    font-size: 100px;
-}
-
-.aboutus {
-    background-color: #000000;
-    padding: 22px;
-    font-family: jomhuria;
-    font-size: 40px;
-    position: relative;
-}
-
-.a {
-    color: aliceblue;
-    font-size: 44px;
-    font-family: jomhuria;
-}
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container-about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container-about h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ff6347;
+  }
+  
+  .container-about .store-name {
+    font-weight: bold;
+    color: #e94e77;
+  }
+  
+  .container-about p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .container-about .highlight {
+    color: #ff6347;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .container-about h1 {
+      font-size: 2rem;
+    }
+  
+    .container-about p {
+      font-size: 1rem;
+    }
+  }
 
 .contact-btn {
     padding: 0.4rem 1rem;

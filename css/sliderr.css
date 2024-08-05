@@ -44,6 +44,7 @@
   border-radius: 10px;
   backdrop-filter: blur(30px);
   background-color: rgb(47, 54, 69);
+  /* margin-bottom: 5rem; */
 }
 
 .user-image {
@@ -51,7 +52,7 @@
 }
 
 .card-list .card-item {
-  height: 35vh;
+  /* height: 35vh; */
 }
 
 
@@ -76,12 +77,13 @@
   font-size: 1.45rem;
   border-radius: 6px;
   font-weight: 500;
+  margin-top: 5rem;
 }
 
 
 .card-list .card-item .message-button {
-  font-size: 0.9rem;
-  padding: 0 0.4REM;
+  font-size: 1rem;
+  /* padding: 0 0.4REM; */
   max-height: 100%;
   /* border-radius: 6px; */
   font-weight: 500;
