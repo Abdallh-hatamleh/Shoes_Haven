@@ -118,113 +118,16 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
         </section>
 
             <h2>More like this:</h2>
-            <h2>formal</h2>
-        
-        <div class="category">
-            <?php include("Includes\slidertop.php")  ?>
-            <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <?php include("Includes/sliderbot.php") ?>
-    </div>
-    <div class="category">
-        <h2>Sneakers</h2>
-        <?php include("Includes\slidertop.php") ?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <?php include("Includes/sliderbot.php") ?>
-          
-    </div>
+            <?php 
+      $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
+      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $results = $query->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($results as $row) {
+        $tagid = $row['tag_id'];
+        include("includes/slider.php"); 
+      }
+       ?>
 </div>
 </div>
 
