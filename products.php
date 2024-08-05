@@ -6,7 +6,7 @@
     <title>List View</title> 
     <link rel="stylesheet" href="styleproduct.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="css/slider.css">
+  <link rel="stylesheet" href="css/sliderr.css">
   <link rel="stylesheet" href="css/testimonials.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/styles.css">
