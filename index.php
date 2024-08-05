@@ -29,10 +29,14 @@
     <h2 class="section-header"><i class="fa-solid fa-fire-flame-curved fa-flip-horizontal"></i>Hottest Items<i class="fa-solid fa-fire-flame-curved"></i></h2>
     
       <?php 
-      $tagid = 1;
-      include("includes/slider.php"); 
-      $tagid = 4;
-      include("includes/slider.php");
+      $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
+      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $results = $query->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($results as $row) {
+        $tagid = $row['tag_id'];
+        include("includes/slider.php"); 
+      }
        ?>
       
     <div class="testimonials">
