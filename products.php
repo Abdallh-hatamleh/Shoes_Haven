@@ -6,7 +6,7 @@
     <title>List View</title> 
     <link rel="stylesheet" href="styleproduct.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="css/slider.css">
+  <link rel="stylesheet" href="css/sliderr.css">
   <link rel="stylesheet" href="css/testimonials.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -52,13 +52,14 @@ if ($search == "") $search = "All Products";
             <main class="card-list">
               <?php
               if($search == "All Products") {
-                $query = $conn->query('SELECT products.product_name,products.price,poduct_media.Pme_name FROM products JOIN poduct_media USING (product_id) GROUP BY product_id');
+                $query = $conn->query('SELECT products.product_id,products.product_name,products.price,poduct_media.Pme_name FROM products JOIN poduct_media USING (product_id) GROUP BY product_id');
                 while ($row = $query->fetch(PDO::FETCH_ASSOC))
                 {
                   $img = $row['Pme_name'];
                   $name = $row['product_name'];
                   $price = $row['price'];
-                  echo '<div class="card-item swiper-slide">';
+                  $pid= $row['product_id'];
+                  echo '<div class="card-item swiper-slide" id='. $pid .'>';
                   echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
                   echo  '<div class="name-price-container">';
                   echo  '<div class="message-button">'. $name .' </div>';
@@ -143,7 +144,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
   $img = $row['Pme_name'];
   $name = $row['product_name'];
   $price = $row['price'];
-  echo '<div class="card-item swiper-slide">';
+ $pid= $row['product_id'];
+  echo '<div class="card-item swiper-slide" id='. $pid .'>';
   echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
   echo  '<div class="name-price-container">';
   echo  '<div class="message-button">'. $name .' </div>';
@@ -170,6 +172,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
             document.querySelector('.sidebar').classList.toggle('open');
             document.querySelector('.sidebar-toggle').classList.toggle('open');
         }
+        const cards = document.querySelectorAll(".card-item");
+cards.forEach(element => {
+  element.addEventListener("click", () => {
+    window.location.href = `product-view.php?pid=${element.id}`;
+  })
+});
     </script>
     <script src="JS/nav.js"></script>
     <script src="JS/nav-cart.js"></script>
