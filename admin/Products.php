@@ -17,6 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $product_name = $_POST['productname'];
         $product_description = $_POST['description'];
         $price = $_POST['price'];
+        $img1 = $_FILES['upload1'];
+        $img2 = $_FILES['upload2'];
+        $img3 = $_FILES['upload3'];
 
         $stmt = $conn->prepare("SELECT * FROM products WHERE product_name = ?");
         $stmt->bind_param("s", $product_name);
@@ -31,11 +34,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 $message = "New product added successfully.";
+
+                // Get the new product_id
+                $new_product_id = $stmt->insert_id;
+                // $img1_name=$img1['name'];
+
+                $stmt = $conn->prepare("INSERT INTO poduct_media (Pme_name, product_id) VALUES (?, ?), (?, ?), (?, ?)");
+                $stmt->bind_param("sisisi", $img1['name'], $new_product_id, $img2['name'], $new_product_id, $img3['name'], $new_product_id);
+
+                if ($stmt->execute()) {
+                    $message .= " Images added successfully.";
+                    $img_path1 ="D:/XAMPP/htdocs/group-project-2/assets/Products/".$img1['name'];
+                    $img_path2 ="D:/XAMPP/htdocs/group-project-2/assets/Products/".$img2['name'];
+                    $img_path3 ="D:/XAMPP/htdocs/group-project-2/assets/Products/".$img3['name'];
+
+                    move_uploaded_file($_FILES['upload1']['tmp_name'], $img_path1 );
+                    move_uploaded_file($_FILES['upload2']['tmp_name'], $img_path2 );
+                    move_uploaded_file($_FILES['upload3']['tmp_name'], $img_path3 );
+                } else {
+                    $message = "Error: " . $stmt->error;
+                }
             } else {
                 $message = "Error: " . $stmt->error;
             }
         }
         $stmt->close();
+
     } elseif (isset($_POST['action']) && $_POST['action'] == 'edit_product') {
         $product_id = $_POST['product_id'];
         $product_name = $_POST['productname'];
@@ -79,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php if (isset($_GET['message'])): ?>
                             <div class="alert alert-info"><?php echo htmlspecialchars($_GET['message']); ?></div>
                         <?php endif; ?>
-                        <form method="POST" action="">
+                        <form method="POST" action="" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="add_product">
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
@@ -94,6 +118,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <label for="price">Price</label>
                                     <input type="text" class="form-control" id="price" name="price" placeholder="Price" required>
                                 </div>
+                                <div>Select image to upload: </div>
+                                        <input name="upload1" type="file" id='upload1' required>
+                                        <input name="upload2" type="file" id='upload2' required>
+                                        <input name="upload3" type="file" id='upload3' required>
                             </div>
                             <button class="btn btn-primary" type="submit">Submit Form</button>
                         </form>
@@ -334,3 +362,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include_once ("footer.php");
 $conn->close();
 ?>
+
