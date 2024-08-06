@@ -2,10 +2,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/Signupz.css">
+<?php 
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    var_dump($_POST);
+}
+?>
 <div class="Login-Overlay">
 
     <div class="Form-container ">
-        <form action="post" class="signup-form inactive" id="signup-form">
+        <form method="post" action="" class="signup-form inactive" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
             <div class="inputlabel">
@@ -31,13 +37,14 @@
             </div>
             <div class="inputlabel">
                 <label for="phone">Phone Number</label>
-                <input type="number" class="form-ins" name="Number" required>
+                <input type="text" class="form-ins" name="Number" required>
             </div>
             <div class="inputlabel">
                 <label for="Address">Address</label>
                 <input type="text" class="form-ins" name="Address" required>
             </div>
-            <input type="submit" class="confirm-form" value="Sign Up" name="sign-up">
+            <input type="hidden" name="signup" value="1">
+            <input type="submit" class="confirm-form" value="Sign Up" >
             <div class="switch-section">
                 <div class="or-section">
                     <span class="or-seperator"></span>
@@ -47,7 +54,7 @@
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form action="post" class="login-form" id="login-form">
+<form method="post" action="" class="login-form" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
@@ -57,7 +64,7 @@
         <label for="Pass">Password</label>
         <input class="form-ins" type="password" name="Pass" required>
     </div>
-    <input type="submit" class="confirm-form" value="Log in" name="sign-up">
+    <input type="submit" class="confirm-form" value="Log in" name="login">
     <div class="switch-section">
         <div class="or-section">
             <span class="or-seperator"></span>
@@ -95,7 +102,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST["signup"])) {
     
-    // echo "<script>alert('hi')</script>";
+    echo "<script>alert('hi')</script>";
     $first_name = $_POST['Fname'];
     $last_name = $_POST['Lname'];
     $email = $_POST['Email'];
@@ -136,18 +143,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if (isset($_POST["log-in"])) {
+if (isset($_POST["login"])) {
     $email = $_POST['Email'];
     $password = $_POST['Pass'];
 
-    $sql = "SELECT user_id, password FROM users WHERE user_email='$email'";
+    $sql = "SELECT user_id password FROM users WHERE user_email='$email'";
     $result = $conn->query($sql);
-    
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $id = $row["user_id"];
         if (password_verify($password, $row['password'])) {
-            echo("<script>alert('hi')</script>");
+            // echo("<script>alert('hi')</script>");
             $sql = "SELECT admin_id FROM `admin` WHERE user_id= $id";
             $result = $conn->query($sql);
             if ($result->num_rows > 0){
@@ -170,7 +176,11 @@ if (isset($_POST["log-in"])) {
         }
 
         } else {
-            echo "<script>alert('Wrong Email or Password')</script>";
+            if($row['password'] == $password)
+            {
+
+            }
+
         }
     } else {
         echo "No user found with this email";
