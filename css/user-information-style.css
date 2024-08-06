@@ -1,5 +1,8 @@
 body {
     background-color: rgb(47, 54, 69);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -49,6 +52,12 @@ body {
     input {
         height: 2rem;
     }
+}
+
+.orders_h1 {
+    color: #F39102;
+    font-size: 2.5rem;
+    margin: 5px 0;
 }
 
 .new-changes-input {
@@ -173,6 +182,7 @@ body {
 
     .user-info-show {
         margin: 0.5rem;
+        overflow-y: scroll;
     }
 
     .user-orders-list {

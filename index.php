@@ -1,3 +1,7 @@
+<?php
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +25,7 @@
   <?php include_once("includes/nav.php") ?>
   <?php include("includes/hero.php") ?>
   <?php include("includes/about.php") ?>
-  <main id="collection">
+  <main>
     <h2 class="section-header"><i class="fa-solid fa-fire-flame-curved fa-flip-horizontal"></i>Hottest Items<i class="fa-solid fa-fire-flame-curved"></i></h2>
     
       <?php 
@@ -70,9 +74,9 @@
     <?php include("Includes/testimonialbottom.php") ?>
     </div>
   </main>
-  
+  <d
 
-    <!-- <div class="foot-margin" style="margin: 2rem 0;"></div> -->
+    <div class="foot-margin" style="margin: 2rem 0;"></div>
     <?php include_once("includes/foot.php") ?>
 <!-- Linking SwiperJS script -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -82,4 +86,4 @@
 <script src="JS/testimonials.js"></script>
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
-</body>
+    </body>

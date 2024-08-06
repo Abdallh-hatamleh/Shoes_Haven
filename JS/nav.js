@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burgerMenu.addEventListener('click', () => {
         menu.classList.toggle('active');
     });
+
     searchMenu.addEventListener('click', () => {
         searchCart.classList.toggle('active');
     });

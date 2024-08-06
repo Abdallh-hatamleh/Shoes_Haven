@@ -113,18 +113,18 @@ $cust_address = $result['cust_adress'];
 <!-- ////////////////////////////////// -->
 
 <div class="user-info-show hidden">
+<h1 class="orders_h1">Orders</h1>
 
 <div class="user-orders-list">
-  <h1>Orders</h1>
 
   <?php
 
-$order_card = $conn->prepare("select customers.*, users.*, orders.* from customers left join users using (user_id) JOIN orders using (cust_id) where users.user_id = 2");
-$order_card->execute();
+$order_card = $conn->prepare("select customers.*, users.*, orders.* from customers left join users using (user_id) JOIN orders using (cust_id) where users.user_id =:idr");
+$order_card->execute(["idr"=>$user_id]);
 $order_count = $order_card->fetchALL();
 
 
-$order_details_list = $conn->prepare("select orders.*, order_details.*, products.*,poduct_media.*, (products.price*order_details.qt_quantity) as totalPerProduct FROM orders JOIN order_details USING (or_id) JOIN products USING (product_id) JOIN poduct_media USING (product_id) GROUP BY orferdetails_id");
+$order_details_list = $conn->prepare("select orders.*, order_details.*, products.*,poduct_media.*, (products.price) as totalPerProduct FROM orders JOIN order_details USING (or_id) JOIN products USING (product_id) JOIN poduct_media USING (product_id) GROUP BY orferdetails_id");
 $order_details_list->execute();
 $order_product_count = $order_details_list->fetchALL();
 
@@ -159,7 +159,7 @@ echo " <img src='assets/Products/".$order_list['Pme_name']."' alt=''>";
 echo "<div class='cart-product-info'>";
 echo "<div class='cart-product-name'>".$order_list['product_name']."</div>";
 echo "<div>".$order_list['product_description']."</div>";
-echo "<div class='order-price-quantity'><div class='cart-product-price'>PRICE: <a> $".$order_list['price']." </a></div><div>qty:".$order_list['qt_quantity']."</div></div>";
+echo "<div class='cart-product-price'>PRICE: <a> $".$order_list['price']." </a></div>";
 echo "</div>";
 echo "</div>";
 
