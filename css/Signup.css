@@ -6,7 +6,7 @@
 }
 .Login-Overlay{
     height: 105vh;
-    width: 100vw;
+    /* width: 100vw; */
     /* padding: 5r/em 0;     */
     display: flex;
     justify-content: center;
