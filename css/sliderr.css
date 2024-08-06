@@ -15,7 +15,13 @@
   /* width: 70vw; */
   margin-left: 5vw;
   margin-bottom: 2rem;
-  
+}
+.category h2 a {
+  text-decoration: none;
+  color: black;
+  background: linear-gradient(180deg, rgb(231, 65, 3) 0%, rgb(255, 255, 255) 100%);
+  padding: 0.3rem 1.5rem;
+  border-radius: 2rem 2rem 0 0;
 }
 .swiper-main-container {
   display: flex;
@@ -38,6 +44,7 @@
   border-radius: 10px;
   backdrop-filter: blur(30px);
   background-color: rgb(47, 54, 69);
+  /* margin-bottom: 5rem; */
 }
 
 .user-image {
@@ -45,7 +52,7 @@
 }
 
 .card-list .card-item {
-  height: 35vh;
+  height: 50vh;
 }
 
 
@@ -70,12 +77,13 @@
   font-size: 1.45rem;
   border-radius: 6px;
   font-weight: 500;
+  margin-top: 5rem;
 }
 
 
 .card-list .card-item .message-button {
-  font-size: 0.9rem;
-  padding: 0 0.4REM;
+  font-size: 1rem;
+  /* padding: 0 0.4REM; */
   max-height: 100%;
   /* border-radius: 6px; */
   font-weight: 500;

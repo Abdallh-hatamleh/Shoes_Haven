@@ -3,7 +3,7 @@
     <?php 
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-      $query = $conn->prepare("SELECT tags.tad_name from tags where tags.tag_id = :idr");
+      $query = $conn->prepare("SELECT tags.tag_name from tags where tags.tag_id = :idr");
       $query->execute(["idr"=> "$tagid"]);
       $catName = $query->fetchColumn() ;
       echo "<h2><a href='products.php?search=" . $catName ."'>".$catName."</h2></a>";
@@ -28,7 +28,7 @@
             </div>";
         } ?>
         <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
+            <img src="assets/images/placeholder.jpg" alt="User Image" class="user-image">
             <div class="name-price-container">
                 <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
                 <div class="price-color">Price</div>

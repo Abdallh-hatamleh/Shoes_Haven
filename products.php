@@ -6,7 +6,7 @@
     <title>List View</title> 
     <link rel="stylesheet" href="styleproduct.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="css/slider.css">
+  <link rel="stylesheet" href="css/sliderr.css">
   <link rel="stylesheet" href="css/testimonials.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -30,35 +30,36 @@ if ($search == "") $search = "All Products";
  ?>
 <body>
     <?php include_once("includes/nav.php") ?>
+    <aside class="sidebar">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <h2>Tags</h2>
+        <ul>
+          <?php 
+          $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $query = $conn->query("select tag_name from tags");
+          while ($row = $query->fetch(PDO::FETCH_ASSOC))  
+          {
+            echo '<li>'. $row['tag_name'] .'<div><img src="assets\images\check-mark-1292787_1280.png" alt=""><img src="assets\images\x_icon_150997.png" alt=""></div></li>';
+          }
+          ?>
+            
+        </ul>
+    </aside>
     <h2 class="cur-search"><?php echo($search); ?></h2>
     <div class="main-content">
-        <aside class="sidebar">
-            <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-            <h2>Tags</h2>
-            <ul>
-              <?php 
-              $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              $query = $conn->query("select tad_name from tags");
-              while ($row = $query->fetch(PDO::FETCH_ASSOC))  
-              {
-                echo '<li>'. $row['tad_name'] .'<div><img src="assets\images\check-mark-1292787_1280.png" alt=""><img src="assets\images\x_icon_150997.png" alt=""></div></li>';
-              }
-              ?>
-                
-            </ul>
-        </aside>
         <div class="content">
             <main class="card-list">
               <?php
               if($search == "All Products") {
-                $query = $conn->query('SELECT products.product_name,products.price,poduct_media.Pme_name FROM products JOIN poduct_media USING (product_id) GROUP BY product_id');
+                $query = $conn->query('SELECT products.product_id,products.product_name,products.price,poduct_media.Pme_name FROM products JOIN poduct_media USING (product_id) GROUP BY product_id');
                 while ($row = $query->fetch(PDO::FETCH_ASSOC))
                 {
                   $img = $row['Pme_name'];
                   $name = $row['product_name'];
                   $price = $row['price'];
-                  echo '<div class="card-item swiper-slide">';
+                  $pid= $row['product_id'];
+                  echo '<div class="card-item swiper-slide" id='. $pid .'>';
                   echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
                   echo  '<div class="name-price-container">';
                   echo  '<div class="message-button">'. $name .' </div>';
@@ -105,7 +106,7 @@ SELECT p.product_id, p.product_name, p.price, poduct_media.Pme_name
 FROM products p JOIN poduct_media USING (product_id)
 JOIN product_tags pt ON p.product_id = pt.product_id
 JOIN tags t ON pt.tag_id = t.tag_id
-WHERE t.tad_name IN ($find_placeholders)
+WHERE t.tag_name IN ($find_placeholders)
 GROUP BY p.product_id
 HAVING COUNT(DISTINCT pt.tag_id) = ?
 ";
@@ -117,7 +118,7 @@ if (!empty($avoid_tags)) {
       FROM product_tags pt_exclude
       JOIN tags t_exclude ON pt_exclude.tag_id = t_exclude.tag_id
       WHERE pt_exclude.product_id = p.product_id
-      AND t_exclude.tad_name IN ($avoid_placeholders)
+      AND t_exclude.tag_name IN ($avoid_placeholders)
   );";
 }
 
@@ -143,7 +144,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
   $img = $row['Pme_name'];
   $name = $row['product_name'];
   $price = $row['price'];
-  echo '<div class="card-item swiper-slide">';
+ $pid= $row['product_id'];
+  echo '<div class="card-item swiper-slide" id='. $pid .'>';
   echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
   echo  '<div class="name-price-container">';
   echo  '<div class="message-button">'. $name .' </div>';
@@ -170,6 +172,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
             document.querySelector('.sidebar').classList.toggle('open');
             document.querySelector('.sidebar-toggle').classList.toggle('open');
         }
+        const cards = document.querySelectorAll(".card-item");
+cards.forEach(element => {
+  element.addEventListener("click", () => {
+    window.location.href = `product-view.php?pid=${element.id}`;
+  })
+});
     </script>
     <script src="JS/nav.js"></script>
     <script src="JS/nav-cart.js"></script>
