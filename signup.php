@@ -1,7 +1,16 @@
+<?php
+include_once("<Includes/nav.php");
+?>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Signup.css">
+<link rel="stylesheet" href="css/Signup2.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/cart-products-section.css">
+<!-- <link rel="stylesheet" href="css/sstyleess.css"> -->
 <div class="Login-Overlay">
 
     <div class="Form-container ">
@@ -180,3 +189,6 @@ if (isset($_POST["log-in"])) {
 
 ?>
 
+<?php
+include_once("Includes/foot.php");
+?>
