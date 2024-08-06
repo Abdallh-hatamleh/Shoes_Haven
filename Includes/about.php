@@ -5,7 +5,7 @@
     </div> -->
 <!-- <header><link rel="stylesheet" href=""></header> -->
 
-    <section class="about-us">
+    <section class="about-us" id="about">
         <div class="container-about">
             <h1>Welcome to <span class="store-name">Shoes Haven</span>, where passion meets innovation.</h1>
             <p>We are dedicated to bringing you the best <span class="highlight">Shoes</span> with unparalleled customer service.

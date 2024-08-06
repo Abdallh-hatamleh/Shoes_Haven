@@ -30,22 +30,22 @@ if ($search == "") $search = "All Products";
  ?>
 <body>
     <?php include_once("includes/nav.php") ?>
-    <aside class="sidebar">
+    <!-- <aside class="sidebar">
         <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
         <h2>Tags</h2>
         <ul>
           <?php 
-          $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $query = $conn->query("select tag_name from tags");
-          while ($row = $query->fetch(PDO::FETCH_ASSOC))  
-          {
-            echo '<li>'. $row['tag_name'] .'<div><img src="assets\images\check-mark-1292787_1280.png" alt=""><img src="assets\images\x_icon_150997.png" alt=""></div></li>';
-          }
+          // $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+          // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          // $query = $conn->query("select tag_name from tags");
+          // while ($row = $query->fetch(PDO::FETCH_ASSOC))  
+          // {
+          //   echo '<li>'. $row['tag_name'] .'<div><img src="assets\images\check-mark-1292787_1280.png" alt=""><img src="assets\images\x_icon_150997.png" alt=""></div></li>';
+          // }
           ?>
             
         </ul>
-    </aside>
+    </aside> -->
     <h2 class="cur-search"><?php echo($search); ?></h2>
     <div class="main-content">
         <div class="content">
@@ -63,7 +63,7 @@ if ($search == "") $search = "All Products";
                   echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
                   echo  '<div class="name-price-container">';
                   echo  '<div class="message-button">'. $name .' </div>';
-                  echo  '  <div class="price-color">'.$price .'</div>
+                  echo  '  <div class="price-color">$'.$price .'</div>
                     </div>
                 </div>';
                 }
@@ -149,7 +149,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
   echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
   echo  '<div class="name-price-container">';
   echo  '<div class="message-button">'. $name .' </div>';
-  echo  '  <div class="price-color">'.$price .'</div>
+  echo  '  <div class="price-color">$'.$price .'</div>
     </div>
 </div>';
 }

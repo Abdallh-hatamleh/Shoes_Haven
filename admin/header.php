@@ -156,7 +156,7 @@ form button {
 
 <body>
 
-	<!-- <div class="pre-loader">
+	<div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo">
 				<img src="images\Black_and_Beige_Modern_Illustration_Logo__4_black-removebg-preview.png"
@@ -168,7 +168,7 @@ form button {
 			<div class="percent" id="percent1">0%</div>
 			<div class="loading-text">Loading...</div>
 		</div>
-	</div> -->
+	</div>
 
 	<div class="header">
 		<div class="menu-icon bi bi-list"></div>
@@ -258,9 +258,9 @@ form button {
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="" />
+							<img src="WhatsApp Image 2024-08-05 at 09.06.42_f3bbfc65.jpg" style="height:100%; width:100%" alt="" />
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name">Ahmad Khallaf</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
@@ -391,11 +391,6 @@ form button {
 					<li>
 						<a href="Tags.php" class="dropdown-toggle no-arrow">
 							<span class="micon bi "></span><span class="mtext">Tags</span>
-						</a>
-					</li>
-					<li>
-						<a href="New_Products.php" class="dropdown-toggle no-arrow">
-							<span class="micon bi "></span><span class="mtext">New Products</span>
 						</a>
 					</li>
 

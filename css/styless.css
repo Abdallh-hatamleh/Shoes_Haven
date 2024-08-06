@@ -173,6 +173,11 @@
     /* width: 6rem; */
     text-align: center;
 }
+
+.category {
+    padding: 0 15vw;
+}
+
 .contact-btn:hover {
     background-color: #555555;
 }
@@ -233,7 +238,6 @@ main {
         text-align: left;
         margin-top: 0;
         width: 100%;
-        flex-direction: column;
     }
 
     .hero h1 {

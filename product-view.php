@@ -17,6 +17,9 @@
 </head>
 
 <?php 
+
+$user_id = 2;
+
 $pid = 1;
 if (isset($_GET['pid']))
 {
@@ -45,13 +48,31 @@ $title = $query->fetchColumn();
 $price = $query->fetchColumn(1);
 $description = $query->fetchColumn(2);
 $query = $conn->prepare("select shoe_sizes.shoe_size as size from products JOIN shoe_sizes USING (product_id) where product_id=:idr");
-$query->execute(["idr"=>1]);
+$query->execute(["idr"=>$pid]);
 $sizes = [];
 foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
   global $sizes;
   // echo "<script> alert('hi') </script>";
   $sizes[] = $row['size'];
   }
+
+
+
+
+
+  if(isset($_POST['add_product'])){
+    $size = $_POST['Size'];
+   $pid = $_GET['pid']; 
+   
+   $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
+  $conn->query($add_sql);
+$link = "add-to-cart.php?pid=".$_GET['pid'];
+  header("Location: $link");
+  }
+  
+  
+  
+
 ?>
 
 <body>
@@ -67,7 +88,7 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
             <img src="assets/Products/<?php echo $images[0]?>" alt="" id="featured-image">
         </div>
         <!-- Right side -->
-        <div class="product-info">
+        <form class="product-info" action='' method="POST" name="add_form">
             <h3><?php echo $title ?></h3>
             <h5>Price: $<?php echo $price ?></h5>
             <p><?php echo $description ?></p>
@@ -82,128 +103,30 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
                     <p>Size:</p>
                     <select name="Size" id="size" class="size-option">
                       <?php
-                      foreach ($sizes as $key => $value) {
-                        echo "<option value='$value'>$value</option>";
+                      for ($i = 36;$i < 45 ; $i++) {
+                        echo "<option value='$i'>$i</option>";
                       }
                        ?>
                     </select>
                 </div>
                 
                 <div class="quantity">
-                    <input type="number" value="1" min="1" name="qty">
-                    <button>Add to Cart</button>
+                    <input type='submit' class='add_cart_submit' value='Add to Cart' name="add_product">
                 </div>
-            </div>
+            </form>
         </section>
 
             <h2>More like this:</h2>
-            <h2>formal</h2>
-        
-        <div class="category">
-            <?php include("Includes\slidertop.php")  ?>
-            <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-          <?php include("Includes/sliderbot.php") ?>
-    </div>
-    <div class="category">
-        <h2>Sneakers</h2>
-        <?php include("Includes\slidertop.php") ?>
-        <div class="card-item swiper-slide">
-            <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name Lorem ipsum jksdf ;lkas kjdsf asdf alkjjf iosd asido </div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-2.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-3.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-4.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-5.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <div class="card-item swiper-slide">
-            <img src="assets/images/img-6.jpg" alt="User Image" class="user-image">
-            <div class="name-price-container">
-              <div class="message-button">Name</div>
-              <div class="price-color">Price</div>
-            </div>
-          </div>
-
-          <?php include("Includes/sliderbot.php") ?>
-          
-    </div>
+            <?php 
+      $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
+      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $results = $query->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($results as $row) {
+        $tagid = $row['tag_id'];
+        include("includes/slider.php"); 
+      }
+       ?>
 </div>
 </div>
 
@@ -212,9 +135,9 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- Linking custom script -->
+<script src="JS/product-view.js"></script>
 <script src="JS/slider.js"></script>
-<script src="JS/testimonials.js"></script>
+<!-- <script src="JS/testimonials.js"></script> -->
 <script src="JS/nav.js"></script>
 <script src="JS/nav-cart.js"></script>
-<script src="JS/product-view.js"></script>
 </body>

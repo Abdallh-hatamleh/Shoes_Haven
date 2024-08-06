@@ -179,56 +179,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- ------------------------------------------------------------ -->
 <?php
-session_start(); // Start session to store feedback messages
+// session_start(); // Start session to store feedback messages
 
-include("../includes/connection2.php");
+// include("../includes/connection2.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["add_slide"])) {
-    // Upload slider images
-    $valid = 1;
-    $error_message = '';
+// if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["add_slide"])) {
+//     // Upload slider images
+//     $valid = 1;
+//     $error_message = '';
 
-    foreach ($_FILES['photo']['name'] as $key => $val) {
-        $photo_name = $_FILES['photo']['name'][$key];
-        $photo_tmp = $_FILES['photo']['tmp_name'][$key];
+//     foreach ($_FILES['photo']['name'] as $key => $val) {
+//         $photo_name = $_FILES['photo']['name'][$key];
+//         $photo_tmp = $_FILES['photo']['tmp_name'][$key];
 
-        if ($photo_name != '') {
-            $ext = pathinfo($photo_name, PATHINFO_EXTENSION);
-            $file_name = basename($photo_name, '.' . $ext);
-            $photo_name_new = $file_name . '_' . time() . '.' . $ext;
-            $target = '../assets/Products/' . $photo_name_new;
+//         if ($photo_name != '') {
+//             $ext = pathinfo($photo_name, PATHINFO_EXTENSION);
+//             $file_name = basename($photo_name, '.' . $ext);
+//             $photo_name_new = $file_name . '_' . time() . '.' . $ext;
+//             $target = '../assets/Products/' . $photo_name_new;
 
-            if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg' && $ext != 'gif') {
-                $valid = 0;
-                $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
-            }
+//             if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg' && $ext != 'gif') {
+//                 $valid = 0;
+//                 $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
+//             }
 
-            if ($valid == 1) {
-                if (move_uploaded_file($photo_tmp, $target)) {
-                    $sqlInsertPhoto = "INSERT INTO product_media $photo_name,product_id VALUES (?)";
-                    $stmtPhoto = $conn->prepare($sqlInsertPhoto);
-                    $stmtPhoto->bind_param("s", $photo_name_new);
-                    $stmtPhoto->execute();
-                    $stmtPhoto->close();
-                    $_SESSION['message'] = "Images uploaded successfully!";
-                } else {
-                    $error_message .= 'Failed to upload photo ' . $photo_name . '<br>';
-                    $valid = 0;
-                }
-            }
-        }
-    }
+//             if ($valid == 1) {
+//                 if (move_uploaded_file($photo_tmp, $target)) {
+//                     $sqlInsertPhoto = "INSERT INTO product_media $photo_name,product_id VALUES (?)";
+//                     $stmtPhoto = $conn->prepare($sqlInsertPhoto);
+//                     $stmtPhoto->bind_param("s", $photo_name_new);
+//                     $stmtPhoto->execute();
+//                     $stmtPhoto->close();
+//                     $_SESSION['message'] = "Images uploaded successfully!";
+//                 } else {
+//                     $error_message .= 'Failed to upload photo ' . $photo_name . '<br>';
+//                     $valid = 0;
+//                 }
+//             }
+//         }
+//     }
 
-    if ($valid == 0) {
-        $_SESSION['error'] = $error_message;
-    }
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-}
+//     if ($valid == 0) {
+//         $_SESSION['error'] = $error_message;
+//     }
+//     header("Location: " . $_SERVER['PHP_SELF']);
+//     exit();
+// }
 
 ?>
 
-<div class="card m-t-25">
+<!-- <div class="card m-t-25">
     <div class="card-header">
         <strong>Image Slider</strong> Form
     </div>
@@ -269,9 +269,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["add_slide"])) {
             </button>
         </form>
     </div>
-</div>
+</div> -->
 
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Add new row
         document.getElementById("btnAddNew").addEventListener("click", function() {
@@ -304,31 +304,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["add_slide"])) {
             }
         });
     });
-</script>
+</script> -->
 
 <?php
-include("../includes/footer.php");
-?>
+// include("../includes/footer.php");
+// ?>
 <!-- ------------------------------------------------------------ -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(".edit_btn").click(function () {
-            var productId = $(this).data("id");
-            var row = $(this).closest("tr");
-            var name = row.find("td:nth-child(1)").text();
-            var description = row.find("td:nth-child(2)").text();
-            var price = row.find("td:nth-child(3)").text();
+<!-- // <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+// <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+// <script> -->
+<!-- //     $(document).ready(function () {
+//         $(".edit_btn").click(function () {
+//             var productId = $(this).data("id");
+//             var row = $(this).closest("tr");
+//             var name = row.find("td:nth-child(1)").text();
+//             var description = row.find("td:nth-child(2)").text();
+//             var price = row.find("td:nth-child(3)").text();
 
-            $("#product_id").val(productId);
-            $("#product_name").val(name);
-            $("#product_description").val(description);
-            $("#price").val(price);
-            $("#editProductFormModal").modal("show");
-        });
-    });
-</script>
+//             $("#product_id").val(productId);
+//             $("#product_name").val(name);
+//             $("#product_description").val(description);
+//             $("#price").val(price);
+//             $("#editProductFormModal").modal("show");
+//         });
+//     });
+// </script> -->
 
 <?php
 include_once ("footer.php");

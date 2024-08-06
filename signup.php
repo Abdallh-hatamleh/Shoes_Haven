@@ -3,30 +3,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/Signupz.css">
 <div class="Login-Overlay">
-<?php 
-$conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-if(isset($_POST["signup"])) {
-    $em = $_POST['Email'];
-    $query = $conn->prepare("select user_email from users where user_email=:emr");
-    $query->execute(["emr"=> $em]);
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    if(count($result) > 0) {
-        echo "<script>alert('Email in use')</script>";
-    }
-    else {
 
-    }
-}
-$active = "log";
-if(isset($_GET['active']))
-{
-    $active = $_GET['active'];
-}
-
-?>
     <div class="Form-container ">
-        <form method="post" action="" class="signup-form <?php if($active != "sign") echo "inactive" ?>" id="signup-form">
+        <form action="post" class="signup-form inactive" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
             <div class="inputlabel">
@@ -58,7 +37,7 @@ if(isset($_GET['active']))
                 <label for="Address">Address</label>
                 <input type="text" class="form-ins" name="Address" required>
             </div>
-            <input type="submit" class="confirm-form" value="Sign Up" name="signup">
+            <input type="submit" class="confirm-form" value="Sign Up" name="sign-up">
             <div class="switch-section">
                 <div class="or-section">
                     <span class="or-seperator"></span>
@@ -68,7 +47,7 @@ if(isset($_GET['active']))
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form method="post" action="" class="login-form <?php if($active != "log") echo "inactive" ?>" id="login-form">
+<form action="post" class="login-form" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
@@ -78,7 +57,7 @@ if(isset($_GET['active']))
         <label for="Pass">Password</label>
         <input class="form-ins" type="password" name="Pass" required>
     </div>
-    <input type="submit" class="confirm-form" value="Log in" name="log-in">
+    <input type="submit" class="confirm-form" value="Log in" name="sign-up">
     <div class="switch-section">
         <div class="or-section">
             <span class="or-seperator"></span>
