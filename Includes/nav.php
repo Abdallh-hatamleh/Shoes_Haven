@@ -15,8 +15,12 @@
 
             <div class="search-cart" id="search-cart">
                 <div class="search">
-                    <input type="text" class="text" placeholder="heels -formal">
-                    <img src="./images/Vector.png" alt="" class="Vector">
+                    <input id="searchbar" type="text" class="text" placeholder="<?php 
+                        $placeholders = ['formal', 'heels', 'formal -heels', 'heels -fromal','Search'] ;
+                        shuffle($placeholders);
+                        echo $placeholders[0];
+                    ?>">
+                    <img src="./images/Vector.png" alt="" class="Vector" id="searchsubmit">
                 </div>
                 <div class="cart">
                     <img src="./images/Shopping Cart.png" alt="" class="ShoppingCart">
@@ -24,7 +28,6 @@
                     <div class="cart-product-list hidden">
                         
                         <h2>YOUR CART</h2>
-                        
 <?php
 
 $user_id = 2;
