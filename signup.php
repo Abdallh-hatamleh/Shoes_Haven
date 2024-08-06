@@ -147,45 +147,37 @@ if (isset($_POST["login"])) {
     $email = $_POST['Email'];
     $password = $_POST['Pass'];
 
-    $sql = "SELECT user_id password FROM users WHERE user_email='$email'";
-    $result = $conn->query($sql);
+    // Secure the query by using prepared statements
+    $stmt = $conn->prepare("SELECT user_id, password, admin FROM users WHERE user_email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $id = $row["user_id"];
+
+        // Verify the password
         if (password_verify($password, $row['password'])) {
-            // echo("<script>alert('hi')</script>");
-            $sql = "SELECT admin_id FROM `admin` WHERE user_id= $id";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0){
-                $row = $result->fetch_assoc();
-                setcookie('user','admin', time() + 86400, '/');
-                setcookie('userid',"$id", time() + 86400, '/');
+            if ($row['admin'] == 1) {
+                // User is an admin
+                setcookie('user', 'admin', time() + 86400, '/');
+                setcookie('userid', "$id", time() + 86400, '/');
                 header('Location: admin/Admin.php');
-            }else{
-                $sql = "SELECT cust_id FROM `Customers` WHERE user_id= $id";
-                $result = $conn->query($sql);
-                if ($result->num_rows == 1){
-                $row = $result->fetch_assoc();
-                setcookie('user','customer', time() + 86400, '/');
-                setcookie('userid',"$id", time() + 86400, '/');
+            } else {
+                // User is a customer
+                setcookie('user', 'customer', time() + 86400, '/');
+                setcookie('userid', "$id", time() + 86400, '/');
                 header('Location: index.php');
-            }else{
-                die("Unexpected Error"); 
             }
-            }
-        }
-
+            exit(); // Always call exit after header redirect
         } else {
-            if($row['password'] == $password)
-            {
-
-            }
-
+            echo "<script>alert('Wrong Email or Password');</script>";
         }
     } else {
-        echo "No user found with this email";
+        echo "<script>alert('Wrong Email or Password');</script>";
     }
-
+}
     $conn->close();
 
 ?>
