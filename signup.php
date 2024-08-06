@@ -1,7 +1,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Signupz.css">
+<link rel="stylesheet" href="css/Signup.css">
 <div class="Login-Overlay">
 
     <div class="Form-container ">
@@ -37,13 +37,13 @@
                 <label for="Address">Address</label>
                 <input type="text" class="form-ins" name="Address" required>
             </div>
-            <input type="submit" class="confirm-form" value="Sign Up" name="sign-up">
+            <input type="submit" class="confirm-form-sign" value="Sign Up" name="sign-up">
             <div class="switch-section">
-                <div class="or-section">
-                    <span class="or-seperator"></span>
+                <!-- <div class="or-section">
+                    <span class="or-seperator-si"></span>
                     <span>OR</span>
-                    <span class="or-seperator"></span>  
-                </div>
+                    <span class="or-seperator-si"></span>  
+                </div> -->
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>

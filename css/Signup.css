@@ -5,12 +5,13 @@
     box-sizing: border-box;
 }
 .Login-Overlay{
-    height: 100vh;
+    height: 105vh;
     width: 100vw;
-    padding: 5rem 0;
+    /* padding: 5r/em 0;     */
     display: flex;
     justify-content: center;
     padding: 5rem 20%;
+    
 }
 
 .Form-container {
@@ -21,13 +22,37 @@
     overflow: hidden;
     border-radius: 2rem;
     width: 100%;
+
+
     /* padding: ; */
+    /* margin: 1rem; */
+}
+.signup-form h2{
+    position: relative;
+    bottom: 2rem;
+}
+.signup-form{
+    position: relative;
+    bottom: 1.5rem;
+}
+.confirm-form-sign{
+    
+    position: relative;
+    top: 1rem;
+    left: 9rem;
+    background-color: black;
+    border-radius: 5rem;
+    color: white;
+    padding: 0.5rem;
+    width: 10rem;
+    margin-bottom: 1.9rem;
+
 }
 form {
     width: 55%;
     display: flex;
     flex-direction: column;
-    font-size: 16px;
+    font-size: 1.5rem;
     padding: 1.5em 3%;
     /* row-gap: 0.5rem; */
     justify-content: space-between;
@@ -48,6 +73,9 @@ form h2{
     height: 2.2em;
     border-radius: 2em;
     padding: 0 0.5em;
+
+    /* width: 18rem; */
+    /* align-items: center; */
 }
 .form-visual {
     width: 45%;
@@ -61,6 +89,7 @@ form h2{
     border-radius: 2em;
     color: white;
     background-color: black;
+
 }
 img {
     width: 100%;
@@ -69,15 +98,24 @@ img {
 label {
     margin-left: 1em;
     /* color: orangered; */
-    font-family: "Josefin Slab", serif;
+    font-family:  serif;
     font-optical-sizing: auto;
-    font-weight: 900;
+    font-weight: 400;
     font-style: normal;
+    /* gap: 0.5rem; */
 }
 .or-section {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.or-seperator-si{
+    width: 30%;
+    height: 2px;
+    background-color: black;
+    position: relative;
+    top: 5rem;
 }
 .or-seperator {
     width: 30%;
@@ -102,7 +140,7 @@ a:hover {
 .inputlabel {
     display: flex;
     flex-direction: column;
-    /* row-gap: 0.5em; */
+    /* row-gap: 0.2em; */
   }
   .inputRow {
     display: flex;
