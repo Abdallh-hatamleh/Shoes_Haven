@@ -15,7 +15,7 @@
 
             <div class="search-cart" id="search-cart">
                 <div class="search">
-                    <input type="text" class="text">
+                    <input type="text" class="text" placeholder="heels -formal">
                     <img src="./images/Vector.png" alt="" class="Vector">
                 </div>
                 <div class="cart">
