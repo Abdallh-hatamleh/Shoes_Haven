@@ -1,8 +1,8 @@
 const nav_cart_img = document.querySelector('.ShoppingCart');
 const cart_product_list = document.querySelector('.cart-product-list')
+const remove_product = document.querySelectorAll('.remove-cart-product');
+
 nav_cart_img.addEventListener('click', (e) => {
-    // e.preventDefault();
-    e.stopPropagation();
     if (cart_product_list.classList.contains('hidden')) {
         cart_product_list.classList.remove('hidden')
     } else {
@@ -12,12 +12,10 @@ nav_cart_img.addEventListener('click', (e) => {
 
 
 
-
-const remove_product = document.querySelectorAll('.remove-cart-product');
-
 for (let i = 0; i < remove_product.length; i++) {
 
     remove_product[i].addEventListener('click', () => {
+        remove_product[i].parentNode.parentNode.style.display = 'none'
         remove_product[i].parentNode.submit();
     })
 
@@ -25,18 +23,12 @@ for (let i = 0; i < remove_product.length; i++) {
 }
 
 
-const checkout_cart = document.querySelectorAll('.cart-checkout-button');
+const checkout_cart = document.querySelector('.cart-checkout-button');
 
 
 checkout_cart.addEventListener('click', () => {
-    // checkout_cart.parentNode.submit();
-    console.log('al;sdkjfkashdg')
+    checkout_cart.parentNode.submit();
 })
 
 
 
-
-document.body.addEventListener('click', () => {
-    console.log('ok')
-    if (!cart_product_list.classList.contains('hidden')) cart_product_list.classList.add('hidden');
-})
