@@ -27,7 +27,7 @@
       <?php 
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $query = $conn->query("SELECT tags.tag_id,tags.tag_name, COUNT(product_tags.product_id) as Items_in_tag FROM tags left JOIN product_tags USING (tag_id) WHERE featured=1 GROUP BY tags.tag_id HAVING Items_in_tag > 3");
       $results = $query->fetchAll(PDO::FETCH_ASSOC);
       foreach ($results as $row) {
         $tagid = $row['tag_id'];
