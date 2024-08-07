@@ -13,22 +13,28 @@
 
         </div>
 
-        <div class="search-cart" id="search-cart">
-            <div class="search">
-                <input type="text" class="text">
-                <img src="./images/Vector.png" alt="" class="Vector">
-            </div>
-            <div class="cart">
-                <img src="./images/Shopping Cart.png" alt="" class="ShoppingCart">
+            <div class="search-cart" id="search-cart">
+                <div class="search">
+                    <input id="searchbar" type="text" class="text" placeholder="<?php 
+                        $placeholders = ['formal', 'heels', 'formal -heels', 'heels -fromal','Search'] ;
+                        shuffle($placeholders);
+                        echo $placeholders[0];
+                    ?>">
+                    <img src="./images/Vector.png" alt="" class="Vector" id="searchsubmit">
+                </div>
+                <div class="cart">
+                    <img src="./images/Shopping Cart.png" alt="" class="ShoppingCart">
+                    
+                    <div class="cart-product-list hidden">
+                        
+                        <h2>YOUR CART</h2>
+<?php
 
-                <div class="cart-product-list hidden">
-
-                    <h2>YOUR CART</h2>
-
-                    <?php
-
-                    $user_id = 2;
-
+$user_id = 2;
+if(isset($_COOKIE['user']))
+        {
+            $user_id = $_COOKIE['userid'];
+        }
 
 
                     $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
@@ -102,19 +108,21 @@
                 </div>
             </div>
 
-            <div class="login_signup">
-                <?php
-                // $logged_in = false;
-                if (isset($_COOKIE['user'])) {
-                    $userid = $_COOKIE['userid'];
-                    $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$user_id");
-                    $user_name = $sql->fetchColumn();
-                    echo '<a href="user-information.php" class="login">' . $user_name . '</a>
-                    <a href="logout.php" class="signup">LogOut</a>';
-                } else {
-                    echo '<a href="signup.php?active=log" class="login">login</a>
+            
+            <?php 
+        // $logged_in = false;
+        if(isset($_COOKIE['user']))
+        {
+            $userid = $_COOKIE['userid'];
+            $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
+            $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$userid");
+            $user_name = $sql->fetchColumn();
+            echo '<div class="UserInfo"><a href="user-information.php" class="userName">Welcome '. $user_name .'</a>
+                    <div class="LogOut"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>';
+        }
+        else {
+            echo '<div class="login_signup"><a href="signup.php?active=log" class="login">login</a>
                 <a href="signup.php?active=sign" class="signup">signup</a>';
                 }
                 ?>

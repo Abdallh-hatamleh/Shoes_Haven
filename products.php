@@ -21,12 +21,12 @@
   </style>
 </head>
 <?php
-$search = "All Products";
+$search = "";
 if (isset($_GET['search']))
 {
   $search = $_GET['search'];
 }
-if ($search == "") $search = "All Products";
+// if ($search == "") $search = "All Products";
  ?>
 <body>
     <?php include_once("includes/nav.php") ?>
@@ -46,99 +46,72 @@ if ($search == "") $search = "All Products";
             
         </ul>
     </aside> -->
-    <h2 class="cur-search"><?php echo($search); ?></h2>
+    <h2 class="cur-search"><?php 
+    if ($search == "") echo "All Products";
+    else echo($search);
+     ?></h2>
     <div class="main-content">
         <div class="content">
             <main class="card-list">
               <?php
-              if($search == "All Products") {
-                $query = $conn->query('SELECT products.product_id,products.product_name,products.price,poduct_media.Pme_name FROM products JOIN poduct_media USING (product_id) GROUP BY product_id');
-                while ($row = $query->fetch(PDO::FETCH_ASSOC))
-                {
-                  $img = $row['Pme_name'];
-                  $name = $row['product_name'];
-                  $price = $row['price'];
-                  $pid= $row['product_id'];
-                  echo '<div class="card-item swiper-slide" id='. $pid .'>';
-                  echo  '<img src="assets/Products/' . $img .'" alt="User Image" class="user-image">';
-                  echo  '<div class="name-price-container">';
-                  echo  '<div class="message-button">'. $name .' </div>';
-                  echo  '  <div class="price-color">$'.$price .'</div>
-                    </div>
-                </div>';
-                }
-              }
-              else {
-                $tags = explode(" ",$search);
-                $negative = [];
-                foreach ($tags as $key => $value) {
-                  if(mb_substr($value, 0, 1) == '-') {
-                    $negative[] = $value;
-                    unset($tags[$key]);
+              $include_tags = [];
+              $exclude_tags = [];
+              
+              // Check if $search is empty
+              if (!empty(trim($search))) {
+                  // Split the search string into individual tags
+                  $tags = explode(' ', $search);
+              
+                  // Iterate over each tag to determine if it's to be included or excluded
+                  foreach ($tags as $tag) {
+                      if (strpos($tag, '-') === 0) {
+                          // Tag starts with '-', so it's an exclusion
+                          $exclude_tags[] = substr($tag, 1); // Remove the '-' character
+                      } else {
+                          // Tag is an inclusion
+                          $include_tags[] = $tag;
+                      }
                   }
-                }
-                $find = "";
-                foreach ($tags as $key => $value) {
-                  $find .= '"'. $value .'"';
-                  if(sizeof($tags) != $key + 1) $find .= ",";
-                } 
-                $avoid = "";
-                foreach ($negative as $key => $value) {
-                  $avoid .= '"'. $value .'"';
-                  if(sizeof($negative) != $key + 1) $avoid .= ",";
-                } 
-                // echo $find;
-                // Sample input
-// Sample input
-$find_tags = $tags;
-$avoid_tags = $negative;
-
-// Number of tags in $find
-$tag_count = count($find_tags);
-
-// Prepare placeholders for IN clauses
-$find_placeholders = implode(',', array_fill(0, count($find_tags), '?'));
-$avoid_placeholders = implode(',', array_fill(0, count($avoid_tags), '?'));
-
-// Prepare the SQL query with placeholders
-$sql = "
-SELECT p.product_id, p.product_name, p.price, poduct_media.Pme_name
-FROM products p JOIN poduct_media USING (product_id)
-JOIN product_tags pt ON p.product_id = pt.product_id
-JOIN tags t ON pt.tag_id = t.tag_id
-WHERE t.tag_name IN ($find_placeholders)
-GROUP BY p.product_id
-HAVING COUNT(DISTINCT pt.tag_id) = ?
-";
-if (!empty($avoid_tags)) {
-  $avoid_placeholders = implode(',', array_fill(0, count($avoid_tags), '?'));
-  $sql .= "
-  AND NOT EXISTS (
-      SELECT 1
-      FROM product_tags pt_exclude
-      JOIN tags t_exclude ON pt_exclude.tag_id = t_exclude.tag_id
-      WHERE pt_exclude.product_id = p.product_id
-      AND t_exclude.tag_name IN ($avoid_placeholders)
-  );";
-}
-
-// Prepare the statement
-$stmt = $conn->prepare($sql);
-
-// Bind the parameters for $find
-$params = array_merge($find_tags, [$tag_count], $avoid_tags);
-foreach ($params as $i => $param) {
-    $stmt->bindValue($i + 1, $param);
-}
-
-// Execute the query
-$stmt->execute();
-// $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Output results
-// print_r($results);
-
-// echo $query->queryString;
+              }
+              
+              // Start constructing the SQL query
+              $sql = "SELECT products.product_name , poduct_media.Pme_name, products.product_id,products.price
+                      FROM products
+                      JOIN product_tags USING (product_id)
+                      JOIN tags USING (tag_id)
+                      JOIN poduct_media USING (product_id)
+                      GROUP BY products.product_id, products.product_name";
+              
+              // Check if there are any tags to include or exclude
+              $having_clauses = [];
+              $parameters = []; // Array to hold parameters for the prepared statement
+              
+              if (!empty($include_tags)) {
+                  foreach ($include_tags as $tag) {
+                      $having_clauses[] = "FIND_IN_SET(:include_tag_$tag, GROUP_CONCAT(tags.tag_name)) > 0";
+                      $parameters[":include_tag_$tag"] = $tag;
+                  }
+              }
+              
+              if (!empty($exclude_tags)) {
+                  foreach ($exclude_tags as $tag) {
+                      $having_clauses[] = "FIND_IN_SET(:exclude_tag_$tag, GROUP_CONCAT(tags.tag_name)) = 0";
+                      $parameters[":exclude_tag_$tag"] = $tag;
+                  }
+              }
+              
+              // Add HAVING clause if there are any conditions
+              if (!empty($having_clauses)) {
+                  $sql .= " HAVING " . implode(' AND ', $having_clauses);
+              }
+              
+              // Print to check
+              // echo $sql;
+              
+              // Execute the query using PDO prepared statements
+              $stmt = $conn->prepare($sql);
+              $stmt->execute($parameters);
+              // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
   $img = $row['Pme_name'];
@@ -153,7 +126,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     </div>
 </div>';
 }
-              }
+              
               ?>
                 <!-- <div class="card-item swiper-slide">
                     <img src="assets/images/img-1.jpg" alt="User Image" class="user-image">
