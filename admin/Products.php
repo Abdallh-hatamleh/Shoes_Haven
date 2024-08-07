@@ -168,7 +168,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <table class="data-table table">
         <thead>
             <tr>
-                <th class="table-plus">Product Name</th>
+                <th class="table-plus">ID</th>
+                <th>Product Name</th>
                 <th>Description</th>
                 <th>Price</th>
                 <th class="datatable-nosort">Actions</th>
@@ -182,16 +183,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
-                        <td class='table-plus'>" . $row["product_name"] . "</td>
+                        <td class='table-plus'>" . $row["product_id"] . "</td>
+                        <td>" . $row["product_name"] . "</td>
                         <td>" . $row["product_description"] . "</td>
                         <td>" . $row["price"] . "</td>
                         <td>
                             <div class='table-actions'>
-                                <a href='#' class='edit_btn' data-id='" . $row["product_id"] . "'>
+                                <a href='' class='edit_btn' data-id='" . $row["product_id"] . "' data-color='#265ed7'>
                                     <i class='icon-copy dw dw-edit2'></i>
                                 </a>
-                                <a href='delete_product.php?adid=" . $row["product_id"] . "' class='delete_btn' data-id='" . $row["product_id"] . "'>
+                                <a href='delete_product.php?adid=" . $row["product_id"] . "' class='delete_btn' data-id='" . $row["product_id"] . "' data-color='#e95959'>
                                     <i class='icon-copy dw dw-delete-3'></i>
+                                </a>
+                                <a href='tags.php?tagid=".$row["product_id"]."' class='view-btn' data-id='".$row["product_id"]."' data-color='black'>
+                                   <i class='fa-solid fa-eye'></i>
                                 </a>
                             </div>
                         </td>
@@ -336,27 +341,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 // include("../includes/footer.php");
-// ?>
+?>
 <!-- ------------------------------------------------------------ -->
-<!-- // <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-// <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-// <script> -->
-<!-- //     $(document).ready(function () {
-//         $(".edit_btn").click(function () {
-//             var productId = $(this).data("id");
-//             var row = $(this).closest("tr");
-//             var name = row.find("td:nth-child(1)").text();
-//             var description = row.find("td:nth-child(2)").text();
-//             var price = row.find("td:nth-child(3)").text();
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+ <script>
+     $(document).ready(function () {
+        $(".edit_btn").click(function (e) {
+            e.preventDefault();
+            var productId = $(this).data("id");
+            var row = $(this).closest("tr");
+            var name = row.find("td:nth-child(1)").text();
+            var description = row.find("td:nth-child(2)").text();
+            var price = row.find("td:nth-child(3)").text();
 
-//             $("#product_id").val(productId);
-//             $("#product_name").val(name);
-//             $("#product_description").val(description);
-//             $("#price").val(price);
-//             $("#editProductFormModal").modal("show");
-//         });
-//     });
-// </script> -->
+            $("#product_id").val(productId);
+            $("#product_name").val(name);
+            $("#product_description").val(description);
+            $("#price").val(price);
+            $("#editProductFormModal").modal("show");
+            // $("#editProductFormModal").classList.toggle("show");
+        });
+    });
+</script>
 
 <?php
 include_once ("footer.php");
