@@ -17,7 +17,7 @@
 </head>
 
 <?php
-
+session_start();
 $user_id = 2;
 
 $pid = 1;
@@ -60,11 +60,23 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
 if (isset($_POST['add_product'])) {
   $size = $_POST['Size'];
   $pid = $_GET['pid'];
-
-  $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
-  $conn->query($add_sql);
-  $link = "add-to-cart.php?pid=" . $_GET['pid'];
-  header("Location: $link");
+  if(isset($_COOKIE['user']))
+  {
+    $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
+    $conn->query($add_sql);
+    $link = "add-to-cart.php?pid=" . $_GET['pid'];
+    header("Location: $link");
+  }
+  else{
+    if(!isset($_SESSION['cart']))
+    {
+      $_SESSION['cart'] = [];
+    }
+    else {
+      $_SESSION['cart'][] = ['id' => $pid, 'size' => $size];
+      // unset( $_SESSION['cart'][0] );
+    }
+  }
 }
 
 
@@ -120,14 +132,15 @@ if (isset($_POST['add_product'])) {
     <?php
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $query = $conn->query("SELECT tags.tag_id,tags.tag_name, COUNT(product_tags.product_id) as Items_in_tag FROM tags left JOIN product_tags USING (tag_id) WHERE featured=1 GROUP BY tags.tag_id HAVING Items_in_tag > 3");
       $results = $query->fetchAll(PDO::FETCH_ASSOC);
       foreach ($results as $row) {
         $tagid = $row['tag_id'];
         include ("includes/slider.php");
       }
+      // var_dump($_SESSION['cart'][1]);
       ?>
-
+  
 <script src="JS/product-view.js"></script>
   <?php include ("includes/foot.php") ?>
   <!-- Linking SwiperJS script -->
