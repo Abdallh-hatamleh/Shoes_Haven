@@ -156,7 +156,7 @@ form button {
 
 <body>
 
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo">
 				<img src="images\Black_and_Beige_Modern_Illustration_Logo__4_black-removebg-preview.png"
@@ -168,7 +168,7 @@ form button {
 			<div class="percent" id="percent1">0%</div>
 			<div class="loading-text">Loading...</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="header">
 		<div class="menu-icon bi bi-list"></div>
