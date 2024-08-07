@@ -13,4 +13,8 @@
              Explore our diverse range of products and discover why we’re the preferred choice for discerning shoppers.
               Thank you for choosing us!</p>
         </div>
+        <div>
+        <img src="gggggggggggggggggggg.png">
+
+        </div>
     </section>
