@@ -57,7 +57,7 @@ if(isset($_COOKIE['user']))
                         $cart_total_price += $products['price'];
 
 
-                        echo "<div class='cart-product' id='cart-product-id'>
+                        echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
     <img src='assets/Products/" . $products['Pme_name'] . "' alt=''>
     <div class='cart-product-info'>
     <div class='cart-product-name'>" . $products['product_name'] . " </div>
@@ -75,7 +75,7 @@ if(isset($_COOKIE['user']))
 
 <section class='checkout-total-section'>
 
-    <button class='cart-checkout-button'>total: $$cart_total_price</button>
+    <button class='cart-checkout-button'>total: <span id='cart-total'>$$cart_total_price</span></button>
 
 <form action='' method='POST'>
     <input type='hidden' name='checkout_btn' value='checkout'>
@@ -92,7 +92,6 @@ if(isset($_COOKIE['user']))
 
                         $remove_sql = "delete FROM `cart` WHERE cart_id =" . $_POST['prod_id'];
                         $conn->query($remove_sql);
-                        // header('Location: add-to-cart.php');
                         $page = $_SERVER['PHP_SELF'];
                         $page .= "?pid=" . $_GET['pid'];
                         header("Refresh: 1; url=$page");

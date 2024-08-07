@@ -1,5 +1,7 @@
 let featuredImg = document.getElementById('featured-image');
 let smallImgs = document.getElementsByClassName('small-Img');
+alert('ggggggggg');
+console.log("gii");
 
 smallImgs[0].addEventListener('click', () => {
     featuredImg.setAttribute.src = smallImgs[0].getAttribute.src;

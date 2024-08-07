@@ -128,12 +128,12 @@ if (isset($_POST['add_product'])) {
       }
       ?>
 
+<script src="JS/product-view.js"></script>
   <?php include ("includes/foot.php") ?>
   <!-- Linking SwiperJS script -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!-- Linking custom script -->
-  <script src="JS/product-view.js"></script>
   <script src="JS/slider.js"></script>
   <!-- <script src="JS/testimonials.js"></script> -->
   <script src="JS/nav.js"></script>

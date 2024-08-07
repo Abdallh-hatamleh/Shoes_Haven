@@ -6,23 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Signupz.css">
-<?php 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Signupz.css">
+    <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="css/cart-products-section.css">
+    <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     var_dump($_POST);
 }
+include_once("Includes/nav.php");
 ?>
 <div class="Login-Overlay">
-
+    
     <div class="Form-container ">
         <form method="post" action="" class="signup-form inactive" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
-            <div class="inputlabel">
-            <label for="Fname">First Name</label>
+                <div class="inputlabel">
+                    <label for="Fname">First Name</label>
             <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
             <p id="fname-error" class="error"></p>
             </div>
