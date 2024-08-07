@@ -44,9 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($stmt->execute()) {
                     $message .= " Images added successfully.";
-                    $img_path1 ="D:/XAMPP/htdocs/group-project-2/assets/Products/".$img1['name'];
-                    $img_path2 ="D:/XAMPP/htdocs/group-project-2/assets/Products/".$img2['name'];
-                    $img_path3 ="D:/XAMPP/htdocs/group-project-2/assets/Products/".$img3['name'];
+                    $img_path1 ="../assets/Products/".$img1['name'];
+                    $img_path2 ="../assets/Products/".$img2['name'];
+                    $img_path3 ="../assets/Products/".$img3['name'];
 
                     move_uploaded_file($_FILES['upload1']['tmp_name'], $img_path1 );
                     move_uploaded_file($_FILES['upload2']['tmp_name'], $img_path2 );
@@ -209,6 +209,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tbody>
     </table>
 </div>
+<div class='img_show_container'>
+<div class='img_show'>
+<div>
+    
+    
+    
+    
+    
+    
+    </div>
+    </div>
+</div>
+
 
 <!-- ------------------------------------------------------------ -->
 <?php
@@ -351,11 +364,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             e.preventDefault();
             var productId = $(this).data("id");
             var row = $(this).closest("tr");
-            var name = row.find("td:nth-child(1)").text();
-            var description = row.find("td:nth-child(2)").text();
-            var price = row.find("td:nth-child(3)").text();
+            var name = row.find("td:nth-child(2)").text();
+            var description = row.find("td:nth-child(3)").text();
+            var price = row.find("td:nth-child(4)").text();
 
-            $("#product_id").val(productId);
+            // $("#product_id").val(name);
             $("#product_name").val(name);
             $("#product_description").val(description);
             $("#price").val(price);
