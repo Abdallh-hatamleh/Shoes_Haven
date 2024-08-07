@@ -1,81 +1,104 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Signupz.css">
+<link rel="stylesheet" href="css/Signup.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/cart-products-section.css">
+
+</head>
+<body>
+<?php
+include_once("<Includes/nav.php");
+?>
 <div class="Login-Overlay">
 
-    <div class="Form-container ">
-        <form action="post" class="signup-form inactive" id="signup-form">
-            <h2>Sign Up</h2>
-            <div class="inputRow">
-            <div class="inputlabel">
-            <label for="Fname">First Name</label>
-            <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
-            <p id="fname-error" class="error"></p>
-            </div>
-            <div class="inputlabel">
-                <label for="Lname">Last Name</label>
-                <input class="form-ins" type="text" name="Lname" id="lastName-input-sign-up" required>
-                <p id="lname-error" class="error"></p>
-            </div>
-            </div>
-            <div class="inputlabel">
-            <label for="Email">Email</label>
-            <input class="form-ins" type="text" name="Email" id="email-input-sign-up" required>
-            <p id="email-error" class="error"></p>
+<div class="Form-container ">
+    <form action="post" class="signup-form inactive" id="signup-form">
+        <h2>Sign Up</h2>
+        <div class="inputRow">
+        <div class="inputlabel">
+        <label for="Fname">First Name</label>
+        <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
+        <p id="fname-error" class="error"></p>
         </div>
         <div class="inputlabel">
-                <label for="Pass">Password</label>
-                <input class="form-ins" type="password" name="Pass" id="password-input-sign-up" required>
-                <p id="password-error" class="error"></p>
-            </div>
-            <div class="inputlabel">
-                <label for="phone">Phone Number</label>
-                <input type="number" class="form-ins" name="Number" required>
-            </div>
-            <div class="inputlabel">
-                <label for="Address">Address</label>
-                <input type="text" class="form-ins" name="Address" required>
-            </div>
-            <input type="submit" class="confirm-form" value="Sign Up" name="sign-up">
-            <div class="switch-section">
-                <div class="or-section">
-                    <span class="or-seperator"></span>
-                    <span>OR</span>
-                    <span class="or-seperator"></span>  
-                </div>
-                <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
-            </div>
+            <label for="Lname">Last Name</label>
+            <input class="form-ins" type="text" name="Lname" id="lastName-input-sign-up" required>
+            <p id="lname-error" class="error"></p>
+        </div>
+        </div>
+        <div class="inputlabel">
+        <label for="Email">Email</label>
+        <input class="form-ins" type="text" name="Email" id="email-input-sign-up" required>
+        <p id="email-error" class="error"></p>
+    </div>
+    <div class="inputlabel">
+            <label for="Pass">Password</label>
+            <input class="form-ins" type="password" name="Pass" id="password-input-sign-up" required>
+            <p id="password-error" class="error"></p>
+        </div>
+        <div class="inputlabel">
+            <label for="phone">Phone Number</label>
+            <input type="number" class="form-ins" name="Number" required>
+        </div>
+        <div class="inputlabel">
+            <label for="Address">Address</label>
+            <input type="text" class="form-ins" name="Address" required>
+        </div>
+        <input type="submit" class="confirm-form-sign" value="Sign Up" name="sign-up">
+        <div class="switch-section">
+            <!-- <div class="or-section">
+                <span class="or-seperator-si"></span>
+                <span>OR</span>
+                <span class="or-seperator-si"></span>  
+            </div> -->
+            <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
+        </div>
 </form>
 <form action="post" class="login-form" id="login-form">
-    <h2>Log in</h2>
-    <div class="inputlabel">
-        <label for="Email">Email</label>
-        <input class="form-ins" type="text" name="Email" required>
+<h2>Log in</h2>
+<div class="inputlabel">
+    <label for="Email">Email</label>
+    <input class="form-ins" type="text" name="Email" required>
+</div>
+<div class="inputlabel">
+    <label for="Pass">Password</label>
+    <input class="form-ins" type="password" name="Pass" required>
+</div>
+<input type="submit" class="confirm-form" value="Log in" name="sign-up">
+<div class="switch-section">
+    <div class="or-section">
+        <span class="or-seperator"></span>
+        <span>OR</span>
+        <span class="or-seperator"></span>  
     </div>
-    <div class="inputlabel">
-        <label for="Pass">Password</label>
-        <input class="form-ins" type="password" name="Pass" required>
-    </div>
-    <input type="submit" class="confirm-form" value="Log in" name="sign-up">
-    <div class="switch-section">
-        <div class="or-section">
-            <span class="or-seperator"></span>
-            <span>OR</span>
-            <span class="or-seperator"></span>  
-        </div>
-        <span class="alt-text">Don't have an account?<a class="switch-forms"> Sign up</a></span>
-    </div>
+    <span class="alt-text">Don't have an account?<a class="switch-forms"> Sign up</a></span>
+</div>
 </form>
 
 <div class="form-visual">
-    <img src="assets/nike-air-force.webp" alt="">
+<img src="assets/nike-air-force.webp" alt="">
 </div>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="JS/login.js">
-    </script>
+</script>
+<?php
+include_once("Includes/foot.php");
+?>
+</body>
+</html>
+
+<!-- <link rel="stylesheet" href="css/sstyleess.css"> -->
 
 
 <!-- login&signup -->
