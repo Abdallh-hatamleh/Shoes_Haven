@@ -68,12 +68,21 @@ if (isset($_POST['add_product'])) {
     header("Location: $link");
   }
   else{
+    // unset($_SESSION['cart']);
+    $sql = "SELECT products.product_name,products.price, poduct_media.Pme_name FROM products join poduct_media USING (product_id) GROUP BY products.product_id having products.product_id=$pid";
+    $res = $conn->query($sql);
+    $result = $res->fetchAll(PDO::FETCH_ASSOC);
+    $img = $result[0]["Pme_name"];
+    $name = $result[0]["product_name"];
+    $price = $result[0]["price"];
     if(!isset($_SESSION['cart']))
     {
       $_SESSION['cart'] = [];
+      $_SESSION['cart'][] = ['id' => $pid, 'size' => $size,'img'=> $img,'name'=> $name,'price'=> $price];
+      
     }
     else {
-      $_SESSION['cart'][] = ['id' => $pid, 'size' => $size];
+      $_SESSION['cart'][] = ['id' => $pid, 'size' => $size,'img'=> $img,'name'=> $name,'price'=> $price];
       // unset( $_SESSION['cart'][0] );
     }
   }
@@ -138,7 +147,7 @@ if (isset($_POST['add_product'])) {
         $tagid = $row['tag_id'];
         include ("includes/slider.php");
       }
-      // var_dump($_SESSION['cart'][1]);
+      // var_dump($_SESSION['cart']);
       ?>
   
 <script src="JS/product-view.js"></script>

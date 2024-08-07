@@ -28,49 +28,70 @@
                     <div class="cart-product-list hidden">
                         
                         <h2>YOUR CART</h2>
-<?php
+                        <?php
 
+$cart_total_price = 0;
 $user_id = 2;
 if(isset($_COOKIE['user']))
         {
             $user_id = $_COOKIE['userid'];
+            $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            /////////// add to cat
+            
+
+
+
+            $show_cart = "select a.product_id, a.product_size,a.cart_id, b.product_name, b.product_description, b.price, c.Pme_name from cart a join products b using (product_id) JOIN poduct_media c using (product_id)  where a.user_id = $user_id group by a.cart_id";
+            $cart_products = $conn->query($show_cart);
+
+
+            echo '<div class="cart-scroll-div">';
+            
+            foreach ($cart_products as $products) {
+                
+                $cart_total_price += $products['price'];
+                
+                
+                echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
+                <img src='assets/Products/" . $products['Pme_name'] . "' alt=''>
+                <div class='cart-product-info'>
+                <div class='cart-product-name'>" . $products['product_name'] . " </div>
+                <div>Size: " . $products['product_size'] . "</div>
+                <div class='cart-product-price'>PRICE: <a> $" . $products['price'] . "</a></div>
+                </div>
+                <form action='' method='POST'>
+                <input type='hidden' name='prod_id' value='" . $products['cart_id'] . "'>
+                <div class='remove-cart-product'>&#10005;</div>
+                </form>
+                </div>";
+            }
+            
         }
+        else{
+            echo '<div class="cart-scroll-div">';
+            foreach ($_SESSION['cart'] as $key => $products) {
+                $cart_total_price += $products['price'];
 
-
-                    $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    /////////// add to cat
-                    
-
-
-
-                    $show_cart = "select a.product_id, a.product_size,a.cart_id, b.product_name, b.product_description, b.price, c.Pme_name from cart a join products b using (product_id) JOIN poduct_media c using (product_id)  where a.user_id = $user_id group by a.cart_id";
-                    $cart_products = $conn->query($show_cart);
-
-
-                    echo '<div class="cart-scroll-div">';
-
-                    $cart_total_price = 0;
-                    foreach ($cart_products as $products) {
-
-                        $cart_total_price += $products['price'];
-
-
-                        echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
-    <img src='assets/Products/" . $products['Pme_name'] . "' alt=''>
-    <div class='cart-product-info'>
-    <div class='cart-product-name'>" . $products['product_name'] . " </div>
-    <div>Size: " . $products['product_size'] . "</div>
-       <div class='cart-product-price'>PRICE: <a> $" . $products['price'] . "</a></div>
+                
+        echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
+<img src='assets/Products/" . $products['img'] . "' alt=''>
+<div class='cart-product-info'>
+<div class='cart-product-name'>" . $products['name'] . " </div>
+<div>Size: " . $products['size'] . "</div>
+<div class='cart-product-price'>PRICE: <a> $" . $products['price'] . "</a></div>
 </div>
 <form action='' method='POST'>
-<input type='hidden' name='prod_id' value='" . $products['cart_id'] . "'>
-<div class='remove-cart-product'>&#10005;</div>
+<input type='hidden' name='prod_id' value='" . $key . "'>
+<div class='remove-cart-session'>&#10005;</div>
 </form>
 </div>";
-                    }
 
+    }
+}
+
+                   
                     echo " </div>
 
 <section class='checkout-total-section'>
