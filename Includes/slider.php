@@ -22,9 +22,16 @@
             // echo   "</a>";
             echo   '<div class="name-price-container">';
             echo   "<div class='message-button'>".$product["product_name"] ."</div>";
+            echo   "<div class='icon-container'>";
+            echo     "<i class='fa-solid fa-cart-plus'></i>";
+            echo   "</div>";
             echo   "<div class='price-color'>".'$' . $product["price"] ."</div>
             </div>
             </div>";
+            // echo "<";
+            
+           
+
         } ?>
         <div class="card-item swiper-slide">
             <img src="assets/images/placeholder.jpg" alt="User Image" class="user-image">

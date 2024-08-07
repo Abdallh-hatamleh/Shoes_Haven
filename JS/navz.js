@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     burgerMenu.addEventListener('click', () => {
         menu.classList.toggle('active');
     });
+
+
     document.getElementById("searchbar").addEventListener("keyup",e => {
         if (e.key == 'Enter') {
             let inputval = document.getElementById("searchbar").value.replace(/ /g,"%20");
