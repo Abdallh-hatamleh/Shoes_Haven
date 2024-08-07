@@ -23,7 +23,7 @@ include_once("Includes/nav.php");
 <div class="Login-Overlay">
     
     <div class="Form-container ">
-        <form method="post" action="" class="signup-form inactive" id="signup-form">
+        <form method="post" action="" class="signup-form <?php if(!isset($_GET['active']) || $_GET['active'] != 'sign') echo 'inactive'?>" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
                 <div class="inputlabel">
@@ -58,15 +58,15 @@ include_once("Includes/nav.php");
             <input type="hidden" name="signup" value="1">
             <input type="submit" class="confirm-form" value="Sign Up" >
             <div class="switch-section">
-                <div class="or-section">
+                <!-- <div class="or-section">
                     <span class="or-seperator"></span>
                     <span>OR</span>
                     <span class="or-seperator"></span>  
-                </div>
+                </div> -->
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form method="post" action="" class="login-form" id="login-form">
+<form method="post" action="" class="login-form <?php if(isset($_GET['active']) && $_GET['active'] == 'sign') echo 'inactive' ?>" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
