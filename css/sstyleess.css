@@ -68,6 +68,13 @@
     margin-bottom: 20px;
 }
 
+.hero-about-check-btn a{
+    text-decoration: none;
+    /* scroll-behavior: smooth; */
+   scroll-behavior: smooth;
+    
+}
+
 .hero p {
     font-size: 1.5rem;
     margin-bottom: 30px;
@@ -188,17 +195,21 @@ main {
 }
 
 .section-header {
-    width: fit-content;
+    width: 20rem;
     margin: auto;
     background: linear-gradient(180deg, rgb(231, 65, 3) 0%, rgb(255, 255, 255) 100%);
     padding: 0.4rem 2rem;
     border-radius: 2rem 2rem 0 0;
+    text-align: center;
 }
 
 .category h2 {
     /* width: 70vw; */
     margin-left: 5vw;
     margin-bottom: 2rem;
+    margin-top: 2rem;
+    /* font-size: 2rem */
+    /* background-color: #e94e77; */
 
 }
 

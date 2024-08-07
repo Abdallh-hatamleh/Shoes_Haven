@@ -11,12 +11,12 @@
   <title>Shoe Haven</title>
   <!-- Linking SwiperJS CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="css/sliderr.css">
-  <link rel="stylesheet" href="css/testimonialss.css">
+  <link rel="stylesheet" href="css/ssllideerr.css">
+  <link rel="stylesheet" href="css/testimoniialss.css">
   <link rel="stylesheet" href="css/nav.css">
-  <link rel="stylesheet" href="css/styless.css">
+  <link rel="stylesheet" href="css/sstyleess.css">
   <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jomhuria&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/foter.css">
+  <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="css/cart-products-section.css">
 </head>
@@ -26,7 +26,7 @@
   <?php include("includes/hero.php") ?>
   <?php include("includes/about.php") ?>
   <main>
-    <h2 class="section-header"><i class="fa-solid fa-fire-flame-curved fa-flip-horizontal"></i>Hottest Items<i class="fa-solid fa-fire-flame-curved"></i></h2>
+    <h2 class="section-header" id="shop"><i class="fa-solid fa-fire-flame-curved fa-flip-horizontal"></i>Hottest Items<i class="fa-solid fa-fire-flame-curved"></i></h2>
     
       <?php 
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
@@ -38,7 +38,7 @@
         include("includes/slider.php"); 
       }
        ?>
-      
+      <div class="tesst"><h2>Testimonials</h2></div>
     <div class="testimonials">
     <?php include("Includes/testimonialtop.php") ?>
         <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
