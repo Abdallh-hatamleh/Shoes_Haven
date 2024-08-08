@@ -56,7 +56,9 @@ include_once("Includes/nav.php");
                 <input type="text" class="form-ins" name="Address" required>
             </div>
             <input type="hidden" name="signup" value="1">
-            <input type="submit" class="confirm-form" value="Sign Up" >
+            <div class="inputlabel">
+                <input type="submit" class="confirm-form" value="Sign Up" >
+            </div>
             <div class="switch-section">
                 <!-- <div class="or-section">
                     <span class="or-seperator"></span>
