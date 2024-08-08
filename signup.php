@@ -1,21 +1,33 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/Signupz.css">
-<?php 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/Signupz.css">
+    <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="css/cart-products-section.css">
+    <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // var_dump($_POST);
 }
+include_once("Includes/nav.php");
 ?>
 <div class="Login-Overlay">
-
+    
     <div class="Form-container ">
-        <form method="post" action="" class="signup-form inactive" id="signup-form">
+        <form method="post" action="" class="signup-form <?php if(!isset($_GET['active']) || $_GET['active'] != 'sign') echo 'inactive'?>" id="signup-form">
             <h2>Sign Up</h2>
             <div class="inputRow">
-            <div class="inputlabel">
-            <label for="Fname">First Name</label>
+                <div class="inputlabel">
+                    <label for="Fname">First Name</label>
             <input class="form-ins" type="text" name="Fname" id="firstName-input-sign-up" required>
             <p id="fname-error" class="error"></p>
             </div>
@@ -46,15 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <input type="hidden" name="signup" value="1">
             <input type="submit" class="confirm-form" value="Sign Up" >
             <div class="switch-section">
-                <div class="or-section">
+                <!-- <div class="or-section">
                     <span class="or-seperator"></span>
                     <span>OR</span>
                     <span class="or-seperator"></span>  
-                </div>
+                </div> -->
                 <span class="alt-text">Already have an account?<a class="switch-forms" onclick="swapfocus"> Log in</a></span>
             </div>
 </form>
-<form method="post" action="" class="login-form" id="login-form">
+<form method="post" action="" class="login-form <?php if(isset($_GET['active']) && $_GET['active'] == 'sign') echo 'inactive' ?>" id="login-form">
     <h2>Log in</h2>
     <div class="inputlabel">
         <label for="Email">Email</label>
@@ -76,13 +88,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </form>
 
 <div class="form-visual">
-    <img src="assets/nike-air-force.webp" alt="">
+<img src="assets/nike-air-force.webp" alt="">
 </div>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="JS/login.js">
-    </script>
+</script>
+<?php
+include_once("Includes/foot.php");
+?>
+</body>
+</html>
+
+<!-- <link rel="stylesheet" href="css/sstyleess.css"> -->
 
 
 <!-- login&signup -->
