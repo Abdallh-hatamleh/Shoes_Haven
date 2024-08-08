@@ -5,7 +5,7 @@
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    var_dump($_POST);
+    // var_dump($_POST);
 }
 ?>
 <div class="Login-Overlay">
@@ -102,7 +102,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST["signup"])) {
     
-    echo "<script>alert('hi')</script>";
+    // echo "<script>alert('hi')</script>";
     $first_name = $_POST['Fname'];
     $last_name = $_POST['Lname'];
     $email = $_POST['Email'];

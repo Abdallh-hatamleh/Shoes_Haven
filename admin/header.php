@@ -1,4 +1,9 @@
-
+<?php
+	if(!isset($_COOKIE['user']) || $_COOKIE['user'] != 'admin')
+	{
+		header('Location: ../index.php');
+	}
+?>
 <!DOCTYPE html>
 <html>
 
