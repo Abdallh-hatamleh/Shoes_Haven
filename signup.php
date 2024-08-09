@@ -87,6 +87,9 @@ include_once("Includes/nav.php");
         </div>
         <span class="alt-text">Don't have an account?<a class="switch-forms"> Sign up</a></span>
     </div>
+        </div>
+        <span class="alt-text">Don't have an account?<a class="switch-forms"> Sign up</a></span>
+    </div>
 </form>
 
 <div class="form-visual">
