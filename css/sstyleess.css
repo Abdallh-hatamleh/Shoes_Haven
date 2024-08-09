@@ -30,13 +30,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* النص يظهر على الجهة اليسرى */
+  
     color: white;
     position: relative;
     padding-left: 50px;
 }
 
-/* إزالة التعتيم عن الصورة الخلفية */
+
 .hero::before {
     content: '';
     position: absolute;
@@ -45,7 +45,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
-    /* تعيين التعتيم إلى صفر */
+   
     z-index: 1;
 }
 
@@ -116,44 +116,60 @@
 }
 
 .about-us {
-    background: linear-gradient(to right, #ffecd2, #fcb69f);
-    padding: 50px 20px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .container-about {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .container-about h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #ff6347;
-  }
-  
-  .container-about .store-name {
-    font-weight: bold;
-    color: #e94e77;
-  }
-  
-  .container-about p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
-  .container-about .highlight {
-    color: #ff6347;
-    font-weight: bold;
-  }
-  
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            align-items: center; 
+            justify-content: center;
+            gap: 20px; 
+        }
+      
+        .container-about {
+width: 500px; 
+height: 500px;           
+            padding: 130px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin-left: 400px;
+
+            
+        }
+      
+        .container-about h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff6347;
+        }
+      
+        .container-about .store-name {
+            font-weight: bold;
+            color: #e94e77;
+        }
+      
+        .container-about p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+      
+        .container-about .highlight {
+            color: #ff6347;
+            font-weight: bold;
+          
+        }
+
+        .imgg {
+width: 600px;    
+        height: auto;
+            border-radius: 8px;
+margin-right: 100;
+        }
   @media (max-width: 768px) {
     .container-about h1 {
       font-size: 2rem;
@@ -212,7 +228,9 @@ main {
     /* background-color: #e94e77; */
 
 }
+.imgg{
 
+}
 /* تعديلات Responsive */
 @media (max-width: 1200px) {
     .hero h1 {

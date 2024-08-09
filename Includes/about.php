@@ -5,16 +5,15 @@
     </div> -->
 <!-- <header><link rel="stylesheet" href=""></header> -->
 
-    <section class="about-us" id="about">
+<section class="about-us" id="about">
         <div class="container-about">
             <h1>Welcome to <span class="store-name">Shoes Haven</span>, where passion meets innovation.</h1>
-            <p>We are dedicated to bringing you the best <span class="highlight">Shoes</span> with unparalleled customer service.
-             Our team works tirelessly to ensure that each purchase is a seamless and enjoyable experience. 
-             Explore our diverse range of products and discover why we’re the preferred choice for discerning shoppers.
-              Thank you for choosing us!</p>
+            <p>We are dedicated to bringing you the best <span class="highlight">Shoes</span> with unparalleled customer
+                service. Our team works tirelessly to ensure that each purchase is a seamless and enjoyable experience.
+                Explore our diverse range of products and discover why we’re the preferred choice for discerning
+                shoppers. Thank you for choosing us!</p>
         </div>
         <div>
-        <img src="gggggggggggggggggggg.png">
-
+            <img class="imgg" src="gggggggggggggggggggg.png" alt="Shoes Haven">
         </div>
     </section>
