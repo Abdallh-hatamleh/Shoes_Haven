@@ -79,9 +79,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $stmt->close();
     } 
-    } elseif (isset($_POST['action']) && $_POST['action'] == 'upload_new') {
+    } if (isset($_POST['action']) && $_POST['action'] == 'upload_new') {
+        // echo '<script>alert("hi")</script>';
+        // var_dump($_FILES);
         $Pme_id = $_POST['Pme_id'];
-        $imgNew = $_FILES['upload_new'];
+        $imgNew = $_FILES['img1'];
 
         $stmt = $conn->prepare("UPDATE poduct_media SET Pme_name=? WHERE Pme_id=?");
         $stmt->bind_param("si", $imgNew['name'], $Pme_id);
@@ -90,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "image updated successfully.";
 
             $new_img_path ="../assets/Products/".$imgNew['name'];
-            move_uploaded_file($_FILES['upload_new']['tmp_name'], $new_img_path );
+            move_uploaded_file($_FILES['img1']['tmp_name'], $new_img_path );
         } else {
             $message = "Error: " . $stmt->error;
         }
@@ -195,12 +197,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="editProductImage" method="POST" action="">
+                        <form id="editProductImage" method="POST" action="" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="upload_new">
                             <input type="hidden" name="Pme_id" id="Pme_id">
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
-                                    <input name="upload_new" type="file" id='upload_new' required>
+                                    <input name="img1" type="file" id='upload_new' required>
                                 </div>
                             </div>
                             <button class="btn btn-primary" type="submit">confirm</button>
@@ -478,7 +480,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     var Pme_id = $(this).data("id");
                     $("#editProductImage").modal("show");
                     // $("#editProductFormModal").classList.toggle("show");
-            $("#Pme_id").val(Pme_id);
+                    $("#Pme_id").val(Pme_id);
         });
 
 
