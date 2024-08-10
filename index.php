@@ -37,11 +37,20 @@
       <div class="tesst"><h2>Testimonials</h2></div>
     <div class="testimonials">
     <?php include("Includes/testimonialtop.php");
-        $query = "";
-
+        $query = $conn->query("SELECT * FROM `testimonails`");
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($results as $row) {
+          // $tagid = $row['tag_id'];
+          // include("includes/slider.php"); 
+          echo '<div class="testimonial-card-item swiper-slide"><img src="assets/images/'.$row["test_image"].'" alt="User Image" class="testimonial-user-image">
+          <h2 class="testimonial-user-name">'. $row["test_name"].'</h2>
+          <article class="testimonial-message-article">'.$row["test_comment"] .'</article>
+        </div>
+          ';
+        }
     ?>
 
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
+        <!-- <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
           <h2 class="testimonial-user-name">James Wilson</h2>
           <article class="testimonial-message-article">Shoes Haven is my go-to store for all my footwear needs. The quality and variety are unmatched!
           </article>
@@ -70,7 +79,7 @@
         <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-6.jpg" alt="User Image" class="testimonial-user-image">
           <h2 class="testimonial-user-name">Richard Wilson</h2>
           <article class="testimonial-message-article">I had an excellent shopping experience at Shoes Haven. The website is user-friendly, and my order arrived quickly and exactly as described.</article>
-        </div>
+        </div> -->
     <?php include("Includes/testimonialbottom.php") ?>
     </div>
   </main>
