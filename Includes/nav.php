@@ -139,7 +139,8 @@ if(isset($_COOKIE['user']))
             $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$userid");
             $user_name = $sql->fetchColumn();
             echo '<div class="UserInfo"><a href="user-information.php" class="userName">Welcome '. $user_name .'</a>
-                    <div class="LogOut"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>';
+                    <div class="LogOut"><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></div>';
+            
         }
         else {
             echo '<div class="login_signup"><a href="signup.php?active=log" class="login">login</a>
