@@ -17,6 +17,7 @@ for (let i = 0; i < remove_product.length; i++) {
     remove_product[i].addEventListener('click', () => {
         remove_product[i].parentNode.parentNode.style.display = 'none'
         remove_product[i].parentNode.submit();
+        // document.getElementById('cart-total').innerText -= remove_product[i].parentNode.parentNode.price
     })
 
 

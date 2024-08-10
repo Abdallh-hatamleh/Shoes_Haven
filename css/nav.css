@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap');
 
 body {
-    font-family: 'Josefin Slab', serif;
+    /* font-family: 'Josefin Slab', serif; */
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -59,6 +59,7 @@ nav {
     padding: 5px;
     border: 1px solid #ffffff;
     border-radius: 50px;
+    width: 15rem;
 }
 
 .Vector {
@@ -102,6 +103,27 @@ nav {
     color: #ffffff;
 }
 
+.UserInfo{
+    display: flex;
+    column-gap: 1rem;
+    color: white;
+    align-items: center;
+}
+.UserInfo a{
+    text-decoration: none;
+    background-color: #f29d38;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px;
+}
+.LogOut {
+    display: flex;
+    column-gap: 1rem;
+    background-color: #f29d38;
+    padding: 4px;
+    border-radius: 5px;
+}
 @media (max-width: 768px) {
     .menu {
         display: none;
