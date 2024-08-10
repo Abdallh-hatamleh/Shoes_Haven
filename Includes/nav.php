@@ -13,48 +13,47 @@
 
         </div>
 
-            <div class="search-cart" id="search-cart">
-                <div class="search">
-                    <input id="searchbar" type="text" class="text" placeholder="<?php 
-                        $placeholders = ['formal', 'heels', 'formal -heels', 'heels -fromal','Search'] ;
-                        shuffle($placeholders);
-                        echo $placeholders[0];
-                    ?>">
-                    <img src="./images/Vector.png" alt="" class="Vector" id="searchsubmit">
-                </div>
-                <div class="cart">
-                    <img src="./images/Shopping Cart.png" alt="" class="ShoppingCart">
+        <div class="search-cart" id="search-cart">
+            <div class="search">
+                <input id="searchbar" type="text" class="text" placeholder="<?php
+                $placeholders = ['formal', 'heels', 'formal -heels', 'heels -fromal', 'Search'];
+                shuffle($placeholders);
+                echo $placeholders[0];
+                ?>">
+                <img src="./images/Vector.png" alt="" class="Vector" id="searchsubmit">
+            </div>
+            <div class="cart">
+                <img src="./images/Shopping Cart.png" alt="" class="ShoppingCart">
+
+                <div class="cart-product-list hidden">
+
+                    <h2>YOUR CART</h2>
+                    <?php
+
+                    $cart_total_price = 0;
+                    $user_id = 2;
+                    if (isset($_COOKIE['user'])) {
+                        $user_id = $_COOKIE['userid'];
+                        $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                        /////////// add to cat
                     
-                    <div class="cart-product-list hidden">
-                        
-                        <h2>YOUR CART</h2>
-                        <?php
-
-$cart_total_price = 0;
-$user_id = 2;
-if(isset($_COOKIE['user']))
-        {
-            $user_id = $_COOKIE['userid'];
-            $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            /////////// add to cat
-            
 
 
 
-            $show_cart = "select a.product_id, a.product_size,a.cart_id, b.product_name, b.product_description, b.price, c.Pme_name from cart a join products b using (product_id) JOIN poduct_media c using (product_id)  where a.user_id = $user_id group by a.cart_id";
-            $cart_products = $conn->query($show_cart);
+                        $show_cart = "select a.product_id, a.product_size,a.cart_id, b.product_name, b.product_description, b.price, c.Pme_name from cart a join products b using (product_id) JOIN poduct_media c using (product_id)  where a.user_id = $user_id group by a.cart_id";
+                        $cart_products = $conn->query($show_cart);
 
 
-            echo '<div class="cart-scroll-div">';
-            
-            foreach ($cart_products as $products) {
-                
-                $cart_total_price += $products['price'];
-                
-                
-                echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
+                        echo '<div class="cart-scroll-div">';
+
+                        foreach ($cart_products as $products) {
+
+                            $cart_total_price += $products['price'];
+
+
+                            echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
                 <img src='assets/Products/" . $products['Pme_name'] . "' alt=''>
                 <div class='cart-product-info'>
                 <div class='cart-product-name'>" . $products['product_name'] . " </div>
@@ -66,16 +65,15 @@ if(isset($_COOKIE['user']))
                 <div class='remove-cart-product'>&#10005;</div>
                 </form>
                 </div>";
-            }
-            
-        }
-        else{
-            echo '<div class="cart-scroll-div">';
-            foreach ($_SESSION['cart'] as $key => $products) {
-                $cart_total_price += $products['price'];
+                        }
 
-                
-        echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
+                    } else {
+                        echo '<div class="cart-scroll-div">';
+                        foreach ($_SESSION['cart'] as $key => $products) {
+                            $cart_total_price += $products['price'];
+
+
+                            echo "<div class='cart-product' id='cart-product-id' price='" . $products['price'] . "'>
 <img src='assets/Products/" . $products['img'] . "' alt=''>
 <div class='cart-product-info'>
 <div class='cart-product-name'>" . $products['name'] . " </div>
@@ -88,10 +86,10 @@ if(isset($_COOKIE['user']))
 </form>
 </div>";
 
-    }
-}
+                        }
+                    }
 
-                   
+
                     echo " </div>
 
 <section class='checkout-total-section'>
@@ -100,7 +98,7 @@ if(isset($_COOKIE['user']))
 
 <form action='' method='POST'>
     <input type='hidden' name='checkout_btn' value='checkout'>
-    <a href='checkout-page.php?order_id=2'class='cart-checkout-button'>CHECKOUT</a>
+    <button class='cart-checkout-button'><a  href='checkout-page.php?order_id=2'>CHECKOUT</a></button>
 </form>
 
 </section>
@@ -128,31 +126,29 @@ if(isset($_COOKIE['user']))
                 </div>
             </div>
 
-            
-            <?php 
-        // $logged_in = false;
-        if(isset($_COOKIE['user']))
-        {
-            $userid = $_COOKIE['userid'];
-            $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-            $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$userid");
-            $user_name = $sql->fetchColumn();
-            echo '<div class="UserInfo"><a href="user-information.php" class="userName">Welcome '. $user_name .'</a>
+
+            <?php
+            // $logged_in = false;
+            if (isset($_COOKIE['user'])) {
+                $userid = $_COOKIE['userid'];
+                $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$userid");
+                $user_name = $sql->fetchColumn();
+                echo '<div class="UserInfo"><a href="user-information.php" class="userName">Welcome ' . $user_name . '</a>
                     <div class="LogOut"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>';
-        }
-        else {
-            echo '<div class="login_signup"><a href="signup.php?active=log" class="login">login</a>
+            } else {
+                echo '<div class="login_signup"><a href="signup.php?active=log" class="login">login</a>
                 <a href="signup.php?active=sign" class="signup">signup</a>';
-                }
-                ?>
+            }
+            ?>
 
-            </div>
+        </div>
 
-            <div class="burger-menu" id="burger-menu">
-                <i class="fa fa-bars"></i>
+        <div class="burger-menu" id="burger-menu">
+            <i class="fa fa-bars"></i>
 
-            </div>
+        </div>
     </nav>
 </header>
 
