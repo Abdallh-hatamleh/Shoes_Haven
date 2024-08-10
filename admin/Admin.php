@@ -209,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // }
                 }
             } else {
-                echo "<tr><td colspan='6'>No admins found.</td></tr>";
+                echo "<tr><td colspan='6'>No users found.</td></tr>";
             }
             ?>
         </tbody>
