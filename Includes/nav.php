@@ -1,8 +1,10 @@
 <header>
 
     <nav>
-        <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
-            class="logo">
+        <a href="index.php">
+            <img src="./images/Black_and_Beige_Modern_Illustration_Logo__3_-removebg-preview-removebg-preview.png" alt=""
+                class="logo">
+        </a>
 
         <div class="menu" id="menu">
             <a href="index.php" class="puttons">Home</a>
@@ -10,7 +12,6 @@
             <a href="index.php#about" class="puttons">About Us</a>
             <!-- <a href="index.php#contact" class="puttons">Contact Us</a> -->
             <a href="helpcenter.php" class="puttons">help center</a>
-
         </div>
 
             <div class="search-cart" id="search-cart">

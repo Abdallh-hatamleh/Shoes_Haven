@@ -36,7 +36,11 @@
        ?>
       <div class="tesst"><h2>Testimonials</h2></div>
     <div class="testimonials">
-    <?php include("Includes/testimonialtop.php") ?>
+    <?php include("Includes/testimonialtop.php");
+        $query = "";
+
+    ?>
+
         <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
           <h2 class="testimonial-user-name">James Wilson</h2>
           <article class="testimonial-message-article">Shoes Haven is my go-to store for all my footwear needs. The quality and variety are unmatched!
