@@ -72,7 +72,7 @@ $cust_address = $result['cust_adress'];
 
 <div class="user-info-show ">
 
-<form class="user-info-form" id="info_form" action="" method="">
+<form class="user-info-form" id="info_form" action="" method="post">
 <h1>User Info</h1>
   
 <label>First Name:</label>    

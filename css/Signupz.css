@@ -28,7 +28,7 @@
     /* margin: 1rem; */
 }
 .signup-form h2{
-    position: relative;
+    /* position: relative; */
     bottom: 2rem;
 }
 .signup-form{
@@ -64,7 +64,7 @@ form {
 }
 
 form h2{
-    margin: 1em 0;
+    /* margin: 1em 0; */
     align-self: center;
 }
 .form-ins{

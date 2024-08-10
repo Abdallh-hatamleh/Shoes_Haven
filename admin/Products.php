@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="products.css">
+
+
 <?php
 include_once ("header.php");
 
@@ -75,8 +78,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "Error: " . $stmt->error;
         }
         $stmt->close();
-    }
-}
+    } 
+    } elseif (isset($_POST['action']) && $_POST['action'] == 'upload_new') {
+        $Pme_id = $_POST['Pme_id'];
+        $imgNew = $_FILES['upload_new'];
+
+        $stmt = $conn->prepare("UPDATE poduct_media SET Pme_name=? WHERE Pme_id=?");
+        $stmt->bind_param("si", $imgNew['name'], $Pme_id);
+
+        if ($stmt->execute()) {
+            $message = "image updated successfully.";
+
+            $new_img_path ="../assets/Products/".$imgNew['name'];
+            move_uploaded_file($_FILES['upload_new']['tmp_name'], $new_img_path );
+        } else {
+            $message = "Error: " . $stmt->error;
+        }
+        $stmt->close();
+ }
+
+
 ?>
 
 <div class="title pb-20">
@@ -163,6 +184,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="editProductImage" tabindex="-1" role="dialog" aria-labelledby="editProductImageLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProductImageLabel">Update Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editProductImage" method="POST" action="">
+                            <input type="hidden" name="action" value="upload_new">
+                            <input type="hidden" name="Pme_id" id="Pme_id">
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <input name="upload_new" type="file" id='upload_new' required>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">confirm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <table class="data-table table">
@@ -195,8 +241,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <a href='delete_product.php?adid=" . $row["product_id"] . "' class='delete_btn' data-id='" . $row["product_id"] . "' data-color='#e95959'>
                                     <i class='icon-copy dw dw-delete-3'></i>
                                 </a>
-                                <a href='tags.php?tagid=".$row["product_id"]."' class='view-btn' data-id='".$row["product_id"]."' data-color='black'>
-                                   <i class='fa-solid fa-eye'></i>
+                                <input type='hidden' id='' name='adid' value='".$row["product_id"]."'>
+                                <a href='Products.php?adid=" . $row["product_id"] . "' class='show_image_btn' data-id='".$row["product_id"]."' data-color='black'>
+                                   <i class='fa-solid fa-eye'> </i>
                                 </a>
                             </div>
                         </td>
@@ -208,6 +255,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </tbody>
     </table>
+</div>
+
+
+<div class='img_show_container'>
+
+<?php
+    if (isset($_GET['adid'])) {
+        $product_id = $_GET['adid'];
+
+        $stmt = $conn->prepare("SELECT * FROM poduct_media WHERE product_id = ?");
+        $stmt->bind_param("s", $product_id);
+        if($stmt->execute()) {     
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+            
+            echo "<div class='img_show'>
+            <img class='product_img' src='../assets/Products/". $row["Pme_name"] . "' alt=''>
+             <button class='edit_image_btn' data-id='". $row["Pme_id"] . "' data-color='#265ed7'>
+            <i class='icon-copy dw dw-edit2'></i></button></div>";
+            
+                }}
+        }
+    }
+?>
+
+
+
+<!-- 
+    
+<div class='img_show'>
+    
+    <img class='product_img' src="../assets/Products/1701413835aaffaba51186b567bc5dbdc067a46116_thumbnail_900x.webp" alt=""> <button class='edit_image_btn' data-id='" . $row["product_id"] . "' data-color='#265ed7'><i class='icon-copy dw dw-edit2'></i></button>
+    
+    </div>
+<div class='img_show'>
+    
+    <img class='product_img' src="../assets/Products/1701413835aaffaba51186b567bc5dbdc067a46116_thumbnail_900x.webp" alt=""> <button class='edit_image_btn' data-id='" . $row["product_id"] . "' data-color='#265ed7'><i class='icon-copy dw dw-edit2'></i></button>
+    
+    </div>
+<div class='img_show'>
+    
+    <img class='product_img' src="../assets/Products/1701413835aaffaba51186b567bc5dbdc067a46116_thumbnail_900x.webp" alt=""> <button class='edit_image_btn' data-id='" . $row["product_id"] . "' data-color='#265ed7'><i class='icon-copy dw dw-edit2'></i></button>
+    
+</div> -->
+
 </div>
 
 <!-- ------------------------------------------------------------ -->
@@ -340,33 +433,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script> -->
 
 <?php
+// echo "<script>alert('Delete Product');</script>";
 // include("../includes/footer.php");
 ?>
 <!-- ------------------------------------------------------------ -->
  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+ <script srt='show_update_products_image.js'></script>
  <script>
      $(document).ready(function () {
+
+
+///////////     edit product details
         $(".edit_btn").click(function (e) {
+            // alert('hi');
             e.preventDefault();
             var productId = $(this).data("id");
             var row = $(this).closest("tr");
-            var name = row.find("td:nth-child(1)").text();
-            var description = row.find("td:nth-child(2)").text();
-            var price = row.find("td:nth-child(3)").text();
+            var name = row.find("td:nth-child(2)").text();
+            var description = row.find("td:nth-child(3)").text();
+            var price = row.find("td:nth-child(4)").text();
 
-            $("#product_id").val(productId);
+            // $("#product_id").val(name);
             $("#product_name").val(name);
             $("#product_description").val(description);
             $("#price").val(price);
             $("#editProductFormModal").modal("show");
             // $("#editProductFormModal").classList.toggle("show");
         });
-    });
+
+
+
+        ////////    show product image eye button
+        $(".show_image_btn").click(function (e) {
+            $('.show_img_form').submit()
+                    // $("#editProductFormModal").classList.toggle("show");
+                });
+
+
+
+                ///////////     upload new image
+                $(".edit_image_btn").click(function (e) {
+                    e.preventDefault();
+                    var Pme_id = $(this).data("id");
+                    $("#editProductImage").modal("show");
+                    // $("#editProductFormModal").classList.toggle("show");
+            $("#Pme_id").val(Pme_id);
+        });
+
+
+// const show_image_btn = document.queryS   electorAll('.show_image_btn');
+
+//     if (let i = 0 ; i < show_image_btn.length; i++) {
+//         show_image_btn[i].addEventListener("click", () => {
+//                     e.preventDefault();
+//                     console.log(';asdihflkasdf')
+//         })
+
+    // }
+});
+
 </script>
 
 <?php
 include_once ("footer.php");
 $conn->close();
 ?>
-

@@ -1,7 +1,3 @@
-<?php
-
- ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +9,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/ssllideerr.css">
   <link rel="stylesheet" href="css/testimoniialss.css">
-  <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/sstyleess.css">
   <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jomhuria&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="css/cart-products-section.css">
@@ -31,7 +27,7 @@
       <?php 
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $query = $conn->query("SELECT tags.tag_id,tags.tag_name, COUNT(product_tags.product_id) as Items_in_tag FROM tags left JOIN product_tags USING (tag_id) WHERE featured=1 GROUP BY tags.tag_id HAVING Items_in_tag > 3");
       $results = $query->fetchAll(PDO::FETCH_ASSOC);
       foreach ($results as $row) {
         $tagid = $row['tag_id'];
@@ -40,8 +36,21 @@
        ?>
       <div class="tesst"><h2>Testimonials</h2></div>
     <div class="testimonials">
-    <?php include("Includes/testimonialtop.php") ?>
-        <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
+    <?php include("Includes/testimonialtop.php");
+        $query = $conn->query("SELECT * FROM `testimonails`");
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($results as $row) {
+          // $tagid = $row['tag_id'];
+          // include("includes/slider.php"); 
+          echo '<div class="testimonial-card-item swiper-slide"><img src="assets/images/'.$row["test_image"].'" alt="User Image" class="testimonial-user-image">
+          <h2 class="testimonial-user-name">'. $row["test_name"].'</h2>
+          <article class="testimonial-message-article">'.$row["test_comment"] .'</article>
+        </div>
+          ';
+        }
+    ?>
+
+        <!-- <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-1.jpg" alt="User Image" class="testimonial-user-image">
           <h2 class="testimonial-user-name">James Wilson</h2>
           <article class="testimonial-message-article">Shoes Haven is my go-to store for all my footwear needs. The quality and variety are unmatched!
           </article>
@@ -70,7 +79,7 @@
         <div class="testimonial-card-item swiper-slide"><img src="Testimonial/images/img-6.jpg" alt="User Image" class="testimonial-user-image">
           <h2 class="testimonial-user-name">Richard Wilson</h2>
           <article class="testimonial-message-article">I had an excellent shopping experience at Shoes Haven. The website is user-friendly, and my order arrived quickly and exactly as described.</article>
-        </div>
+        </div> -->
     <?php include("Includes/testimonialbottom.php") ?>
     </div>
   </main>
