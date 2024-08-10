@@ -1,0 +1,136 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container for the order details */
+.user-info-show-unique {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styling */
+.orders_h1-unique {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Order card styling */
+.user-order-card-unique {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f8f8;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.user-order-card-unique a {
+    color: #555;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.user-order-card-unique a:hover {
+    color: #000;
+}
+
+/* Expanded order list styling */
+.order-expanded-list-unique {
+    margin-top: 20px;
+}
+
+.cart-scroll-div-unique {
+    max-height: 300px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+/* Individual product styling */
+.cart-product-unique {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-product-unique img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.cart-product-info-unique {
+    flex-grow: 1;
+}
+
+.cart-product-name-unique {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cart-product-price-unique a {
+    color: #ff6f61;
+    font-weight: bold;
+}
+
+.order-action-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.confirm-order-button, .delete-order-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.confirm-order-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.delete-order-button {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-order-card-unique {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-product-unique {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-product-unique img {
+        margin-bottom: 10px;
+    }
+}

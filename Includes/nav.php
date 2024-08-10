@@ -79,7 +79,7 @@ if(isset($_COOKIE['user']))
 
 <form action='' method='POST'>
     <input type='hidden' name='checkout_btn' value='checkout'>
-    <button class='cart-checkout-button'>CHECKOUT</button>
+    <a href='checkout-page.php?order_id=2'class='cart-checkout-button'>CHECKOUT</a>
 </form>
 
 </section>
