@@ -14,8 +14,8 @@
 
 .category h2 {
   /* width: 70vw; */
-  margin-left: 5vw;
-  margin-bottom: 2rem;
+  /* margin-left: 5vw; */
+  margin-bottom: 1rem;
 }
 
 .category h2 a {
@@ -23,7 +23,7 @@
   color: black;
   background: linear-gradient(180deg, rgb(231, 65, 3) 0%, rgb(255, 255, 255) 100%);
   padding: 0.3rem 1.5rem;
-  border-radius: 2rem 2rem 0 0;
+  border-radius: 0 2rem 0 0;
   /* font-size: 2rem; */
 }
 

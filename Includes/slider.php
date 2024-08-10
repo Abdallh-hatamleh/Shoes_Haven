@@ -5,8 +5,13 @@
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
       $query = $conn->prepare("SELECT tags.tag_name from tags where tags.tag_id = :idr");
       $query->execute(["idr"=> "$tagid"]);
-      echo "<h2>" . $query->fetchColumn() ."</h2>";
-      include("Includes\slidertop.php"); 
+      $tagname = $query->fetchColumn();
+      //   include("Includes\slidertop.php"); 
+      echo '<div class="swiper-main-container">
+      <div class="container swiper">
+      <div class="slider-wrapper">';
+      echo "<h2><a href='products.php?search=$tagname'>" . $tagname ."</a></h2>
+        <div class='card-list swiper-wrapper'>";
       
       $query = $conn->prepare("SELECT poduct_media.Pme_name, products.product_name, products.price, products.product_id from products join product_tags USING (product_id) JOIN poduct_media USING (product_id) where product_tags.tag_id=:idr GROUP BY products.product_name");
       $query->execute(["idr"=> "$tagid"]);
@@ -22,9 +27,6 @@
             // echo   "</a>";
             echo   '<div class="name-price-container">';
             echo   "<div class='message-button'>".$product["product_name"] ."</div>";
-            echo   "<div class='icon-container'>";
-            echo     "<i class='fa-solid fa-cart-plus'></i>";
-            echo   "</div>";
             echo   "<div class='price-color'>".'$' . $product["price"] ."</div>
             </div>
             </div>";

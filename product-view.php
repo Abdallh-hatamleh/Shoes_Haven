@@ -17,7 +17,7 @@
 </head>
 
 <?php
-
+session_start();
 $user_id = 2;
 
 $pid = 1;
@@ -60,11 +60,32 @@ foreach ($result = $query->fetchAll(PDO::FETCH_ASSOC) as $row) {
 if (isset($_POST['add_product'])) {
   $size = $_POST['Size'];
   $pid = $_GET['pid'];
-
-  $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
-  $conn->query($add_sql);
-  $link = "add-to-cart.php?pid=" . $_GET['pid'];
-  header("Location: $link");
+  if(isset($_COOKIE['user']))
+  {
+    $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
+    $conn->query($add_sql);
+    $link = "add-to-cart.php?pid=" . $_GET['pid'];
+    header("Location: $link");
+  }
+  else{
+    // unset($_SESSION['cart']);
+    $sql = "SELECT products.product_name,products.price, poduct_media.Pme_name FROM products join poduct_media USING (product_id) GROUP BY products.product_id having products.product_id=$pid";
+    $res = $conn->query($sql);
+    $result = $res->fetchAll(PDO::FETCH_ASSOC);
+    $img = $result[0]["Pme_name"];
+    $name = $result[0]["product_name"];
+    $price = $result[0]["price"];
+    if(!isset($_SESSION['cart']))
+    {
+      $_SESSION['cart'] = [];
+      $_SESSION['cart'][] = ['id' => $pid, 'size' => $size,'img'=> $img,'name'=> $name,'price'=> $price];
+      
+    }
+    else {
+      $_SESSION['cart'][] = ['id' => $pid, 'size' => $size,'img'=> $img,'name'=> $name,'price'=> $price];
+      // unset( $_SESSION['cart'][0] );
+    }
+  }
 }
 
 
@@ -120,14 +141,15 @@ if (isset($_POST['add_product'])) {
     <?php
       $conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $query = $conn->query("SELECT tag_id FROM tags WHERE featured=1");
+      $query = $conn->query("SELECT tags.tag_id,tags.tag_name, COUNT(product_tags.product_id) as Items_in_tag FROM tags left JOIN product_tags USING (tag_id) WHERE featured=1 GROUP BY tags.tag_id HAVING Items_in_tag > 3");
       $results = $query->fetchAll(PDO::FETCH_ASSOC);
       foreach ($results as $row) {
         $tagid = $row['tag_id'];
         include ("includes/slider.php");
       }
+      // var_dump($_SESSION['cart']);
       ?>
-
+  
 <script src="JS/product-view.js"></script>
   <?php include ("includes/foot.php") ?>
   <!-- Linking SwiperJS script -->
