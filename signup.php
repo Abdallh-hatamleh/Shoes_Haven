@@ -16,7 +16,7 @@
     <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    var_dump($_POST);
+    // var_dump($_POST);
 }
 include_once("Includes/nav.php");
 ?>
@@ -56,7 +56,9 @@ include_once("Includes/nav.php");
                 <input type="text" class="form-ins" name="Address" required>
             </div>
             <input type="hidden" name="signup" value="1">
-            <input type="submit" class="confirm-form" value="Sign Up" >
+            <div class="inputlabel">
+                <input type="submit" class="confirm-form" value="Sign Up" >
+            </div>
             <div class="switch-section">
                 <!-- <div class="or-section">
                     <span class="or-seperator"></span>
@@ -82,6 +84,9 @@ include_once("Includes/nav.php");
             <span class="or-seperator"></span>
             <span>OR</span>
             <span class="or-seperator"></span>  
+        </div>
+        <span class="alt-text">Don't have an account?<a class="switch-forms"> Sign up</a></span>
+    </div>
         </div>
         <span class="alt-text">Don't have an account?<a class="switch-forms"> Sign up</a></span>
     </div>
@@ -121,7 +126,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST["signup"])) {
     
-    echo "<script>alert('hi')</script>";
+    // echo "<script>alert('hi')</script>";
     $first_name = $_POST['Fname'];
     $last_name = $_POST['Lname'];
     $email = $_POST['Email'];

@@ -35,8 +35,8 @@ if (isset($_GET['search']))
         <h2>Tags</h2>
         <ul>
           <?php 
-          // $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
-          // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           // $query = $conn->query("select tag_name from tags");
           // while ($row = $query->fetch(PDO::FETCH_ASSOC))  
           // {
