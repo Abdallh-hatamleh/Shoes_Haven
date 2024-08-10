@@ -31,7 +31,10 @@
 <?php
 
 $user_id = 2;
-
+if(isset($_COOKIE['user']))
+        {
+            $user_id = $_COOKIE['userid'];
+        }
 
 
 $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
@@ -102,7 +105,7 @@ $conn ->query($remove_sql);
                 </div>
             </div>
 
-            <div class="login_signup">
+            
             <?php 
         // $logged_in = false;
         if(isset($_COOKIE['user']))
@@ -110,13 +113,13 @@ $conn ->query($remove_sql);
             $userid = $_COOKIE['userid'];
             $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION) ;
-            $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$user_id");
+            $sql = $conn->query("SELECT first_name FROM `users` WHERE user_id=$userid");
             $user_name = $sql->fetchColumn();
-            echo '<a href="user-information.php" class="login">'. $user_name .'</a>
-                    <a href="logout.php" class="signup">LogOut</a>';
+            echo '<div class="UserInfo"><a href="user-information.php" class="userName">Welcome '. $user_name .'</a>
+                    <div class="LogOut"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>';
         }
         else {
-            echo '<a href="signup.php?active=log" class="login">login</a>
+            echo '<div class="login_signup"><a href="signup.php?active=log" class="login">login</a>
                 <a href="signup.php?active=sign" class="signup">signup</a>';
         }
     ?>

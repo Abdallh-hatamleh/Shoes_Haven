@@ -1,6 +1,11 @@
 <?php
 
 $user_id = 2;
+if($_COOKIE['user'] == 'customer')
+        {
+            $user_id = $_COOKIE['userid'];
+            // echo("<script>alert('hi')</script>");
+        }
 
 $conn = new PDO("mysql:host=localhost;dbname=shoes_haven","root","");
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

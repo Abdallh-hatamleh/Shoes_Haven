@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action']) && $_POST['action'] == 'add_admin') {
         $first_name = $_POST['firstName'];
         $last_name = $_POST['lastName'];
-        $user_email = $_POST['username'];
+        $user_email = $_POST['user_email'];
         $user_password = password_hash($_POST['user_password'], PASSWORD_DEFAULT); // Hash password
 
         // Check if the email already exists
@@ -32,40 +32,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $message = "Error: Email already exists.";
         } else {
-            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, password) VALUES (?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, password, admin) VALUES (?, ?, ?, ?, 1)");
             $stmt->bind_param("ssss", $first_name, $last_name, $user_email, $user_password);
 
             if ($stmt->execute()) {
-                $user_id = $stmt->insert_id;
-
-                $stmt_admin = $conn->prepare("INSERT INTO admin (user_id) VALUES (?)");
-                $stmt_admin->bind_param("i", $user_id);
-                if ($stmt_admin->execute()) {
                     $message = "New admin added successfully";
                 } else {
-                    $message = "Error: " . $stmt_admin->error;
-                }
-                $stmt_admin->close();
-            } else {
                 $message = "Error: " . $stmt->error;
-            }
+                }
         }
         $stmt->close();
     }
 
     // Handle editing admin
     if (isset($_POST['action']) && $_POST['action'] == 'edit_admin') {
-        $admin_id = $_POST['admin_id'];
-        $stmt = $conn->prepare('SELECT users.user_id from users join admin USING (user_id) where admin_id = ?');
-        $stmt->bind_param('i', $admin_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user_id = $result->fetch_column();
+        $user_id = $_POST['user_id'];
         $first_name = $_POST['firstName'];
         $last_name = $_POST['lastName'];
-        $user_email = $_POST['username'];
+        $user_email = $_POST['user_email'];
 
-        $stmt = $conn->prepare("UPDATE `users` SET `first_name`=?,`last_name`=?,`user_email`=? WHERE user_id=?");
+        $stmt = $conn->prepare("UPDATE users SET first_name=?,last_name=?,user_email=? WHERE user_id=?");
         $stmt->bind_param("sssi", $first_name, $last_name, $user_email, $user_id);
 
         if ($stmt->execute()) {
@@ -117,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="username">User Email</label>
-                                    <input type="email" class="form-control" id="username" name="username" placeholder="User Email" required>
+                                    <input type="email" class="form-control" id="username" name="user_email" placeholder="User Email" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="user_password">User Password</label>
@@ -144,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-body">
                         <form id="editAdminForm" method="POST" action="">
                             <input type="hidden" name="action" value="edit_admin">
-                            <input type="hidden" name="admin_id" id="edit_admin_id">
+                            <input type="hidden" name="user_id" id="edit_admin_id">
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
                                     <label for="editFirstName">First name</label>
@@ -155,8 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <input type="text" class="form-control" id="editLastName" name="lastName" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="editUsername">User Email</label>
-                                    <input type="email" class="form-control" id="editUsername" name="username" required>
+                                    <label for="editUserEmail">User Email</label>
+                                    <input type="email" class="form-control" id="editUserEmail" name="user_email" required>
                                 </div>
                             </div>
                             <button class="btn btn-primary" type="submit">Submit form</button>
@@ -171,7 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <thead>
             <tr>
                 <th class="table-plus">Admin Id</th>
-                <th>User Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>User Email</th>
@@ -180,28 +165,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </thead>
         <tbody>
             <?php
-            $sql = "SELECT admin.admin_id, users.user_id, users.first_name, users.last_name, users.user_email FROM users JOIN admin ON users.user_id = admin.user_id";
+            $sql = "SELECT * FROM `users` WHERE 1";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    if($row['admin'] == 1){
+
                     echo "<tr>
-                        <td class='table-plus'>".$row["admin_id"]."</td>
-                        <td>".$row["user_id"]."</td>
+                        <td class='table-plus'>".$row["user_id"]."</td>
                         <td>".$row["first_name"]."</td>
                         <td>".$row["last_name"]."</td>
                         <td>".$row["user_email"]."</td>
+
                         <td>
                             <div class='table-actions'>
-                                <a href='#' class='edit_btn' data-id='".$row["admin_id"]."' data-color='#265ed7'>
+                                <a href='#' class='edit_btn' data-id='".$row["user_id"]."' data-color='#265ed7'>
                                     <i class='icon-copy dw dw-edit2'></i>
                                 </a>
-                                <a href='delete_admin.php?adid=".$row["admin_id"]."' class='delete_btn' data-id='".$row["admin_id"]."' data-color='#e95959'>
-                                    <i class='icon-copy dw dw-delete-3'></i>
+                                <a href='delete_admin.php?adid=".$row["user_id"]."' class='delete_btn' data-id='".$row["user_id"]."' data-color='#e95959'>
+                                    <i class='icon-copy dw dw-delete-3 hidden'></i>
+                                    // <i>SURE?</i>
+                                    // <i class='delete'>Yes</i>
+                                    // <i class='delete'>Cancel</i>
                                 </a>
                             </div>
                         </td>
                     </tr>";
+
+                }
                 }
             } else {
                 echo "<tr><td colspan='6'>No admins found.</td></tr>";
@@ -218,17 +210,21 @@ $(document).ready(function() {
     $(".edit_btn").click(function() {
         var adminId = $(this).data("id");
         var row = $(this).closest("tr");
-        var firstName = row.find("td:nth-child(3)").text();
-        var lastName = row.find("td:nth-child(4)").text();
-        var userEmail = row.find("td:nth-child(5)").text();
+        var admin_user_id = row.find("td:nth-child(1)").text();
+        var firstName = row.find("td:nth-child(2)").text();
+        var lastName = row.find("td:nth-child(3)").text();
+        var userEmail = row.find("td:nth-child(4)").text();
         
-        $("#edit_admin_id").val(adminId);
+        $("#edit_admin_id").val(admin_user_id);
         $("#editFirstName").val(firstName);
         $("#editLastName").val(lastName);
-        $("#editUsername").val(userEmail);
+        $("#editUserEmail").val(userEmail);
         $("#editAdminFormModal").modal("show");
     });
 });
+
+
+
 </script>
 
 <?php
