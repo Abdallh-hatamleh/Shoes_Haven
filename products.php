@@ -111,8 +111,13 @@ if (isset($_GET['search']))
               // Execute the query using PDO prepared statements
               $stmt = $conn->prepare($sql);
               $stmt->execute($parameters);
+              $results = $stmt->fetchAll();
               // $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+              if(sizeof($results) == 0)
+              {
+                echo "<div class='no-items'>No Products matching your search found</div>";
+              }
+foreach($results as $row)
 {
   $img = $row['Pme_name'];
   $name = $row['product_name'];
