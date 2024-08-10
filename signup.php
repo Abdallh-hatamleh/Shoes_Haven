@@ -41,7 +41,7 @@ if (isset($_POST["login"])) {
     $password = $_POST['Pass'];
     
     // Secure the query by using prepared statements
-    $stmt = $conn->prepare("SELECT user_id, password, admin, first_name, FROM users WHERE user_email = ?");
+    $stmt = $conn->prepare("SELECT user_id, password, admin, first_name FROM users WHERE user_email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -69,6 +69,7 @@ if (isset($_POST["login"])) {
     } else {
         $errorMessage = "Wrong Email or Password";
     }
+    echo "<script>alert('$errorMessage')</script>";
 }
 
 // Close the database connection

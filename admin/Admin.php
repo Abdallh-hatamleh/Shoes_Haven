@@ -32,15 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             $message = "Error: Email already exists.";
         } else {
-            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, password, admin) VALUES (?, ?, ?, ?, 1)");
+            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, user_email, password) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $first_name, $last_name, $user_email, $user_password);
-
+            
             if ($stmt->execute()) {
-                    $message = "New admin added successfully";
+
+                $sql = "SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1";
+                $query = $conn->query($sql);
+                $result = $query->fetch_column();
+                $stmt = $conn->prepare("INSERT INTO customers (cust_mobile, cust_adress, user_id ) VALUES ('0', '0', ?)");
+                $stmt->bind_param("i", $result);
+                    $message = "New user added successfully";
                 } else {
                 $message = "Error: " . $stmt->error;
                 }
+                echo "<script>alert('$message')</script>";
         }
+
         $stmt->close();
     }
 
@@ -55,9 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sssi", $first_name, $last_name, $user_email, $user_id);
 
         if ($stmt->execute()) {
-            echo "Admin ان شاء الله updated successfully";
+            // echo "Admin ان شاء الله updated successfully";
         } else {
-            echo "Error updating admin: " . $stmt->error;
+            echo "<script>alert('Error updating admin: " . $stmt->error . "')</script>";
         }
         $stmt->close();
     }
@@ -65,15 +73,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <div class="title pb-20">
-    <h2 class="h3 mb-0">Admins Overview</h2>
+    <h2 class="h3 mb-0">Users Overview</h2>
 </div>
 
 <div class="card-box pb-10">
     <div class="h5 pd-20 mb-0 table_head">
-        Admins
+        Users
         <!-- Add Admin Button -->
         <button type="button" class="btn btn-primary add-admin-btn" data-toggle="modal" data-target="#adminFormModal">
-            Add Admin
+            Add User
         </button>
 
         <!-- Modal Structure for Adding Admin -->
@@ -81,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="adminFormModalLabel">Add Admin</h5>
+                        <h5 class="modal-title" id="adminFormModalLabel">Add User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -122,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editAdminFormModalLabel">Edit Admin</h5>
+                        <h5 class="modal-title" id="editAdminFormModalLabel">Edit User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -156,27 +164,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <table class="data-table table nowrap">
         <thead>
             <tr>
-                <th class="table-plus">Admin Id</th>
-                <th>First Name</th>
+                <th class="table-plus">First Name</th>
+                <!-- <th>First Name</th> -->
                 <th>Last Name</th>
                 <th>User Email</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>isAdmin?</th>
                 <th class="datatable-nosort">Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $sql = "SELECT * FROM `users` WHERE 1";
+            $sql = "SELECT users.*,customers.* FROM `users` left join customers using (user_id)";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    if($row['admin'] == 1){
+                    // if($row['admin'] == 1){
 
                     echo "<tr>
-                        <td class='table-plus'>".$row["user_id"]."</td>
-                        <td>".$row["first_name"]."</td>
+                        <td class='table-plus'>".$row["first_name"]."</td>
                         <td>".$row["last_name"]."</td>
                         <td>".$row["user_email"]."</td>
+                        <td>".$row["cust_mobile"]."</td>
+                        <td>".$row["cust_adress"]."</td>
+                        <td>".$row["admin"]."</td>
 
                         <td>
                             <div class='table-actions'>
@@ -193,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </td>
                     </tr>";
 
-                }
+                // }
                 }
             } else {
                 echo "<tr><td colspan='6'>No admins found.</td></tr>";

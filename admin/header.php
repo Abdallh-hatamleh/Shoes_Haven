@@ -309,7 +309,7 @@ form button {
 				<ul id="accordion-menu">
 					<li>
 						<a href="Admin.php" class="dropdown-toggle no-arrow">
-							<span class="micon bi "></span><span class="mtext">Admin</span>
+							<span class="micon bi "></span><span class="mtext">Users</span>
 						</a>
 					</li>
 					<li>
