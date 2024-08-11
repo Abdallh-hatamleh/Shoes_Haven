@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  
+
     color: white;
     position: relative;
     padding-left: 50px;
@@ -45,7 +45,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0);
-   
+
     z-index: 1;
 }
 
@@ -68,11 +68,11 @@
     margin-bottom: 20px;
 }
 
-.hero-about-check-btn a{
+.hero-about-check-btn a {
     text-decoration: none;
     /* scroll-behavior: smooth; */
-   scroll-behavior: smooth;
-    
+    scroll-behavior: smooth;
+
 }
 
 .hero p {
@@ -116,69 +116,105 @@
 }
 
 .about-us {
-            background: linear-gradient(to right, #ffecd2, #fcb69f);
-            padding: 50px 20px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: row;
-            align-items: center; 
-            justify-content: center;
-            gap: 20px; 
-        }
-      
-        .container-about {
-width: 500px; 
-height: 500px;           
-            padding: 130px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            margin-left: 400px;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
-            
-        }
-      
-        .container-about h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ff6347;
-        }
-      
-        .container-about .store-name {
-            font-weight: bold;
-            color: #e94e77;
-        }
-      
-        .container-about p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
-      
-        .container-about .highlight {
-            color: #ff6347;
-            font-weight: bold;
-          
-        }
+.container-about {
+    width: 500px;
+    height: 500px;
+    padding: 130px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin-left: 400px;
 
-        .imgg {
-width: 600px;    
+
+}
+
+.container-about h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ff6347;
+}
+
+.container-about .store-name {
+    font-weight: bold;
+    color: #e94e77;
+}
+
+.container-about p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.container-about .highlight {
+    color: #ff6347;
+    font-weight: bold;
+
+}
+
+.imgg {
+    width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 100;
+}
+
+@media (max-width: 768px) {
+    .about-us {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .imgg {
+        width: 100%;
         height: auto;
-            border-radius: 8px;
-margin-right: 100;
-        }
-  @media (max-width: 768px) {
+        border-radius: 8px;
+        margin-right: 100;
+        display: none;
+    }
+
+
+    .container-about {
+        width: 0px;
+        height: 0px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin-left: 0px;
+    }
+
+    .about-us {
+        padding: 0 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
     .container-about h1 {
-      font-size: 2rem;
+        font-size: 1.2rem;
     }
-  
+
     .container-about p {
-      font-size: 1rem;
+        font-size: 1rem;
     }
-  }
+}
 
 .contact-btn {
     padding: 0.4rem 1rem;
@@ -228,9 +264,9 @@ main {
     /* background-color: #e94e77; */
 
 }
-.imgg{
 
-}
+.imgg {}
+
 /* تعديلات Responsive */
 @media (max-width: 1200px) {
     .hero h1 {
@@ -261,6 +297,17 @@ main {
     .hero {
         justify-content: center;
         padding-left: 20px;
+    }
+
+    .container-about {
+        width: 500px;
+        height: 500px;
+        padding: 130px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin-left: 0px;
     }
 
     .hero-content {
