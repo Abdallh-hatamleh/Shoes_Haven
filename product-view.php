@@ -63,10 +63,11 @@ if (isset($_POST['add_product'])) {
   $pid = $_GET['pid'];
   if(isset($_COOKIE['user']))
   {
+    $user_id = $_COOKIE['userid'];
     $add_sql = "INSERT INTO `cart`(`product_id`, `product_size`, `user_id`) VALUES ( $pid ,$size,$user_id)";
     $conn->query($add_sql);
-    $link = "add-to-cart.php?pid=" . $_GET['pid'];
-    header("Location: $link");
+    // $link = "add-to-cart.php?pid=" . $_GET['pid'];
+    // header("Location: $link");
   }
   else{
     // unset($_SESSION['cart']);
