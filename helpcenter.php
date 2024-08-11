@@ -1,3 +1,24 @@
+<?php
+// Database connection settings
+$servername = "localhost"; // Replace with your server name
+$username = "root";        // Replace with your database username
+$password = "";            // Replace with your database password
+$dbname = "shoes_haven";   // Replace with your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query to select 5 questions
+$sql = "SELECT question, answer FROM customer_questions LIMIT 5";
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -121,10 +142,26 @@
 
 <body>
     <?php include_once('includes/nav.php') ?>
+    
     <div class="unique-box">
         <h1>Help Center</h1>
-
-        <div class="peculiar-faq">
+        <?php
+        // Check if there are any results
+        if ($result->num_rows > 0) {
+            // Output data of each row in a card
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='peculiar-faq'>";
+                echo "<h2>" . $row["question"] . "</h2>";
+                echo "<p>" . $row["answer"] . "</p>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>No questions found.</p>";
+        }
+        // Close the database connection
+        $conn->close();
+        ?>
+        <!-- <div class="peculiar-faq">
             <h2>How do I reset my password?</h2>
             <p>If you forget your password, you can reset it by clicking on the "Forgot Password" link on the login
                 page. Follow the instructions sent to your email to set a new password.</p>
@@ -140,7 +177,7 @@
             <h2>Where can I find product information?</h2>
             <p>Product information is available on the product pages of our website. You can also find detailed
                 descriptions, specifications, and reviews for each product there.</p>
-        </div>
+        </div> -->
 
         <div class="strange-support">
             <div class="contact-weird">

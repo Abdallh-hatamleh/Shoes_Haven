@@ -10,10 +10,10 @@
                 <!-- Grid column -->
                 <div class="footer-column">
                     <h6 class="text-uppercase fw-bold mb-4">Links info</h6>
-                    <p><a href="#!" class="text-reset">Home</a></p>
-                    <p><a href="#!" class="text-reset"> About us</a></p>
-                    <p><a href="#!" class="text-reset">Products</a></p>
-                    <p><a href="#!" class="text-reset">Contact us</a></p>
+                    <p><a href="index.php" class="text-reset">Home</a></p>
+                    <p><a href="index.php#about" class="text-reset"> About us</a></p>
+                    <p><a href="products.php" class="text-reset">Products</a></p>
+                    <p><a href="helpcenter.php" class="text-reset">Help center</a></p>
                 </div>
                 <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <!-- Left -->
