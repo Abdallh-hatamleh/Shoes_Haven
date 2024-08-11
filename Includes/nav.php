@@ -1,3 +1,49 @@
+<?php 
+$conn = new PDO("mysql:host=localhost;dbname=shoes_haven", "root", "");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+if (isset($_POST['checkout_btn'])) {
+    // echo '<script>alert("hi")</script>';
+    $user_id = $_COOKIE['userid'];
+    $checkout_cart_sql = "select cart.*,customers.* from cart JOIN customers using (user_id) where cart.user_id =$user_id";
+    $checkout_cart = $conn->query($checkout_cart_sql);
+    // $checkout_details = $conn->query($checkout_cart);
+    // print_r($conn ->query($checkout_cart));
+    
+    // $query = $conn->prepare("SELECT tags.tad_name from tags where tags.tag_id = :idr");
+    // $query->execute(["idr"=> "$tagid"]);
+
+    // $checkout_details = $checkout_cart->fetch();
+    $checkout_details = $checkout_cart->fetchAll();
+    // var_dump($checkout_details);
+    // $cust_id = $checkout_details[0]['cust_id'];
+    if (isset($checkout_details[0]['cust_id'])) {
+        // echo '<script>alert("hi")</script>';
+        $cust_id = $checkout_details[0]['cust_id'];
+        $new_or_id = "INSERT INTO `orders`(`cust_id`) VALUES ($cust_id)";
+        $conn->exec($new_or_id);
+
+        $order_id = $conn->lastInsertId();
+
+        foreach ($checkout_details as $co_detail) {
+
+            $product_id = $co_detail['product_id'];
+            $product_size = $co_detail['product_size'];
+
+            $insert_order_detail = "INSERT INTO `order_details`( `product_id`, `or_id`, `shoe_size`) VALUES ($product_id, $order_id, $product_size)";
+            $conn->query($insert_order_detail);
+        }
+
+        $delete_cart_sql = "DELETE FROM `cart` WHERE user_id = $user_id";
+        $conn->query($delete_cart_sql);
+        
+    }
+
+
+}
+
+
+?>
 <header>
 
     <nav>
@@ -97,11 +143,11 @@ if(isset($_COOKIE['user']))
 
 <section class='checkout-total-section'>
 
-    <button class='cart-checkout-button'>total: <span id='cart-total'>$$cart_total_price</span></button>
+    <div class='cart-checkout-button'>total: <span id='cart-total'>$$cart_total_price</span></div>
 
 <form action='' method='POST'>
     <input type='hidden' name='checkout_btn' value='checkout'>
-    <button class='cart-checkout-button'>CHECKOUT</button>
+    <div class='cart-checkout-button' id='checkout-butn'>CHECKOUT</div>
 </form>
 
 </section>
@@ -162,47 +208,6 @@ if(isset($_COOKIE['user']))
 
 
 // try{
-
-if (isset($_POST['checkout_btn'])) {
-
-
-
-    $checkout_cart_sql = "select cart.*,customers.* from cart JOIN customers using (user_id) where cart.user_id =$user_id";
-    $checkout_cart = $conn->query($checkout_cart_sql);
-    // $checkout_details = $conn->query($checkout_cart);
-    // print_r($conn ->query($checkout_cart));
-
-    // $query = $conn->prepare("SELECT tags.tad_name from tags where tags.tag_id = :idr");
-    // $query->execute(["idr"=> "$tagid"]);
-
-    $checkout_details = $checkout_cart->fetch();
-    // $cust_id = $checkout_details[0]['cust_id'];
-    if (isset($checkout_details['cust_id'])) {
-
-        $cust_id = $checkout_details['cust_id'];
-        $new_or_id = "INSERT INTO `orders`(`cust_id`) VALUES ($cust_id)";
-        $conn->exec($new_or_id);
-
-        $checkout_details = $checkout_cart->fetchAll();
-        $or_id_sql = "select or_id from orders order by or_id DESC limit 1";
-        $or_id = $conn->query($or_id_sql);
-        $order_id = $or_id->fetchColumn();
-
-        foreach ($checkout_details as $co_detail) {
-
-            $product_id = $co_detail['product_id'];
-            $product_size = $co_detail['product_size'];
-
-            $insert_order_detail = "INSERT INTO `order_details`( `product_id`, `or_id`, `shoe_size`) VALUES ($product_id, $order_id, $product_size)";
-            $conn->query($insert_order_detail);
-        }
-
-        $delete_cart_sql = "DELETE FROM `cart` WHERE user_id = $user_id";
-        $conn->query($delete_cart_sql);
-    }
-
-
-}
 // } catch(Exception $e) {
 //     echo 'Message: ' .$e->getMessage();
 //   }

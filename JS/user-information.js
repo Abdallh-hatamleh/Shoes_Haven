@@ -21,8 +21,8 @@ aside_informations.addEventListener('click', () => {
     ///
     list_hidden_function();
     aside_informations.style.color = '#F39102'
-    aside_pass.style.color = 'white'
-    aside_orders.style.color = 'white'
+    aside_pass.style.color = ' black'
+    aside_orders.style.color = 'black'
 })
 
 aside_pass.addEventListener('click', () => {
@@ -31,9 +31,9 @@ aside_pass.addEventListener('click', () => {
     user_orders_list.classList.add('hidden')
     ///
     list_hidden_function();
-    aside_informations.style.color = 'white'
+    aside_informations.style.color = 'black'
     aside_pass.style.color = '#F39102'
-    aside_orders.style.color = 'white'
+    aside_orders.style.color = 'black'
 })
 
 aside_orders.addEventListener('click', () => {
@@ -42,8 +42,8 @@ aside_orders.addEventListener('click', () => {
     user_orders_list.classList.remove('hidden')
     ///
     list_hidden_function();
-    aside_informations.style.color = 'white'
-    aside_pass.style.color = 'white'
+    aside_informations.style.color = 'black'
+    aside_pass.style.color = 'black'
     aside_orders.style.color = '#F39102'
 })
 

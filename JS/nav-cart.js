@@ -24,11 +24,15 @@ for (let i = 0; i < remove_product.length; i++) {
 }
 
 
-const checkout_cart = document.querySelector('.cart-checkout-button');
+const checkout_cart = document.querySelector('#checkout-butn');
 
 
 checkout_cart.addEventListener('click', () => {
-    checkout_cart.parentNode.submit();
+    if(confirm('Add this to your orders?'))
+    {
+        checkout_cart.parentNode.submit();
+        // window.location.href = "index.php";
+    }
 })
 
 
